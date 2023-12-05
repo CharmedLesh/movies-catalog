@@ -1,11 +1,23 @@
-import { FC } from "react";
-import { ErrorModule } from "../../modules/error";
+import { FC } from 'react';
+import { ErrorModule } from '../../modules/error';
 
-export const ErrorPage: FC = () => {
-    const $notFoundErrorBanner = ErrorModule({
-        errorDescription: "Sorry, an unexpected error has occurred.",
-        errorInfo: "Not Found",
-    });
+interface IErrorPageProps {
+    errorCode: number;
+}
 
-    return $notFoundErrorBanner;
+export const ErrorPage: FC<IErrorPageProps> = (props) => {
+    const { errorCode } = props;
+
+    switch (errorCode) {
+        case 404:
+            return ErrorModule({
+                errorDescription: 'Sorry, page you are looking for doesn`t exist.',
+                errorInfo: 'Not Found'
+            });
+        default:
+            return ErrorModule({
+                errorDescription: 'Sorry, an unexpected error has occurred.',
+                errorInfo: 'Unexpected Error'
+            });
+    }
 };
