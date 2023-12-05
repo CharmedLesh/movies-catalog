@@ -1,0 +1,44 @@
+@import "./styles/colors";
+@import "./styles/fonts";
+
+:root {
+    font-weight: 400;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: $noto-sans;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+    margin: 0px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+}
