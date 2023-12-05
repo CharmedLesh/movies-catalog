@@ -1,5 +1,5 @@
-@import "./styles/colors";
-@import "./styles/fonts";
+@import './styles/colors';
+@import './styles/fonts';
 
 :root {
     font-weight: 400;
@@ -35,7 +35,7 @@ button {
     }
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
     cursor: pointer;
 
     &:disabled {
