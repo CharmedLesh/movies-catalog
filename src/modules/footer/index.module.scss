@@ -1,0 +1,20 @@
+@import '../../styles/colors';
+
+.footer {
+    width: 100%;
+}
+
+.mediaLinksContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $accent-dark;
+    color: $light;
+    padding: 20px 0px;
+}
+
+.copyright {
+    margin: 10px 0px;
+    text-align: center;
+    font-size: 12px;
+}

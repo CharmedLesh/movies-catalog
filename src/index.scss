@@ -19,6 +19,10 @@ ul {
     margin: 0px;
 }
 
+p {
+    margin: 0px;
+}
+
 button {
     cursor: pointer;
     border: none;
@@ -40,8 +44,14 @@ input[type='checkbox'] {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     min-height: 100vh;
     font-family: $noto-sans;
     box-sizing: border-box;
+    background-color: $light;
+}
+
+.page-content-wrapper {
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
 }
