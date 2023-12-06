@@ -3,6 +3,7 @@
 
 .header {
     width: 100%;
+    position: relative;
 }
 
 .creditsContainer {
@@ -43,23 +44,13 @@
     justify-content: center;
 }
 
-.hamburgerToggle {
-    display: none;
-
-    &:checked + .hamburgerButtonContainer .hamburgerButton {
-        width: 20px;
-    }
-
-    &:checked + .hamburgerButtonContainer .hamburgerButton::after {
-        width: 10px;
-    }
-}
-
 .hamburgerButton,
 .hamburgerButton::before,
 .hamburgerButton::after {
     background-color: $dark;
     position: absolute;
+    padding: 0px;
+    display: flex;
     height: 4px;
     width: 30px;
     transition: 400ms;
@@ -76,31 +67,68 @@
     margin-top: 8px;
 }
 
+.hamburgerButtonToggled {
+    width: 20px;
+
+    &::after {
+        width: 10px;
+    }
+}
+
 .menu {
-    // position: absolute;
-    width: 50%;
+    width: 100%;
+    position: absolute;
+    background-color: $light;
 
     &::after {
         content: '';
-        background-color: $dark;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+        opacity: 50%;
+        width: 100%;
+        height: 50%;
+        position: absolute;
+    }
+
+    ul {
+        text-align: center;
+        height: 0px;
+        overflow: hidden;
+        transition: height 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+
+        li {
+            padding: 0px 24px;
+            height: 0px;
+            transition: height 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: padding 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+
+            a {
+                font-size: 20px;
+                color: $grey-dark;
+                text-decoration: none;
+
+                &:active {
+                    text-decoration: underline;
+                }
+            }
+        }
     }
 }
 
-ul {
-    li {
-        font-size: 20px;
-        padding: 8px 24px;
+.menuToggled {
+    ul {
+        border-bottom: 1px solid $grey-light;
+        height: 100%;
+        li {
+            height: 100%;
+            padding: 8px 24px;
 
-        &:first-child {
-            padding-top: 16px;
-        }
+            &:first-child {
+                padding-top: 16px;
+            }
 
-        &:last-child {
-            padding-bottom: 16px;
+            &:last-child {
+                padding-bottom: 16px;
+            }
         }
     }
-}
-
-.authOptions {
-    border-top: 1px solid $grey-light;
 }

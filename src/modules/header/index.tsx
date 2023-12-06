@@ -1,10 +1,22 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import tmdbLogo from '../../ui/images/tmdb-primary-long-logo.svg';
 import styles from './index.module.scss';
 import { SvgClapperboardIcon } from '../../ui/icons';
 
 export const HeaderModule: FC = () => {
+    const [isHamburgerMenuToggled, setHamburgerMenuToggled] = useState<boolean>(false);
+
+    const toggleHamburgerMenu = () => {
+        setHamburgerMenuToggled((prevState) => !prevState);
+    };
+
+    const hamburgerButtonClassName = isHamburgerMenuToggled
+        ? `${styles.hamburgerButton} ${styles.hamburgerButtonToggled}`
+        : styles.hamburgerButton;
+
+    const menuClassName = isHamburgerMenuToggled ? `${styles.menu} ${styles.menuToggled}` : styles.menu;
+
     return (
         <header className={styles.header}>
             <div className={styles.creditsContainer}>
@@ -14,22 +26,33 @@ export const HeaderModule: FC = () => {
                 </Link>
             </div>
             <div className={styles.bottomContainer}>
-                <input id="hamburger-toggle" className={styles.hamburgerToggle} type="checkbox" />
-                <label className={styles.hamburgerButtonContainer} htmlFor="hamburger-toggle">
-                    <div className={styles.hamburgerButton}></div>
-                </label>
+                <div className={styles.hamburgerButtonContainer} onClick={toggleHamburgerMenu}>
+                    <button className={hamburgerButtonClassName}></button>
+                </div>
                 <SvgClapperboardIcon className={styles.logo} />
             </div>
-            <ul className={styles.menu}>
-                <ul className={styles.menuOptions}>
-                    <li>Trending</li>
-                    <li>Popular</li>
-                    <li>About</li>
-                    <li>Contact</li>
+            <ul className={menuClassName}>
+                <ul>
+                    <li>
+                        <Link to="/trending">Trending</Link>
+                    </li>
+                    <li>
+                        <Link to="/popular">Popular</Link>
+                    </li>
+                    <li>
+                        <Link to="/about">About</Link>
+                    </li>
+                    <li>
+                        <Link to="/contact">Contact</Link>
+                    </li>
                 </ul>
-                <ul className={styles.authOptions}>
-                    <li>Sign In</li>
-                    <li>Sign Up</li>
+                <ul>
+                    <li>
+                        <Link to="/sign-in">Sign In</Link>
+                    </li>
+                    <li>
+                        <Link to="/sign-up">Sign Up</Link>
+                    </li>
                 </ul>
             </ul>
         </header>
