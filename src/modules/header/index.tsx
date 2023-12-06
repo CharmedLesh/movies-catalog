@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import tmdbLogo from '../../ui/images/tmdb-primary-long-logo.svg';
-import logo from '../../ui/images/logo.png';
 import styles from './index.module.scss';
+import { SvgClapperboardIcon } from '../../ui/icons';
 
 export const HeaderModule: FC = () => {
     return (
@@ -18,8 +18,20 @@ export const HeaderModule: FC = () => {
                 <label className={styles.hamburgerButtonContainer} htmlFor="hamburger-toggle">
                     <div className={styles.hamburgerButton}></div>
                 </label>
-                <img src={logo} className={styles.logo} />
+                <SvgClapperboardIcon className={styles.logo} />
             </div>
+            <ul className={styles.menu}>
+                <ul className={styles.menuOptions}>
+                    <li>Trending</li>
+                    <li>Popular</li>
+                    <li>About</li>
+                    <li>Contact</li>
+                </ul>
+                <ul className={styles.authOptions}>
+                    <li>Sign In</li>
+                    <li>Sign Up</li>
+                </ul>
+            </ul>
         </header>
     );
 };

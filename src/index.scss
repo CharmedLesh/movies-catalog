@@ -17,6 +17,7 @@ body {
 ul {
     list-style: none;
     margin: 0px;
+    padding: 0px;
 }
 
 p {
@@ -45,9 +46,10 @@ input[type='checkbox'] {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    font-family: $noto-sans;
+    font-family: $poppins;
     box-sizing: border-box;
     background-color: $light;
+    color: $grey-dark;
 }
 
 .page-content-wrapper {
