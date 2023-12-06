@@ -1,0 +1,64 @@
+@import '../../../../styles/colors';
+
+.headerEssentialContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid $grey-light;
+
+    @media (min-width: 1024px) {
+        padding: 10px 10%;
+        flex-direction: row-reverse;
+    }
+
+    @media (min-width: 1280px) {
+        padding: 10px 15%;
+        flex-direction: row-reverse;
+    }
+}
+
+.searchfieldContainer {
+    position: absolute;
+    left: calc(50% - 75px);
+    width: 150px;
+
+    @media (min-width: 500px) {
+        left: calc(50% - 136px);
+        width: 250px;
+    }
+
+    @media (min-width: 1024px) {
+        left: calc(10% + 74px);
+        width: 250px;
+    }
+
+    @media (min-width: 1280px) {
+        left: calc(15% + 74px);
+    }
+}
+
+.logo {
+    font-size: 34px;
+    fill: $dark;
+}
+
+.menu {
+    display: none;
+}
+
+.navMenu,
+.authMenu,
+.menu {
+    @media (min-width: 1024px) {
+        display: flex;
+
+        li {
+            padding: 0px 10px;
+        }
+    }
+}
+
+.navMenu {
+    padding-right: 20px;
+}

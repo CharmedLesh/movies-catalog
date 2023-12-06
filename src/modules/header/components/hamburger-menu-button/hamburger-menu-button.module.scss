@@ -1,0 +1,45 @@
+@import '../../../../styles/colors';
+
+.hamburgerButtonContainer {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media (min-width: 1024px) {
+        display: none;
+    }
+}
+
+.hamburgerButton,
+.hamburgerButton::before,
+.hamburgerButton::after {
+    background-color: $dark;
+    position: absolute;
+    padding: 0px;
+    display: flex;
+    height: 4px;
+    width: 30px;
+    transition: 400ms;
+    border-radius: 2px;
+}
+
+.hamburgerButton::before {
+    content: '';
+    margin-top: -8px;
+}
+
+.hamburgerButton::after {
+    content: '';
+    margin-top: 8px;
+}
+
+.hamburgerButtonToggled {
+    width: 20px;
+
+    &::after {
+        width: 10px;
+    }
+}

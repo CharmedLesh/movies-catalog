@@ -15,8 +15,7 @@ root.render(
                 <HeaderModule />
                 <div className="page-content-wrapper">
                     <Routes>
-                        <Route path="/" element={<Navigate to="/home" />} />
-                        <Route path="/home" element={<HomePage />} />
+                        <Route path="/" element={<HomePage />} />
                         <Route path="*" element={<ErrorPage errorCode={404} />} />
                     </Routes>
                 </div>
