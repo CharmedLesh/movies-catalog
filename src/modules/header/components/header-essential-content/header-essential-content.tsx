@@ -1,9 +1,10 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { HamburgerMenuButton } from '../hamburger-menu-button/hamburger-menu-button';
+import { Menu } from '../menu/menu';
+import { GeneralSearchfield } from '../general-searchfield/general-searchfield';
 import { SvgClapperboardIcon } from '../../../../ui/icons';
 import styles from './header-essential-content.module.scss';
-import { Link } from 'react-router-dom';
-import { GeneralSearchfield } from '../general-searchfield/general-searchfield';
 
 interface IheaderEssentialContent {
     isHamburgerMenuToggled: boolean;
@@ -20,18 +21,7 @@ export const HeaderEssentialContent: FC<IheaderEssentialContent> = (props) => {
                     isHamburgerMenuToggled={isHamburgerMenuToggled}
                     hamburgerMenuButtonClickHandler={toggleHamburgerMenu}
                 />
-                <ul className={styles.menu}>
-                    <ul className={styles.navMenu}>
-                        <li>Movies</li>
-                        <li>TV Shows</li>
-                        <li>People</li>
-                        <li>More</li>
-                    </ul>
-                    <ul className={styles.authMenu}>
-                        <li>SIGN IN</li>
-                        <li>SIGN UP</li>
-                    </ul>
-                </ul>
+                <Menu />
             </div>
             <div className={styles.searchfieldContainer}>
                 <GeneralSearchfield />

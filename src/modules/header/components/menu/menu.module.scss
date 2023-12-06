@@ -1,0 +1,19 @@
+.menu {
+    display: none;
+}
+
+.navMenu,
+.authMenu,
+.menu {
+    @media (min-width: 1024px) {
+        display: flex;
+
+        li {
+            padding: 0px 10px;
+        }
+    }
+}
+
+.navMenu {
+    padding-right: 20px;
+}

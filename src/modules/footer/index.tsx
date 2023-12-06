@@ -1,11 +1,13 @@
 import { FC } from 'react';
+import { Copyright } from './components/copyright/copyright';
+import { MediaLinks } from './components/media-links/media-links';
 import styles from './index.module.scss';
 
 export const FooterModule: FC = () => {
     return (
         <footer className={styles.footer}>
-            <div className={styles.mediaLinksContainer}>links</div>
-            <p className={styles.copyright}>&copy;Copyright text</p>
+            <MediaLinks />
+            <Copyright />
         </footer>
     );
 };

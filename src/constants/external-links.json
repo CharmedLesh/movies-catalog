@@ -1,0 +1,27 @@
+{
+    "tmdb": {
+        "title": "The Movie Database",
+        "url": "https://www.themoviedb.org",
+        "rel": "external noopener"
+    },
+    "github": {
+        "title": "GitHub",
+        "url": "https://github.com/CharmedLesh",
+        "rel": "author external noopener"
+    },
+    "linkedin": {
+        "title": "LinkedIn",
+        "url": "https://www.linkedin.com/in/viacheslav-matvieiev-87a554272",
+        "rel": "author external noopener"
+    },
+    "instagram": {
+        "title": "Instagram",
+        "url": "https://www.instagram.com/locked_lesh",
+        "rel": "author external noopener"
+    },
+    "youtube": {
+        "title": "YouTube",
+        "url": "https://youtu.be/dQw4w9WgXcQ",
+        "rel": "external noopener"
+    }
+}
