@@ -8,7 +8,7 @@ export const UsernameInput: FC = () => {
             <BorderedInput
                 useLabel={true}
                 labelValue="Username"
-                id="sign-in-username-input"
+                id="sign-up-username-input"
                 name="username"
                 placeholder="Enter your username here..."
                 type="text"

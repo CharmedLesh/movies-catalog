@@ -26,6 +26,7 @@ export const PasswordInput: FC = () => {
             useLabel={true}
             labelValue="Password"
             id="sign-in-password-input"
+            name="password"
             placeholder="Enter your password here..."
             icon={<SvgOpenEyeIcon />}
             type={passwordInputType}
