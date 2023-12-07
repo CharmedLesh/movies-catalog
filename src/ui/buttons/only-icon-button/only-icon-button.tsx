@@ -7,7 +7,7 @@ interface IOnlyIconButton extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const OnlyIconButton: FC<IOnlyIconButton> = (props) => {
-    const { icon, onClick } = props;
+    const { icon, onClick, type } = props;
 
     const isIconValid = (): boolean => {
         if (typeof icon === 'string' && icon.length !== 1) {
@@ -19,7 +19,7 @@ export const OnlyIconButton: FC<IOnlyIconButton> = (props) => {
     !isIconValid() && Logger.logError('Wrong icon prowided. Icon should be SVG or string with 1 char.');
 
     return (
-        <button className={styles.onlyIconButton} onClick={onClick}>
+        <button className={styles.onlyIconButton} onClick={onClick} type={type}>
             {isIconValid() ? icon : '?'}
         </button>
     );

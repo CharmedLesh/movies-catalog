@@ -1,3 +1,10 @@
+@import '../../../styles/colors';
+
 .onlyIconButton {
     display: flex;
+    fill: $grey-dark;
+
+    &:active {
+        fill: $dark;
+    }
 }

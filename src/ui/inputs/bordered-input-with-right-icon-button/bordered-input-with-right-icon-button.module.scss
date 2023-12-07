@@ -1,0 +1,20 @@
+.borderedInputWithRightIconWrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+
+    input {
+        padding-right: 36px;
+    }
+}
+
+.eyeIconButtonContainer {
+    display: flex;
+    position: absolute;
+    right: 8px;
+    bottom: 5px;
+
+    button {
+        font-size: 20px;
+    }
+}

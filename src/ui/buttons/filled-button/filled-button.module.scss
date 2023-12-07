@@ -1,0 +1,12 @@
+@import '../../../styles/colors';
+
+.filledButton {
+    display: flex;
+    background-color: $grey-dark;
+    color: $light;
+    padding: 8px 16px;
+
+    &:active {
+        background-color: $grey;
+    }
+}

@@ -1,0 +1,30 @@
+@import '../../../styles/colors';
+@import '../../../styles/fonts';
+
+.borderedInputWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.borderedInputLabel {
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.borderedInput {
+    width: 100%;
+    padding: 6px 8px;
+    background-color: inherit;
+    border: 1px solid $grey-dark;
+    font-size: 15px;
+    box-sizing: border-box;
+
+    &:focus {
+        outline: 1px solid $accent;
+
+        &::placeholder {
+            color: transparent;
+        }
+    }
+}

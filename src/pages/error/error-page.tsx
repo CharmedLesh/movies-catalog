@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { ErrorModule } from '../../modules';
+import styles from './error-page.module.scss';
 
 interface IErrorPageProps {
     errorCode: number;
@@ -23,5 +24,5 @@ export const ErrorPage: FC<IErrorPageProps> = (props) => {
         }
     };
 
-    return getPropperErrorModule();
+    return <div className={styles.errorPage}>{getPropperErrorModule()}</div>;
 };

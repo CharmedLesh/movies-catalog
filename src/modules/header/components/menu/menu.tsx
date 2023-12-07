@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UnderlineButton } from '../../../../ui/buttons/underline-button/underline-button';
+import { UnderlinedButton } from '../../../../ui/buttons';
 import styles from './menu.module.scss';
 
 export const Menu: FC = () => {
@@ -32,10 +32,10 @@ export const Menu: FC = () => {
             </ul>
             <ul className={styles.authMenu}>
                 <li>
-                    <UnderlineButton value="SIGN IN" onClick={navigateToSignInPage} />
+                    <UnderlinedButton value="SIGN IN" onClick={navigateToSignInPage} />
                 </li>
                 <li>
-                    <UnderlineButton value="SIGN UP" onClick={navigateToSignUpPage} />
+                    <UnderlinedButton value="SIGN UP" onClick={navigateToSignUpPage} />
                 </li>
             </ul>
         </ul>
