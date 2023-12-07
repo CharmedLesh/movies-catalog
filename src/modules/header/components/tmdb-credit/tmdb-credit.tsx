@@ -14,7 +14,7 @@ export const TmbdCredit: FC = () => {
             type="credit"
             className={styles.tmdbCredit}
         >
-            <img src={tmdbLogo} />
+            <img src={tmdbLogo} alt="TMBD logo" />
             <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
         </Link>
     );
