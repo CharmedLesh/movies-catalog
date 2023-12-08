@@ -7,11 +7,11 @@ export const Menu: FC = () => {
     const navigate = useNavigate();
 
     const navigateToSignInPage = () => {
-        navigate('/movies-catalog/sign-in');
+        navigate('/sign-in');
     };
 
     const navigateToSignUpPage = () => {
-        navigate('/movies-catalog/sign-up');
+        navigate('/sign-up');
     };
 
     return (
