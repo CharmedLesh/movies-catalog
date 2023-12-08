@@ -17,24 +17,24 @@ export const HamburgerMenu: FC<IHamburgerMenuProps> = (props) => {
         <ul className={hamburgerMenuClassName}>
             <ul>
                 <li>
-                    <Link to="/trending">Trending</Link>
+                    <Link to="/movies-catalog/trending">Trending</Link>
                 </li>
                 <li>
-                    <Link to="/popular">Popular</Link>
+                    <Link to="/movies-catalog/popular">Popular</Link>
                 </li>
                 <li>
-                    <Link to="/about">About</Link>
+                    <Link to="/movies-catalog/about">About</Link>
                 </li>
                 <li>
-                    <Link to="/contact">Contact</Link>
+                    <Link to="/movies-catalog/contact">Contact</Link>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <Link to="/sign-in">Sign In</Link>
+                    <Link to="/movies-catalog/sign-in">Sign In</Link>
                 </li>
                 <li>
-                    <Link to="/sign-up">Sign Up</Link>
+                    <Link to="/movies-catalog/sign-up">Sign Up</Link>
                 </li>
             </ul>
         </ul>
