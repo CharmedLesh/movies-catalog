@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/movies-catalog/static/css/main.4dc89c10.css",
-    "main.js": "/movies-catalog/static/js/main.3a540eea.js",
-    "static/media/tmdb-primary-long-logo.svg": "/movies-catalog/static/media/tmdb-primary-long-logo.caee745762db3e030d38ebb5a167ae05.svg",
-    "index.html": "/movies-catalog/index.html",
-    "main.4dc89c10.css.map": "/movies-catalog/static/css/main.4dc89c10.css.map",
-    "main.3a540eea.js.map": "/movies-catalog/static/js/main.3a540eea.js.map"
+    "main.css": "/static/css/main.4dc89c10.css",
+    "main.js": "/static/js/main.a037ab3b.js",
+    "static/media/tmdb-primary-long-logo.svg": "/static/media/tmdb-primary-long-logo.caee745762db3e030d38ebb5a167ae05.svg",
+    "index.html": "/index.html",
+    "main.4dc89c10.css.map": "/static/css/main.4dc89c10.css.map",
+    "main.a037ab3b.js.map": "/static/js/main.a037ab3b.js.map"
   },
   "entrypoints": [
     "static/css/main.4dc89c10.css",
-    "static/js/main.3a540eea.js"
+    "static/js/main.a037ab3b.js"
   ]
 }
