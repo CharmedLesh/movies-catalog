@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { HeaderModule, FooterModule } from './modules';
 import { HomePage, ErrorPage, SignInPage, SignUpPage } from './pages';
 import './index.scss';
@@ -13,10 +13,11 @@ root.render(
                 <HeaderModule />
                 <div className="page-content-wrapper">
                     <Routes>
-                        <Route path="/" element={<HomePage />} />
+                        <Route path="/" element={<Navigate to="/movies-catalog" />} />
+                        <Route path="/movies-catalog" element={<HomePage />} />
+                        <Route path="/movies-catalog/sign-in" element={<SignInPage />} />
+                        <Route path="/movies-catalog/sign-up" element={<SignUpPage />} />
                         <Route path="*" element={<ErrorPage errorCode={404} />} />
-                        <Route path="/sign-in" element={<SignInPage />} />
-                        <Route path="/sign-up" element={<SignUpPage />} />
                     </Routes>
                 </div>
                 <FooterModule />
