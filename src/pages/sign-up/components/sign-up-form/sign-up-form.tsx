@@ -24,7 +24,7 @@ export const SignUpForm: FC = () => {
                 labelValue="Password Confirmation"
                 name="password-confirmation"
                 id="sign-up-password-confirmation-input"
-                placeholder="Dublicate your password here..."
+                placeholder="Confirm your password here..."
             />
             <SubmitButton onClick={onFormSubmit} />
         </form>
