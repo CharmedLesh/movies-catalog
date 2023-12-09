@@ -7,21 +7,22 @@ import './index.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <div className="app">
-                <HeaderModule />
-                <div className="page-content-wrapper">
-                    <Routes>
-                        <Route path="/" element={<Navigate to="/movies-catalog" />} />
-                        <Route path="/movies-catalog" element={<HomePage />} />
-                        <Route path="/movies-catalog/sign-in" element={<SignInPage />} />
-                        <Route path="/movies-catalog/sign-up" element={<SignUpPage />} />
-                        <Route path="*" element={<ErrorPage errorCode={404} />} />
-                    </Routes>
-                </div>
-                <FooterModule />
+    // <React.StrictMode>
+    <BrowserRouter>
+        <div className="app">
+            <HeaderModule />
+            <div className="page-content-wrapper">
+                <Routes>
+                    <Route path="/" element={<Navigate to="/movies-catalog" />} />
+                    <Route path="/movies-catalog" element={<HomePage />} />
+                    <Route path="/movies-catalog/sign-in" element={<SignInPage />} />
+                    <Route path="/movies-catalog/sign-up" element={<SignUpPage />} />
+                    <Route path="/movies-catalog/sign-in/:approved" element={<HomePage />} />
+                    <Route path="*" element={<ErrorPage errorCode={404} />} />
+                </Routes>
             </div>
-        </BrowserRouter>
-    </React.StrictMode>
+            <FooterModule />
+        </div>
+    </BrowserRouter>
+    // </React.StrictMode>
 );
