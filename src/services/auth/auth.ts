@@ -1,15 +1,21 @@
 import axios from 'axios';
 import { Logger } from '../logger/logger';
 
-interface CreateRequestTokenResponse {
+interface ICreateRequestTokenResponse {
     success: boolean;
     expires_at: string;
     request_token: string;
 }
 
-interface CreateSession {
+interface ICreateSession {
     success: boolean;
     session_id: string;
+}
+
+interface ICreateGuestSession {
+    success: boolean;
+    guest_session_id: string;
+    expires_at: string;
 }
 
 export class Auth {
@@ -25,7 +31,7 @@ export class Auth {
 
         try {
             const response = await axios.request(options);
-            const data: CreateRequestTokenResponse = response.data;
+            const data: ICreateRequestTokenResponse = response.data;
             return data;
         } catch (error) {
             if (error instanceof Error) {
@@ -48,7 +54,29 @@ export class Auth {
 
         try {
             const response = await axios.request(options);
-            const data: CreateSession = response.data;
+            const data: ICreateSession = response.data;
+            return data;
+        } catch (error) {
+            console.log(error);
+            if (error instanceof Error) {
+                Logger.logError(error.message);
+            }
+        }
+    };
+
+    static createGuestSession = async () => {
+        const options = {
+            method: 'GET',
+            url: 'https://api.themoviedb.org/3/authentication/guest_session/new',
+            headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${process.env.REACT_APP_TMDB_ACCESS_TOKEN}`
+            }
+        };
+
+        try {
+            const response = await axios.request(options);
+            const data: ICreateGuestSession = response.data;
             return data;
         } catch (error) {
             console.log(error);

@@ -23,6 +23,7 @@ export const SessionPage: FC = () => {
 
         if (requestToken) {
             const data = await Auth.createSession(requestToken);
+            console.log(data?.session_id);
         } else {
             window.alert('Request token not provided');
         }
