@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { Auth } from '../../services/auth/auth';
+import { AuthRequests } from '../../services/auth/auth-requests';
 import styles from './session-page.module.scss';
 
 export const SessionPage: FC = () => {
     const onCreateRequestTokenButtonClickHandler = async () => {
-        const data = await Auth.createRequestToken();
+        const data = await AuthRequests.createRequestToken();
         const requestToken = data?.request_token;
         if (requestToken) {
             window.open(
@@ -22,7 +22,7 @@ export const SessionPage: FC = () => {
         const requestToken = urlSearchParams.get('request_token');
 
         if (requestToken) {
-            const data = await Auth.createSession(requestToken);
+            const data = await AuthRequests.createSession(requestToken);
             console.log(data?.session_id);
         } else {
             window.alert('Request token not provided');

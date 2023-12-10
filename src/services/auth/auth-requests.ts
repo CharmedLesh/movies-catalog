@@ -18,7 +18,7 @@ interface ICreateGuestSession {
     expires_at: string;
 }
 
-export class Auth {
+export class AuthRequests {
     static createRequestToken = async () => {
         const options = {
             method: 'GET',

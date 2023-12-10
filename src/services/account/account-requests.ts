@@ -60,7 +60,7 @@ interface IGetRatedTVEpisodes extends ICommonAccountGetResponseData {}
 interface IGetWatchlistMovies extends ICommonAccountGetResponseData {}
 interface IGetWatchlistTV extends ICommonAccountGetResponseData {}
 
-export class Account {
+export class AccountRequests {
     static getDetails = async (sessionId: string) => {
         const options = {
             method: 'GET',
