@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { HeaderModule, FooterModule } from './modules';
-import { HomePage, ErrorPage, SignInPage, SignUpPage } from './pages';
+import { HomePage, ErrorPage, SignInPage, SignUpPage, SessionPage } from './pages';
 import './index.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
@@ -17,7 +17,8 @@ root.render(
                     <Route path="/movies-catalog" element={<HomePage />} />
                     <Route path="/movies-catalog/sign-in" element={<SignInPage />} />
                     <Route path="/movies-catalog/sign-up" element={<SignUpPage />} />
-                    <Route path="/movies-catalog/sign-in/:approved" element={<HomePage />} />
+                    <Route path="/movies-catalog/session" element={<SessionPage />} />
+                    <Route path="/movies-catalog/session/:approved" element={<SessionPage />} />
                     <Route path="*" element={<ErrorPage errorCode={404} />} />
                 </Routes>
             </div>

@@ -1,0 +1,16 @@
+@import '../../styles/colors';
+
+.sessionPage {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sessionPageButton {
+    display: flex;
+    padding: 6px 10px;
+    border: 1px solid $grey;
+    border-radius: 4px;
+    margin: 8px;
+}
