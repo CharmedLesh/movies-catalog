@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/movies-catalog/static/css/main.99ece739.css",
-    "main.js": "/movies-catalog/static/js/main.cfbd4be5.js",
+    "main.js": "/movies-catalog/static/js/main.882cd46a.js",
     "static/media/tmdb-primary-long-logo.svg": "/movies-catalog/static/media/tmdb-primary-long-logo.caee745762db3e030d38ebb5a167ae05.svg",
     "index.html": "/movies-catalog/index.html",
     "main.99ece739.css.map": "/movies-catalog/static/css/main.99ece739.css.map",
-    "main.cfbd4be5.js.map": "/movies-catalog/static/js/main.cfbd4be5.js.map"
+    "main.882cd46a.js.map": "/movies-catalog/static/js/main.882cd46a.js.map"
   },
   "entrypoints": [
     "static/css/main.99ece739.css",
-    "static/js/main.cfbd4be5.js"
+    "static/js/main.882cd46a.js"
   ]
 }
