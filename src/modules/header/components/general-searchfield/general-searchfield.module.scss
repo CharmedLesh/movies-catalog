@@ -4,33 +4,34 @@
     width: 100%;
 }
 
-.generalSearchfield {
-    position: relative;
-    width: 100%;
-    background-color: $light;
-    padding: 6px 0px;
-    border: none;
-    border-bottom: 1px solid $grey;
-    transition: box-shadow 100ms linear;
-    color: $grey-dark;
+// .generalSearchfield {
+//     position: relative;
+//     width: 100%;
+//     background-color: $light;
+//     // text on seacrh icon bug
+//     padding: 6px 0px;
+//     border: none;
+//     border-bottom: 1px solid $grey;
+//     transition: box-shadow 100ms linear;
+//     color: $grey-dark;
 
-    &::placeholder {
-        color: $grey;
-    }
+//     &::placeholder {
+//         color: $grey;
+//     }
 
-    &:focus {
-        outline: none;
-        box-shadow: rgba(27, 31, 35, 0.04) 0px 2px 0px, rgba(255, 255, 255, 0.25) 0px 2px 0px inset;
-    }
-}
+//     &:focus {
+//         outline: none;
+//         box-shadow: rgba(27, 31, 35, 0.04) 0px 2px 0px, rgba(255, 255, 255, 0.25) 0px 2px 0px inset;
+//     }
+// }
 
-.searchButton {
-    position: absolute;
-    right: 0px;
-    background-color: inherit;
-}
+// .searchButton {
+//     position: absolute;
+//     right: 0px;
+//     background-color: inherit;
+// }
 
-.searchIcon {
-    font-size: 20px;
-    fill: $grey-dark;
-}
+// .searchIcon {
+//     font-size: 20px;
+//     fill: $grey-dark;
+// }

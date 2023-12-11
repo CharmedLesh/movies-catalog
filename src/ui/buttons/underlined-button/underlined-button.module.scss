@@ -2,20 +2,5 @@
 
 .underlinedButton {
     position: relative;
-
-    &::after {
-        content: '';
-        position: absolute;
-        display: block;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 1px;
-        background-color: $grey-dark;
-        transition: width 100ms linear;
-    }
-
-    &:hover::after {
-        width: 100%;
-    }
+    text-decoration: underline;
 }

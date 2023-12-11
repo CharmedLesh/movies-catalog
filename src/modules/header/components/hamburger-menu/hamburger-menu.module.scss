@@ -3,6 +3,7 @@
 .hamburgerMenu {
     width: 100%;
     position: absolute;
+    z-index: 1;
     background-color: $light;
 
     @media (min-width: 1024px) {

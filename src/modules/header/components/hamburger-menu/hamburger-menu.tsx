@@ -4,10 +4,11 @@ import styles from './hamburger-menu.module.scss';
 
 interface IHamburgerMenuProps {
     isHamburgerMenuToggled: boolean;
+    toggleHamburgerMenu: () => void;
 }
 
 export const HamburgerMenu: FC<IHamburgerMenuProps> = (props) => {
-    const { isHamburgerMenuToggled } = props;
+    const { isHamburgerMenuToggled, toggleHamburgerMenu } = props;
 
     const hamburgerMenuClassName = isHamburgerMenuToggled
         ? `${styles.hamburgerMenu} ${styles.hamburgerMenuToggled}`
@@ -17,24 +18,31 @@ export const HamburgerMenu: FC<IHamburgerMenuProps> = (props) => {
         <ul className={hamburgerMenuClassName}>
             <ul>
                 <li>
-                    <Link to="/movies-catalog/trending">Trending</Link>
+                    <Link to="/movies-catalog/trending" onClick={toggleHamburgerMenu}>
+                        Trending
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/movies-catalog/popular">Popular</Link>
+                    <Link to="/movies-catalog/popular" onClick={toggleHamburgerMenu}>
+                        Popular
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/movies-catalog/about">About</Link>
+                    <Link to="/movies-catalog/about" onClick={toggleHamburgerMenu}>
+                        About
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/movies-catalog/contact">Contact</Link>
+                    <Link to="/movies-catalog/contact" onClick={toggleHamburgerMenu}>
+                        Contact
+                    </Link>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <Link to="/movies-catalog/sign-in">Sign In</Link>
-                </li>
-                <li>
-                    <Link to="/movies-catalog/sign-up">Sign Up</Link>
+                    <Link to="/movies-catalog/sign-in" onClick={toggleHamburgerMenu}>
+                        Sign In
+                    </Link>
                 </li>
             </ul>
         </ul>

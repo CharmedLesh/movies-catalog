@@ -18,7 +18,7 @@ export const HeaderModule: FC = () => {
                 isHamburgerMenuToggled={isHamburgerMenuToggled}
                 toggleHamburgerMenu={toggleHamburgerMenu}
             />
-            <HamburgerMenu isHamburgerMenuToggled={isHamburgerMenuToggled} />
+            <HamburgerMenu isHamburgerMenuToggled={isHamburgerMenuToggled} toggleHamburgerMenu={toggleHamburgerMenu} />
         </header>
     );
 };

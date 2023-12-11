@@ -1,0 +1,35 @@
+.disclaimer {
+    max-width: 250px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+        max-width: 500px;
+        font-size: 16px;
+    }
+
+    @media (min-width: 1024px) {
+        max-width: 700px;
+    }
+
+    @media (min-width: 1440px) {
+        max-width: 1000px;
+    }
+
+    ul {
+        list-style-type: circle;
+        padding-left: 30px;
+        margin-bottom: 20px;
+    }
+
+    p {
+        &:nth-child(1) {
+            margin-bottom: 20px;
+        }
+
+        &:nth-child(4) {
+            margin-bottom: 20px;
+        }
+    }
+}

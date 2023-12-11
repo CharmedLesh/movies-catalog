@@ -1,21 +1,21 @@
 import { FC, InputHTMLAttributes } from 'react';
 import { OnlyIconButton } from '../../buttons';
-import { BorderedInput } from '../index';
-import styles from './bordered-input-with-right-icon-button.module.scss';
+import { UnderlinedInput } from '../index';
+import styles from './underlined-input-with-right-icon-button.module.scss';
 
-interface IBorderedInputWithRightIcon extends InputHTMLAttributes<HTMLInputElement> {
+interface IUnderlinedInputWithRightIcon extends InputHTMLAttributes<HTMLInputElement> {
     useLabel: boolean;
     labelValue?: string;
     icon: JSX.Element | string;
     onIconButtonClick: () => void;
 }
 
-export const BorderedInputWithRightIcon: FC<IBorderedInputWithRightIcon> = (props) => {
+export const UnderlinedInputWithRightIcon: FC<IUnderlinedInputWithRightIcon> = (props) => {
     const { icon, onIconButtonClick, useLabel, labelValue, onChange, required, placeholder, id, type } = props;
 
     return (
-        <div className={styles.borderedInputWithRightIconWrapper}>
-            <BorderedInput
+        <div className={styles.underlinedInputWithRightIconWrapper}>
+            <UnderlinedInput
                 useLabel={useLabel}
                 onChange={onChange}
                 placeholder={placeholder}

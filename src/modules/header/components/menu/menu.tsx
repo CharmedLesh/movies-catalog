@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UnderlinedButton } from '../../../../ui/buttons';
+import { HoverAnimatedUnderlineButton } from '../../../../ui/buttons';
 import styles from './menu.module.scss';
 
 export const Menu: FC = () => {
@@ -8,10 +8,6 @@ export const Menu: FC = () => {
 
     const navigateToSignInPage = () => {
         navigate('/movies-catalog/sign-in');
-    };
-
-    const navigateToSignUpPage = () => {
-        navigate('/movies-catalog/sign-up');
     };
 
     return (
@@ -32,10 +28,7 @@ export const Menu: FC = () => {
             </ul>
             <ul className={styles.authMenu}>
                 <li>
-                    <UnderlinedButton value="SIGN IN" onClick={navigateToSignInPage} />
-                </li>
-                <li>
-                    <UnderlinedButton value="SIGN UP" onClick={navigateToSignUpPage} />
+                    <HoverAnimatedUnderlineButton value="SIGN IN" onClick={navigateToSignInPage} />
                 </li>
             </ul>
         </ul>

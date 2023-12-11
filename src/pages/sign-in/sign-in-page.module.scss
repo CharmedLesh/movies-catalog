@@ -3,4 +3,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px 20px;
+}
+
+.signInPageContent {
+    display: flex;
+    padding: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    @media (min-width: 400px) {
+        padding: 40px;
+    }
 }
