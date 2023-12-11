@@ -18,29 +18,29 @@ export const HamburgerMenu: FC<IHamburgerMenuProps> = (props) => {
         <ul className={hamburgerMenuClassName}>
             <ul>
                 <li>
-                    <Link to="/movies-catalog/trending" onClick={toggleHamburgerMenu}>
+                    <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}/trending`} onClick={toggleHamburgerMenu}>
                         Trending
                     </Link>
                 </li>
                 <li>
-                    <Link to="/movies-catalog/popular" onClick={toggleHamburgerMenu}>
+                    <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}/popular`} onClick={toggleHamburgerMenu}>
                         Popular
                     </Link>
                 </li>
                 <li>
-                    <Link to="/movies-catalog/about" onClick={toggleHamburgerMenu}>
+                    <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}/about`} onClick={toggleHamburgerMenu}>
                         About
                     </Link>
                 </li>
                 <li>
-                    <Link to="/movies-catalog/contact" onClick={toggleHamburgerMenu}>
+                    <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}/contact`} onClick={toggleHamburgerMenu}>
                         Contact
                     </Link>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <Link to="/movies-catalog/sign-in" onClick={toggleHamburgerMenu}>
+                    <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}/sign-in`} onClick={toggleHamburgerMenu}>
                         Sign In
                     </Link>
                 </li>

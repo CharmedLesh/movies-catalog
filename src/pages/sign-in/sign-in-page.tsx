@@ -10,7 +10,7 @@ export const SignInPage: FC = () => {
         const requestToken = data?.request_token;
         if (requestToken) {
             window.open(
-                `https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http:localhost:3000/movies-catalog/sign-in/approved`,
+                `https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=${process.env.REACT_APP_URL_HOST}${process.env.REACT_APP_URL_PATHNAME_CORE}/sign-in/approved`,
                 '_self'
             );
         } else {

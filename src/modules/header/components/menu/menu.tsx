@@ -7,7 +7,7 @@ export const Menu: FC = () => {
     const navigate = useNavigate();
 
     const navigateToSignInPage = () => {
-        navigate('/movies-catalog/sign-in');
+        navigate(`${process.env.REACT_APP_URL_PATHNAME_CORE}/sign-in`);
     };
 
     return (

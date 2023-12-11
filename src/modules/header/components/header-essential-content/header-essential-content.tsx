@@ -26,7 +26,7 @@ export const HeaderEssentialContent: FC<IheaderEssentialContent> = (props) => {
             <div className={styles.searchfieldContainer}>
                 <GeneralSearchfield />
             </div>
-            <Link to="/movies-catalog/">
+            <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}`}>
                 <SvgClapperboardIcon className={styles.logo} />
             </Link>
         </div>

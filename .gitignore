@@ -9,7 +9,7 @@
 /coverage
 
 # enviroment
-.env
+.env*
 
 # production
 /build
