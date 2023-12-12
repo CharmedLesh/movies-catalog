@@ -73,8 +73,8 @@ export class AccountRequests {
         };
 
         try {
-            const response = await axios.request(options);
-            const data: IGetDetails = response.data;
+            const response = await axios.request<IGetDetails>(options);
+            const data = response.data;
             return data;
         } catch (error) {
             if (error instanceof Error) {
@@ -104,8 +104,8 @@ export class AccountRequests {
         };
 
         try {
-            const response = await axios.request(options);
-            const data: IAddFavorite = response.data;
+            const response = await axios.request<IAddFavorite>(options);
+            const data = response.data;
             return data;
         } catch (error) {
             if (error instanceof Error) {
@@ -135,8 +135,8 @@ export class AccountRequests {
         };
 
         try {
-            const response = await axios.request(options);
-            const data: IAddToWatchlist = response.data;
+            const response = await axios.request<IAddToWatchlist>(options);
+            const data = response.data;
             return data;
         } catch (error) {
             if (error instanceof Error) {
@@ -166,8 +166,8 @@ export class AccountRequests {
         };
 
         try {
-            const response = await axios.request(options);
-            const data: IGetFavoriteMovies = response.data;
+            const response = await axios.request<IGetFavoriteMovies>(options);
+            const data = response.data;
             return data;
         } catch (error) {
             if (error instanceof Error) {
@@ -193,8 +193,8 @@ export class AccountRequests {
         };
 
         try {
-            const response = await axios.request(options);
-            const data: IGetFavoriteTV = response.data;
+            const response = await axios.request<IGetFavoriteTV>(options);
+            const data = response.data;
             return data;
         } catch (error) {
             if (error instanceof Error) {
@@ -215,8 +215,8 @@ export class AccountRequests {
         };
 
         try {
-            const response = await axios.request(options);
-            const data: IGetLists = response.data;
+            const response = await axios.request<IGetLists>(options);
+            const data = response.data;
             return data;
         } catch (error) {
             if (error instanceof Error) {
@@ -242,8 +242,8 @@ export class AccountRequests {
         };
 
         try {
-            const response = await axios.request(options);
-            const data: IGetRatedMovies = response.data;
+            const response = await axios.request<IGetRatedMovies>(options);
+            const data = response.data;
             return data;
         } catch (error) {
             if (error instanceof Error) {
@@ -269,8 +269,8 @@ export class AccountRequests {
         };
 
         try {
-            const response = await axios.request(options);
-            const data: IGetRatedTV = response.data;
+            const response = await axios.request<IGetRatedTV>(options);
+            const data = response.data;
             return data;
         } catch (error) {
             if (error instanceof Error) {
@@ -300,8 +300,8 @@ export class AccountRequests {
         };
 
         try {
-            const response = await axios.request(options);
-            const data: IGetRatedTVEpisodes = response.data;
+            const response = await axios.request<IGetRatedTVEpisodes>(options);
+            const data = response.data;
             return data;
         } catch (error) {
             if (error instanceof Error) {
@@ -331,8 +331,8 @@ export class AccountRequests {
         };
 
         try {
-            const response = await axios.request(options);
-            const data: IGetWatchlistMovies = response.data;
+            const response = await axios.request<IGetWatchlistMovies>(options);
+            const data = response.data;
             return data;
         } catch (error) {
             if (error instanceof Error) {
@@ -358,8 +358,8 @@ export class AccountRequests {
         };
 
         try {
-            const response = await axios.request(options);
-            const data: IGetWatchlistTV = response.data;
+            const response = await axios.request<IGetWatchlistTV>(options);
+            const data = response.data;
             return data;
         } catch (error) {
             if (error instanceof Error) {

@@ -12,14 +12,16 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 const urlPathname = process.env.REACT_APP_URL_PATHNAME_CORE;
 
+// fix required: check if /sign-in/:approved has specific patern, otherwise redirect to /sign-in
 const generateRoutes = () => {
     if (urlPathname) {
         return (
             <Routes>
                 <Route path="/" element={<Navigate to={urlPathname} />} />
                 <Route path={urlPathname} element={<HomePage />} />
-                <Route path={`${urlPathname}/sign-in`} element={<SignInPage />} />
-                <Route path={`${urlPathname}/sign-in/:approved`} element={<SignInPage />} />
+                <Route path={`${urlPathname}/sign-in`} element={<SignInPage />}>
+                    <Route path={`${urlPathname}/sign-in/:approved`} element={<SignInPage />} />
+                </Route>
                 <Route path="*" element={<ErrorPage errorCode={404} />} />
             </Routes>
         );

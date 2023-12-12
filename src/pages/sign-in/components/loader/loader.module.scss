@@ -1,0 +1,14 @@
+.loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 150px;
+}
+
+.statusText {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: center;
+}

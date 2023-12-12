@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { IconInCircleExternalRedirectButton } from '../../../../ui/buttons/icon-in-circle-external-redirect-button/icon-in-circle-external-redirect-button';
 import { SvgGithubIcon, SvgInstagramIcon, SvgLinkedinIcon, SvgYoutubeIcon } from '../../../../ui/icons';
-import externalLinksData from '../../../../constants/external-links.json';
+import externalLinksData from '../../../../configs/external-links.json';
 import styles from './media-links.module.scss';
 
 export const MediaLinks: FC = () => {

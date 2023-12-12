@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import tmdbLogo from '../../../../ui/images/tmdb-primary-long-logo.svg';
-import externalLinksData from '../../../../constants/external-links.json';
+import externalLinksData from '../../../../configs/external-links.json';
 import styles from './tmdb-credit.module.scss';
 
 export const TmbdCredit: FC = () => {
