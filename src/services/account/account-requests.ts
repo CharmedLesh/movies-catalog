@@ -1,23 +1,6 @@
 import axios from 'axios';
 import { Logger } from '../logger/logger';
 
-interface IGetDetails {
-    avatar: {
-        gravatar: {
-            hash: string;
-        };
-        tmbd: {
-            avatar_path: null | string;
-        };
-    };
-    id: number;
-    iso_639_1: string;
-    iso_3166_1: string;
-    name: string;
-    include_adult: boolean;
-    username: string;
-}
-
 interface ICommonAccountPostResponeData {
     success: boolean;
     status_code: number;
@@ -61,28 +44,6 @@ interface IGetWatchlistMovies extends ICommonAccountGetResponseData {}
 interface IGetWatchlistTV extends ICommonAccountGetResponseData {}
 
 export class AccountRequests {
-    static getDetails = async (sessionId: string) => {
-        const options = {
-            method: 'GET',
-            url: 'https://api.themoviedb.org/3/account/20805941',
-            params: { session_id: sessionId },
-            headers: {
-                accept: 'application/json',
-                Authorization: `Bearer ${process.env.REACT_APP_TMDB_ACCESS_TOKEN}`
-            }
-        };
-
-        try {
-            const response = await axios.request<IGetDetails>(options);
-            const data = response.data;
-            return data;
-        } catch (error) {
-            if (error instanceof Error) {
-                Logger.logError(error.message);
-            }
-        }
-    };
-
     static addFavorite = async (
         sessionId: string,
         mediaType: 'movie' | 'tv',
