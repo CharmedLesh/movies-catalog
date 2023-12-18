@@ -5,11 +5,21 @@ import type { RootState, AppDispatch } from '../store/store';
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-export const useUser = () => {
-    const { sessionId, status, error } = useAppSelector((state) => state.user);
+export const useSessionId = () => {
+    const { sessionId, status, error } = useAppSelector((state) => state.sessionId);
     return {
-        isUser: !!sessionId,
+        isSessionId: !!sessionId,
         sessionId,
+        status,
+        error
+    };
+};
+
+export const useUser = () => {
+    const { user, status, error } = useAppSelector((state) => state.user);
+    return {
+        isUser: user ? true : false,
+        user,
         status,
         error
     };

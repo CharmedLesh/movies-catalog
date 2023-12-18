@@ -1,9 +1,12 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSessionId } from '../../../../services/hooks/store-hooks';
+import { Account } from '../account/account';
 import { HoverAnimatedUnderlineButton } from '../../../../ui/buttons';
 import styles from './menu.module.scss';
 
 export const Menu: FC = () => {
+    const { isSessionId } = useSessionId();
     const navigate = useNavigate();
 
     const navigateToSignInPage = () => {
@@ -27,9 +30,13 @@ export const Menu: FC = () => {
                 </li>
             </ul>
             <ul className={styles.authMenu}>
-                <li>
-                    <HoverAnimatedUnderlineButton value="SIGN IN" onClick={navigateToSignInPage} />
-                </li>
+                {isSessionId ? (
+                    <Account />
+                ) : (
+                    <li>
+                        <HoverAnimatedUnderlineButton value="SIGN IN" onClick={navigateToSignInPage} />
+                    </li>
+                )}
             </ul>
         </ul>
     );

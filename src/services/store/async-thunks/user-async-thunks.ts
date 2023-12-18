@@ -1,18 +1,12 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AuthPromises } from '../../auth/auth-promises';
-import { LocalStorageExpirable } from '../../localstorage/localstorage-expirable';
+import { AccountPromises } from '../../account/account-promises';
 
-export const getSessionId = createAsyncThunk('user/session', async (requestToken: string, { rejectWithValue }) => {
+export const getAccountDetails = createAsyncThunk('user', async (sessionId: string, { rejectWithValue }) => {
     try {
-        const response = await AuthPromises.getSessionId(requestToken);
-        const sessionId = response.data.session_id;
-        const localStorageExpirable = new LocalStorageExpirable<string>({
-            key: 'SESSION_ID',
-            expirationTimeInMinutes: 60
-        });
-        localStorageExpirable.set(sessionId);
-        return sessionId;
+        const response = await AccountPromises.getAccountDetails(sessionId);
+        const accountDetails = response.data;
+        return accountDetails;
     } catch (error) {
         if (axios.isAxiosError(error)) {
             const message = error.message;

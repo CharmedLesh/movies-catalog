@@ -1,46 +1,62 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { getSessionId } from '../async-thunks/user-async-thunks';
+import { getAccountDetails } from '../async-thunks/user-async-thunks';
+
+interface IUser {
+    avatar: {
+        gravatar: {
+            hash: string;
+        };
+        tmbd: {
+            avatar_path: null | string;
+        };
+    };
+    id: number;
+    iso_639_1: string;
+    iso_3166_1: string;
+    name: string;
+    include_adult: boolean;
+    username: string;
+}
 
 // interface for the slice state
 export interface IUserState {
-    sessionId: string | null;
+    user: IUser | null;
     status: null | 'pending' | 'resolved' | 'rejected';
     error: null | string;
 }
 
 // interface for initial state
 const initialState: IUserState = {
-    sessionId: null,
+    user: null,
     status: null,
     error: null
 };
 
 export const userSlice = createSlice({
-    name: 'user',
+    name: 'session-id',
     initialState,
     reducers: {
         removeUserStatus: (state) => {
             state.status = null;
         },
         removeUser: (state) => {
-            state.sessionId = null;
+            state.user = null;
         }
     },
     extraReducers: (builder) => {
-        // get session id cases
-        builder.addCase(getSessionId.pending, (state) => {
+        // get account cases
+        builder.addCase(getAccountDetails.pending, (state) => {
             state.status = 'pending';
             state.error = null;
         });
-        builder.addCase(getSessionId.fulfilled, (state, action) => {
+        builder.addCase(getAccountDetails.fulfilled, (state, action) => {
             state.status = 'resolved';
             if (action.payload) {
-                // fix required: set to localstorage here
-                state.sessionId = action.payload;
+                state.user = action.payload;
             }
         });
-        builder.addCase(getSessionId.rejected, (state, action) => {
+        builder.addCase(getAccountDetails.rejected, (state, action) => {
             state.status = 'rejected';
             state.error = action.payload as string;
         });
@@ -50,6 +66,6 @@ export const userSlice = createSlice({
 export const { removeUserStatus, removeUser } = userSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectSessionId = (state: RootState) => state.user.sessionId;
+// export const selectUser = (state: RootState) => state.user.user;
 
 export default userSlice.reducer;
