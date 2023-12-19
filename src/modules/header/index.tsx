@@ -8,12 +8,13 @@ import styles from './index.module.scss';
 
 export const HeaderModule: FC = () => {
     const dispatch = useAppDispatch();
-    const { sessionId } = useSessionId();
-    const { user } = useUser();
+    const { sessionId, isSessionId } = useSessionId();
+    const { user, isUser } = useUser();
     const [isHamburgerMenuToggled, setHamburgerMenuToggled] = useState<boolean>(false);
 
+    // get user data if session id found
     useEffect(() => {
-        if (sessionId) {
+        if (sessionId && !isUser) {
             dispatch(getAccountDetails(sessionId));
         }
     }, [sessionId]);

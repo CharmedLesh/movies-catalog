@@ -1,16 +1,16 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSessionId } from '../../../../services/hooks/store-hooks';
-import { Account } from '../account/account';
+import { useUser } from '../../../../services/hooks/store-hooks';
+import { AccountDropdownMenu } from '../account-dropdown-menu/account-dropdown-menu';
 import { HoverAnimatedUnderlineButton } from '../../../../ui/buttons';
 import styles from './menu.module.scss';
 
 export const Menu: FC = () => {
-    const { isSessionId } = useSessionId();
+    const { isUser } = useUser();
     const navigate = useNavigate();
 
     const navigateToSignInPage = () => {
-        navigate(`${process.env.REACT_APP_URL_PATHNAME_CORE}/sign-in`);
+        navigate(`${process.env.REACT_APP_URL_PATHNAME_CORE}/account`);
     };
 
     return (
@@ -30,8 +30,8 @@ export const Menu: FC = () => {
                 </li>
             </ul>
             <ul className={styles.authMenu}>
-                {isSessionId ? (
-                    <Account />
+                {isUser ? (
+                    <AccountDropdownMenu />
                 ) : (
                     <li>
                         <HoverAnimatedUnderlineButton value="SIGN IN" onClick={navigateToSignInPage} />

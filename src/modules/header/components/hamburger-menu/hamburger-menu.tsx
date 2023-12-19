@@ -40,7 +40,7 @@ export const HamburgerMenu: FC<IHamburgerMenuProps> = (props) => {
             </ul>
             <ul>
                 <li>
-                    <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}/sign-in`} onClick={toggleHamburgerMenu}>
+                    <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}/account`} onClick={toggleHamburgerMenu}>
                         Sign In
                     </Link>
                 </li>

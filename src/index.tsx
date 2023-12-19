@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from './services/store/store';
 import { Logger } from './services/logger/logger';
 import { HeaderModule, FooterModule } from './modules';
-import { HomePage, ErrorPage, SignInPage } from './pages';
+import { HomePage, ErrorPage, AccountPage } from './pages';
 import './index.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
@@ -19,8 +19,8 @@ const generateRoutes = () => {
             <Routes>
                 <Route path="/" element={<Navigate to={urlPathname} />} />
                 <Route path={urlPathname} element={<HomePage />} />
-                <Route path={`${urlPathname}/sign-in`} element={<SignInPage />}>
-                    <Route path={`${urlPathname}/sign-in/:approved`} element={<SignInPage />} />
+                <Route path={`${urlPathname}/account`} element={<AccountPage />}>
+                    <Route path={`${urlPathname}/account/:approved`} element={<AccountPage />} />
                 </Route>
                 <Route path="*" element={<ErrorPage errorCode={404} />} />
             </Routes>
