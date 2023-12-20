@@ -10,11 +10,11 @@ export interface ISessionIdState {
     error: null | string;
 }
 
-const localstorageExpirable = new LocalStorageExpirable<string>({ key: 'SESSION_ID', expirationTimeInMinutes: null });
+const localstorageExpirable = new LocalStorageExpirable<string>({ key: 'SESSION_ID', expirationTimeInMinutes: 240 });
 
 // interface for initial state
 const initialState: ISessionIdState = {
-    sessionId: localstorageExpirable.get(),
+    sessionId: localstorageExpirable.getAndResetExpirationDate(),
     status: null,
     error: null
 };

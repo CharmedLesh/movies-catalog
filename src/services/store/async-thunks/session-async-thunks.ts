@@ -9,7 +9,7 @@ export const getSessionId = createAsyncThunk('session', async (requestToken: str
         const sessionId = response.data.session_id;
         const localStorageExpirable = new LocalStorageExpirable<string>({
             key: 'SESSION_ID',
-            expirationTimeInMinutes: 60
+            expirationTimeInMinutes: 240
         });
         localStorageExpirable.set(sessionId);
         return sessionId;

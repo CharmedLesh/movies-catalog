@@ -25,7 +25,6 @@ export const HeaderModule: FC = () => {
             dispatch(getAccountDetails(sessionId));
         }
     }, [sessionId]);
-    console.log(user);
 
     const toggleHamburgerMenu = () => {
         setHamburgerMenuToggled((prevState) => !prevState);

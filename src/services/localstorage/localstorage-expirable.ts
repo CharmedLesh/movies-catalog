@@ -35,13 +35,44 @@ export class LocalStorageExpirable<T> {
             if (!data) {
                 return null;
             }
-            const parsedData = JSON.parse(data);
+            const parsedData: { data: T; expirationTime: number } = JSON.parse(data);
             const now = new Date();
             if (now.getTime() > parsedData.expirationTime) {
                 localStorage.removeItem(this.key);
                 return null;
             }
             return parsedData.data;
+        } catch (error) {
+            if (error instanceof Error) {
+                Logger.logError(error.message);
+            }
+            return null;
+        }
+    }
+
+    resetExpirationDate(): void {
+        try {
+            const data: string | null = localStorage.getItem(this.key);
+            if (!data) {
+                throw new Error('Localstorage item not found');
+            }
+            const parsedData: { data: T; expirationTime: number } = JSON.parse(data);
+            this.set(parsedData.data);
+        } catch (error) {
+            if (error instanceof Error) {
+                Logger.logError(error.message);
+            }
+        }
+    }
+
+    getAndResetExpirationDate(): T | null {
+        try {
+            const data: T | null = this.get();
+            if (data) {
+                this.set(data);
+                return data;
+            }
+            return null;
         } catch (error) {
             if (error instanceof Error) {
                 Logger.logError(error.message);
