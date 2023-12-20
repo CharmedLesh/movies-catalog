@@ -24,7 +24,7 @@ export const AccountPage: FC = () => {
 
     const requestToken: string | null = getRequestTokenFromUrl();
 
-    const getPageStatus = (): 'unauthorized' | 'authorizing' | 'authorized' => {
+    const getPageInitialStatus = (): 'unauthorized' | 'authorizing' | 'authorized' => {
         if (isSessionId) {
             return 'authorized';
         } else if (!isSessionId && requestToken) {
@@ -34,7 +34,7 @@ export const AccountPage: FC = () => {
         }
     };
 
-    const [pageStatus, setPageStatus] = useState<'unauthorized' | 'authorizing' | 'authorized'>(getPageStatus());
+    const [pageStatus, setPageStatus] = useState<'unauthorized' | 'authorizing' | 'authorized'>(getPageInitialStatus());
 
     // get session id if request token found and session id not found
     useEffect(() => {
@@ -48,6 +48,9 @@ export const AccountPage: FC = () => {
         if (isSessionId) {
             setPageStatus('authorized');
         }
+        // if (!isSessionId) {
+        //     setPageStatus('unauthorized');
+        // }
     }, [isSessionId]);
 
     const getRequestToken = async () => {

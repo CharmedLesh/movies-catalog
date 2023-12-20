@@ -9,10 +9,12 @@ import styles from './header-essential-content.module.scss';
 interface IheaderEssentialContent {
     isHamburgerMenuToggled: boolean;
     toggleHamburgerMenu: () => void;
+    signOutHandler: () => void;
+    hamburgerMenuButtonRef: React.RefObject<HTMLDivElement>;
 }
 
 export const HeaderEssentialContent: FC<IheaderEssentialContent> = (props) => {
-    const { isHamburgerMenuToggled, toggleHamburgerMenu } = props;
+    const { isHamburgerMenuToggled, toggleHamburgerMenu, signOutHandler, hamburgerMenuButtonRef } = props;
 
     return (
         <div className={styles.headerEssentialContent}>
@@ -20,8 +22,9 @@ export const HeaderEssentialContent: FC<IheaderEssentialContent> = (props) => {
                 <HamburgerMenuButton
                     isHamburgerMenuToggled={isHamburgerMenuToggled}
                     hamburgerMenuButtonClickHandler={toggleHamburgerMenu}
+                    hamburgerMenuButtonRef={hamburgerMenuButtonRef}
                 />
-                <Menu />
+                <Menu signOutHandler={signOutHandler} />
             </div>
             <div className={styles.searchfieldContainer}>
                 <GeneralSearchfield />

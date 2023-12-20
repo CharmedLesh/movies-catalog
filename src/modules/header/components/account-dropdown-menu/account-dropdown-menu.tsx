@@ -5,7 +5,12 @@ import { RoundAvatar } from '../../../../ui/avatars';
 import { CenteredPointedDropdownMenu } from '../../../../ui/dropdown-menus';
 import styles from './account-dropdown-menu.module.scss';
 
-export const AccountDropdownMenu: FC = () => {
+interface IAccountDropdownMenuProps {
+    signOutHandler: () => void;
+}
+
+export const AccountDropdownMenu: FC<IAccountDropdownMenuProps> = (props) => {
+    const { signOutHandler } = props;
     const { user } = useUser();
 
     const avatarImage = user?.avatar.tmdb.avatar_path ? (
@@ -22,7 +27,7 @@ export const AccountDropdownMenu: FC = () => {
             menuItems={[
                 <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}/account`}>{user?.username}</Link>,
                 <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}/watchlist`}>Watchlist</Link>,
-                <button>Sign Out</button>
+                <button onClick={signOutHandler}>Sign Out</button>
             ]}
         />
     );

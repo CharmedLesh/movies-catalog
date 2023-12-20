@@ -5,7 +5,12 @@ import { AccountDropdownMenu } from '../account-dropdown-menu/account-dropdown-m
 import { HoverAnimatedUnderlineButton } from '../../../../ui/buttons';
 import styles from './menu.module.scss';
 
-export const Menu: FC = () => {
+interface IMenuProps {
+    signOutHandler: () => void;
+}
+
+export const Menu: FC<IMenuProps> = (props) => {
+    const { signOutHandler } = props;
     const { isUser } = useUser();
     const navigate = useNavigate();
 
@@ -31,10 +36,10 @@ export const Menu: FC = () => {
             </ul>
             <ul className={styles.authMenu}>
                 {isUser ? (
-                    <AccountDropdownMenu />
+                    <AccountDropdownMenu signOutHandler={signOutHandler} />
                 ) : (
                     <li>
-                        <HoverAnimatedUnderlineButton value="SIGN IN" onClick={navigateToAccountPage} />
+                        <HoverAnimatedUnderlineButton value="Sign In" onClick={navigateToAccountPage} />
                     </li>
                 )}
             </ul>
