@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import styles from './centered-pointed-dropdown-menu.module.scss';
 
 interface ICenteredPointedDropdownMenuProps {
@@ -8,8 +8,27 @@ interface ICenteredPointedDropdownMenuProps {
 
 export const CenteredPointedDropdownMenu: FC<ICenteredPointedDropdownMenuProps> = (props) => {
     const { triggerElement, menuItems } = props;
+    const centeredPointedDropdownMenuRef = useRef<HTMLDivElement>(null);
 
     const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
+
+    // close dropdown on click out of ref
+    useEffect(() => {
+        if (isMenuOpen === true) {
+            const handleClickOutside = (event: any) => {
+                if (
+                    centeredPointedDropdownMenuRef.current &&
+                    !centeredPointedDropdownMenuRef.current.contains(event.target)
+                ) {
+                    setMenuOpen(false);
+                }
+            };
+            document.addEventListener('click', handleClickOutside, true);
+            return () => {
+                document.removeEventListener('click', handleClickOutside, true);
+            };
+        }
+    }, [isMenuOpen]);
 
     const toggleMenu = () => {
         setMenuOpen((prevState) => !prevState);
@@ -18,14 +37,18 @@ export const CenteredPointedDropdownMenu: FC<ICenteredPointedDropdownMenuProps> 
     const generateLiElements = () => {
         let arrayOfLi: JSX.Element[] = [];
         menuItems.forEach((element, index) => {
-            arrayOfLi.push(<li key={index}>{element}</li>);
+            arrayOfLi.push(
+                <li key={index} onClick={() => setMenuOpen(false)}>
+                    {element}
+                </li>
+            );
         });
 
         return arrayOfLi;
     };
 
     return (
-        <div className={styles.centeredPointedDropdownMenuWrapper}>
+        <div className={styles.centeredPointedDropdownMenuWrapper} ref={centeredPointedDropdownMenuRef}>
             <div onClick={toggleMenu} className={styles.triggerElementWrapper}>
                 {triggerElement}
             </div>

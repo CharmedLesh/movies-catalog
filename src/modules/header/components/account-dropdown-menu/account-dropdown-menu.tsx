@@ -1,26 +1,21 @@
 import { FC } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useUser } from '../../../../services/hooks/store-hooks';
 import { RoundAvatar } from '../../../../ui/avatars';
 import { CenteredPointedDropdownMenu } from '../../../../ui/dropdown-menus';
 import styles from './account-dropdown-menu.module.scss';
 
 export const AccountDropdownMenu: FC = () => {
-    const navigate = useNavigate();
     const { user } = useUser();
 
     const avatarImage = user?.avatar.tmdb.avatar_path ? (
-        <img src={`https://www.themoviedb.org/t/p/w150_and_h150_face/${user.avatar.tmdb.avatar_path}`} />
+        <img src={`https://www.themoviedb.org/t/p/w50_and_h50_face/${user.avatar.tmdb.avatar_path}`} />
     ) : null;
-
-    const navigateToAccountPage = () => {
-        navigate(`${process.env.REACT_APP_URL_PATHNAME_CORE}/account`);
-    };
 
     return (
         <CenteredPointedDropdownMenu
             triggerElement={
-                <button className={styles.accountDropdownAvatarButton} onClick={navigateToAccountPage}>
+                <button className={styles.accountDropdownAvatarButton}>
                     {user && <RoundAvatar name={user?.username} img={avatarImage} />}
                 </button>
             }
