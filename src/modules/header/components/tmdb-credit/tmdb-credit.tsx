@@ -4,7 +4,7 @@ import tmdbLogo from '../../../../ui/images/tmdb-primary-long-logo.svg';
 import externalLinksData from '../../../../configs/external-links.json';
 import styles from './tmdb-credit.module.scss';
 
-export const TmbdCredit: FC = () => {
+export const TmdbCredit: FC = () => {
     return (
         <Link
             to={externalLinksData.tmdb.url}
@@ -14,7 +14,7 @@ export const TmbdCredit: FC = () => {
             type="credit"
             className={styles.tmdbCredit}
         >
-            <img src={tmdbLogo} alt="TMBD logo" />
+            <img src={tmdbLogo} alt="TMDB logo" />
             <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
         </Link>
     );

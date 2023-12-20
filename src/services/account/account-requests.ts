@@ -52,7 +52,7 @@ export class AccountRequests {
     ) => {
         const options = {
             method: 'POST',
-            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMBD_ACCOUNT_ID}/favorite`,
+            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMDB_ACCOUNT_ID}/favorite`,
             params: {
                 session_id: sessionId
             },
@@ -83,7 +83,7 @@ export class AccountRequests {
     ) => {
         const options = {
             method: 'POST',
-            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMBD_ACCOUNT_ID}/watchlist`,
+            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMDB_ACCOUNT_ID}/watchlist`,
             params: {
                 session_id: sessionId
             },
@@ -113,7 +113,7 @@ export class AccountRequests {
     ) => {
         const options = {
             method: 'GET',
-            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMBD_ACCOUNT_ID}/favorite/movies`,
+            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMDB_ACCOUNT_ID}/favorite/movies`,
             params: {
                 language: 'en-US',
                 page: page.toString(),
@@ -140,7 +140,7 @@ export class AccountRequests {
     static getFavoriteTV = async (sessionId: string, page: number, sorting: 'created_at.asc' | 'created_at.desc') => {
         const options = {
             method: 'GET',
-            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMBD_ACCOUNT_ID}/favorite/tv`,
+            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMDB_ACCOUNT_ID}/favorite/tv`,
             params: {
                 language: 'en-US',
                 page: page.toString(),
@@ -167,7 +167,7 @@ export class AccountRequests {
     static getLists = async (sessionId: string, page: number) => {
         const options = {
             method: 'GET',
-            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMBD_ACCOUNT_ID}/lists`,
+            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMDB_ACCOUNT_ID}/lists`,
             params: { page: page.toString(), session_id: sessionId },
             headers: {
                 accept: 'application/json',
@@ -189,7 +189,7 @@ export class AccountRequests {
     static getRatedMovies = async (sessionId: string, page: number, sorting: 'created_at.asc' | 'created_at.desc') => {
         const options = {
             method: 'GET',
-            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMBD_ACCOUNT_ID}/rated/movies`,
+            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMDB_ACCOUNT_ID}/rated/movies`,
             params: {
                 language: 'en-US',
                 page: page.toString(),
@@ -216,7 +216,7 @@ export class AccountRequests {
     static getRatedTV = async (sessionId: string, page: number, sorting: 'created_at.asc' | 'created_at.desc') => {
         const options = {
             method: 'GET',
-            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMBD_ACCOUNT_ID}/rated/tv`,
+            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMDB_ACCOUNT_ID}/rated/tv`,
             params: {
                 language: 'en-US',
                 page: page.toString(),
@@ -247,7 +247,7 @@ export class AccountRequests {
     ) => {
         const options = {
             method: 'GET',
-            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMBD_ACCOUNT_ID}/rated/tv/episodes`,
+            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMDB_ACCOUNT_ID}/rated/tv/episodes`,
             params: {
                 language: 'en-US',
                 page: page.toString(),
@@ -278,7 +278,7 @@ export class AccountRequests {
     ) => {
         const options = {
             method: 'GET',
-            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMBD_ACCOUNT_ID}/watchlist/movies`,
+            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMDB_ACCOUNT_ID}/watchlist/movies`,
             params: {
                 language: 'en-US',
                 page: page.toString(),
@@ -305,7 +305,7 @@ export class AccountRequests {
     static getWatchlistTV = async (sessionId: string, page: number, sorting: 'created_at.asc' | 'created_at.desc') => {
         const options = {
             method: 'GET',
-            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMBD_ACCOUNT_ID}/watchlist/tv`,
+            url: `https://api.themoviedb.org/3/account/${process.env.REACT_APP_TMDB_ACCOUNT_ID}/watchlist/tv`,
             params: {
                 language: 'en-US',
                 page: page.toString(),

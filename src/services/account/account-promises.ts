@@ -6,7 +6,7 @@ interface IGetDetailsResponse {
         gravatar: {
             hash: string;
         };
-        tmbd: {
+        tmdb: {
             avatar_path: null | string;
         };
     };

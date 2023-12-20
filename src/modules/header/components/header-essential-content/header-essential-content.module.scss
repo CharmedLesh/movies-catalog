@@ -8,12 +8,12 @@
     border-bottom: 1px solid $grey-light;
 
     @media (min-width: 1024px) {
-        padding: 10px 10%;
+        padding: 8px 10%;
         flex-direction: row-reverse;
     }
 
     @media (min-width: 1280px) {
-        padding: 10px 15%;
+        padding: 8px 15%;
         flex-direction: row-reverse;
     }
 }

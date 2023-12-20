@@ -1,0 +1,18 @@
+@import '../../../styles/colors';
+
+.roundAvatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $accent;
+    color: $light;
+    border-radius: 50%;
+    font-size: 14px;
+
+    img {
+        width: 100%;
+        border-radius: 50%;
+    }
+}

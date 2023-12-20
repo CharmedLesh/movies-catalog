@@ -1,0 +1,60 @@
+@import '../../../styles/colors';
+@import '../../../styles/fonts';
+
+.centeredPointedDropdownMenuWrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.triggerElementWrapper {
+    display: flex;
+}
+
+.centeredPointedDropdownMenuContent {
+    display: block;
+    position: absolute;
+    background-color: $accent;
+    color: $light;
+    border-radius: 4px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    z-index: 1;
+    text-align: center;
+    top: calc(100% + 15px);
+    padding: 8px;
+    font-size: 14px;
+
+    &::before {
+        content: ' ';
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: -10px;
+        left: 50%;
+        transform: translate(-50%);
+        border-style: solid;
+        border-width: 0 10px 10px 10px;
+        border-color: transparent transparent $accent transparent;
+    }
+
+    li {
+        white-space: nowrap;
+        margin: 6px 0px;
+
+        &:first-child {
+            margin: 0px;
+        }
+
+        &:last-child {
+            margin: 0px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+    }
+}

@@ -1,0 +1,13 @@
+@import '../../../../styles/colors';
+
+.accountDropdownAvatarButton {
+    width: 30px;
+    height: 30px;
+    display: flex;
+}
+
+li {
+    &:first-child {
+        border-bottom: 1px solid $light;
+    }
+}

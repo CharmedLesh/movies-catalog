@@ -7,7 +7,7 @@ interface IUser {
         gravatar: {
             hash: string;
         };
-        tmbd: {
+        tmdb: {
             avatar_path: null | string;
         };
     };

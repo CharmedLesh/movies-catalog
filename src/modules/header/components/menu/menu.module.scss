@@ -1,5 +1,9 @@
 .menu {
     display: none;
+    @media (min-width: 1024px) {
+        display: flex;
+        align-items: center;
+    }
 }
 
 .navMenu,

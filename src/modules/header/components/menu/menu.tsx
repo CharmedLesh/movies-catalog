@@ -9,7 +9,7 @@ export const Menu: FC = () => {
     const { isUser } = useUser();
     const navigate = useNavigate();
 
-    const navigateToSignInPage = () => {
+    const navigateToAccountPage = () => {
         navigate(`${process.env.REACT_APP_URL_PATHNAME_CORE}/account`);
     };
 
@@ -34,7 +34,7 @@ export const Menu: FC = () => {
                     <AccountDropdownMenu />
                 ) : (
                     <li>
-                        <HoverAnimatedUnderlineButton value="SIGN IN" onClick={navigateToSignInPage} />
+                        <HoverAnimatedUnderlineButton value="SIGN IN" onClick={navigateToAccountPage} />
                     </li>
                 )}
             </ul>
