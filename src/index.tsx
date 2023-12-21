@@ -12,7 +12,6 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 const urlPathname = process.env.REACT_APP_URL_PATHNAME_CORE;
 
-// fix required: check if /sign-in/:approved has specific patern, otherwise redirect to /sign-in
 const generateRoutes = () => {
     if (urlPathname) {
         return (

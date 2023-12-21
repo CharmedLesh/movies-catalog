@@ -13,7 +13,7 @@ export const HeaderModule: FC = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { sessionId } = useSessionId();
-    const { user, isUser } = useUser();
+    const { isUser } = useUser();
 
     const hamburgerMenuButtonRef = useRef<HTMLDivElement>(null);
 

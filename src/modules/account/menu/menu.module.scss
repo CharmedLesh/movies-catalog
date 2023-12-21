@@ -1,0 +1,43 @@
+@import '../../../styles/colors';
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $grey-light;
+
+    label {
+        width: 100%;
+        text-align: center;
+        padding: 8px 6px;
+        font-size: 12px;
+        cursor: pointer;
+
+        @media (min-width: 300px) {
+            font-size: 14px;
+        }
+
+        @media (min-width: 380px) {
+            padding: 8px 12px;
+        }
+
+        &:has(input[type='radio']:checked) {
+            background-image: linear-gradient($accent 0 0);
+            background-position: bottom center;
+            background-size: 100% 2px;
+            background-repeat: no-repeat;
+        }
+
+        &:not(:has(input[type='radio']:checked)) {
+            &:hover {
+                background-image: linear-gradient($accent 0 0);
+                background-position: bottom center;
+                background-size: 50% 2px;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+
+    input[type='radio'] {
+        display: none;
+    }
+}

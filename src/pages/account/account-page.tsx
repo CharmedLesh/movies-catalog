@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Logger } from '../../services/logger/logger';
 import { AuthPromises } from '../../services/auth/auth-promises';
 import { useAppDispatch, useSessionId } from '../../services/hooks/store-hooks';
@@ -7,11 +8,12 @@ import { simpleRequest } from '../../helpers/simple-request';
 import { Disclaimer } from './components/disclaimer/disclaimer';
 import { ActionButton } from './components/action-button/action-button';
 import { Loader } from './components/loader/loader';
-import { AccountDetails } from './components/account-details/account-details';
+import { Account } from '../../modules';
 import styles from './account-page.module.scss';
 
 export const AccountPage: FC = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const { status, error, isSessionId } = useSessionId();
 
     const getRequestTokenFromUrl = (): string | null => {
@@ -41,6 +43,9 @@ export const AccountPage: FC = () => {
         if (!isSessionId && requestToken) {
             dispatch(getSessionId(requestToken));
         }
+        if (requestToken) {
+            navigate(`${process.env.REACT_APP_URL_PATHNAME_CORE}/account`);
+        }
     }, []);
 
     // change page status to authorized if session id exist
@@ -48,9 +53,6 @@ export const AccountPage: FC = () => {
         if (isSessionId) {
             setPageStatus('authorized');
         }
-        // if (!isSessionId) {
-        //     setPageStatus('unauthorized');
-        // }
     }, [isSessionId]);
 
     const getRequestToken = async () => {
@@ -70,14 +72,19 @@ export const AccountPage: FC = () => {
         await getRequestToken();
     };
 
-    return (
-        <div className={styles.accountPage}>
-            <div className={styles.accountPageContent}>
+    return pageStatus === 'authorized' ? (
+        <div className={styles.accountAuthorizedPage}>
+            <div className={styles.accountAuthorizedPageContent}>
+                <Account />
+            </div>
+        </div>
+    ) : (
+        <div className={styles.accountCenteredPage}>
+            <div className={styles.accountCenteredPageContent}>
                 {pageStatus === 'unauthorized' && (
                     <Disclaimer actionButton={<ActionButton onClick={onActionButtonClickHandler} />} />
                 )}
                 {pageStatus === 'authorizing' && <Loader status={status} error={error} />}
-                {pageStatus === 'authorized' && <AccountDetails />}
             </div>
         </div>
     );

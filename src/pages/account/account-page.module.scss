@@ -1,4 +1,21 @@
-.accountPage {
+.accountAuthorizedPage {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.accountAuthorizedPageContent {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    // padding: 20px 0px;
+
+    @media (min-width: 768px) {
+        max-width: 80%;
+    }
+}
+
+.accountCenteredPage {
     width: 100%;
     display: flex;
     align-items: center;
@@ -6,7 +23,7 @@
     padding: 20px 20px;
 }
 
-.accountPageContent {
+.accountCenteredPageContent {
     display: flex;
     padding: 20px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;

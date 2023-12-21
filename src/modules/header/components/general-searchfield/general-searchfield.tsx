@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { SvgSearchIcon } from '../../../../ui/icons';
-import styles from './general-searchfield.module.scss';
 import { UnderlinedInputWithRightIcon } from '../../../../ui/inputs';
+import styles from './general-searchfield.module.scss';
 
 export const GeneralSearchfield: FC = () => {
     const onSearchSubmit = () => {
