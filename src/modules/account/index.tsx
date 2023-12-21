@@ -1,5 +1,4 @@
 import { FC, useState } from 'react';
-import { useUser } from '../../services/hooks/store-hooks';
 import { OverviewTab } from './overview-tab/overview-tab';
 import { FavoriteTab } from './favorite-tab/favorite-tab';
 import { RatedTab } from './rated-tab/rated-tab';
@@ -11,8 +10,6 @@ import styles from './index.module.scss';
 type TabsType = 'overview' | 'favorite' | 'rated' | 'watchlist' | 'lists';
 
 export const Account: FC = () => {
-    const { user } = useUser();
-
     const [selectedTab, setSelectedTab] = useState<TabsType>('overview');
 
     return (
