@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { useUser } from '../../../services/hooks/store-hooks';
 import { RoundAvatar } from '../../../ui/avatars';
+import { SvgCountryIcon, SvgLanguageIcon, SvgUserIcon, SvgAdultIcon } from '../../../ui/icons';
 import styles from './overview-tab.module.scss';
 
 export const OverviewTab: FC = () => {
@@ -24,44 +25,62 @@ export const OverviewTab: FC = () => {
             </div>
             <div className={styles.allData}>
                 {user?.name && (
-                    <p>
-                        <span>Name:</span>
-                        <span>{user.name}</span>
-                    </p>
+                    <div className={styles.infoContainer}>
+                        <SvgUserIcon />
+                        <div className={styles.info}>
+                            <p>Name:</p>
+                            <p>{user.name}</p>
+                        </div>
+                    </div>
                 )}
                 {user?.username && (
-                    <p>
-                        <span>Username:</span>
-                        <span>{user.username}</span>
-                    </p>
+                    <div className={styles.infoContainer}>
+                        <SvgUserIcon />
+                        <div className={styles.info}>
+                            <p>Username:</p>
+                            <p>{user.username}</p>
+                        </div>
+                    </div>
                 )}
                 {user?.id && (
-                    <p>
-                        <span>ID:</span>
-                        <span>{user.id}</span>
-                    </p>
+                    <div className={styles.infoContainer}>
+                        <SvgUserIcon />
+                        <div className={styles.info}>
+                            <p>ID:</p>
+                            <p>{user.id}</p>
+                        </div>
+                    </div>
                 )}
                 {user?.iso_3166_1 && (
-                    <p>
-                        <span>Country:</span>
-                        <span>{user.iso_3166_1}</span>
-                    </p>
+                    <div className={styles.infoContainer}>
+                        <SvgCountryIcon />
+                        <div className={styles.info}>
+                            <p>Country:</p>
+                            <p>{user.iso_3166_1}</p>
+                        </div>
+                    </div>
                 )}
                 {user?.iso_639_1 && (
-                    <p>
-                        <span>Language:</span>
-                        <span>{user.iso_639_1}</span>
-                    </p>
+                    <div className={styles.infoContainer}>
+                        <SvgLanguageIcon />
+                        <div className={styles.info}>
+                            <p>Language:</p>
+                            <p>{user.iso_639_1}</p>
+                        </div>
+                    </div>
                 )}
                 {user?.include_adult !== undefined && (
-                    <p>
-                        <span>Adult content:</span>
-                        {user.include_adult ? (
-                            <span className={styles.adultAllowed}>Allowed</span>
-                        ) : (
-                            <span className={styles.adultNotAllowed}>Not allowed</span>
-                        )}
-                    </p>
+                    <div className={styles.infoContainer}>
+                        <SvgAdultIcon />
+                        <div className={styles.info}>
+                            <p>Adult content:</p>
+                            {user.include_adult ? (
+                                <p className={styles.adultAllowed}>Allowed</p>
+                            ) : (
+                                <p className={styles.adultNotAllowed}>Not allowed</p>
+                            )}
+                        </div>
+                    </div>
                 )}
             </div>
         </div>

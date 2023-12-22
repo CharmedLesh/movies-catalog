@@ -7,3 +7,7 @@ export { default as SvgYoutubeIcon } from './youtube-icon';
 export { default as SvgOpenEyeIcon } from './open-eye-icon';
 export { default as SvgStatusFailIcon } from './status-fail-icon';
 export { default as SvgStatusSuccessIcon } from './status-success-icon';
+export { default as SvgCountryIcon } from './country-icon';
+export { default as SvgLanguageIcon } from './language-icon';
+export { default as SvgUserIcon } from './user-icon';
+export { default as SvgAdultIcon } from './adult-icon';
