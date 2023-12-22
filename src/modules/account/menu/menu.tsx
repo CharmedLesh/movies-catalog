@@ -22,7 +22,6 @@ export const Menu: FC<IMenuProps> = (props) => {
                     onChange={() => setSelectedTab('overview')}
                 />
             </label>
-            <br />
             <label>
                 Lists
                 <input
@@ -32,7 +31,6 @@ export const Menu: FC<IMenuProps> = (props) => {
                     onChange={() => setSelectedTab('lists')}
                 />
             </label>
-            <br />
             <label>
                 Watchlist
                 <input
@@ -42,7 +40,6 @@ export const Menu: FC<IMenuProps> = (props) => {
                     onChange={() => setSelectedTab('watchlist')}
                 />
             </label>
-            <br />
             <label>
                 Rated
                 <input
@@ -52,7 +49,6 @@ export const Menu: FC<IMenuProps> = (props) => {
                     onChange={() => setSelectedTab('rated')}
                 />
             </label>
-            <br />
             <label>
                 Favorite
                 <input
@@ -62,7 +58,6 @@ export const Menu: FC<IMenuProps> = (props) => {
                     onChange={() => setSelectedTab('favorite')}
                 />
             </label>
-            <br />
         </form>
     );
 };

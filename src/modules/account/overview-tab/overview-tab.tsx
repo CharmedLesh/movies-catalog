@@ -11,7 +11,7 @@ export const OverviewTab: FC = () => {
     ) : null;
 
     return (
-        <div className={styles.wrapper}>
+        <div>
             <div className={styles.landingData}>
                 <div className={styles.avatarWrapper}>
                     {user?.avatar.tmdb.avatar_path && <RoundAvatar name={user?.username} img={avatarImage} />}

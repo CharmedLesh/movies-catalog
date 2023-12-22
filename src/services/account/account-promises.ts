@@ -1,7 +1,9 @@
-import { AxiosResponse } from 'axios';
 import $api from '../../configs/api/interceptors';
+import { IMediaList } from '../../configs/interfaces/media-lists.interfaces';
 
-interface IGetDetailsResponse {
+type SortingType = 'created_at.asc' | 'created_at.desc';
+
+interface IDetails {
     avatar: {
         gravatar: {
             hash: string;
@@ -19,7 +21,33 @@ interface IGetDetailsResponse {
 }
 
 export class AccountPromises {
-    static async getAccountDetails(sessionId: string) {
-        return $api.get<IGetDetailsResponse>(`https://api.themoviedb.org/3/account/${sessionId}`);
+    static async getAccountDetails(sessionOrAccountId: string) {
+        return $api.get<IDetails>(`https://api.themoviedb.org/3/account/${sessionOrAccountId}`);
+    }
+
+    static async getLists(sessionOrAccountId: string, page: number) {
+        return $api.get<IMediaList>(`https://api.themoviedb.org/3/account/${sessionOrAccountId}/lists`, {
+            params: { page: page.toString() }
+        });
+    }
+
+    static async getCollection(
+        collection: 'watchlist' | 'favorite' | 'rated',
+        moviesOrTvOrEpisodes: 'movies' | 'tv' | 'tv/episodes',
+        sessionOrAccountId: string,
+        language: string,
+        page: number,
+        sorting: SortingType
+    ) {
+        return $api.get<IMediaList>(
+            `https://api.themoviedb.org/3/account/${sessionOrAccountId}/${collection}/${moviesOrTvOrEpisodes}`,
+            {
+                params: {
+                    language: language,
+                    page: page.toString(),
+                    sort_by: sorting
+                }
+            }
+        );
     }
 }
