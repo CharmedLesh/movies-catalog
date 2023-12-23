@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { useUser } from '../../../services/hooks/store-hooks';
-import { RoundAvatar } from '../../../ui/avatars';
-import { SvgCountryIcon, SvgLanguageIcon, SvgUserIcon, SvgAdultIcon } from '../../../ui/icons';
+import { useUser } from '../../../../services/hooks/store-hooks';
+import { RoundAvatar } from '../../../../ui/avatars';
+import { SvgCountryIcon, SvgLanguageIcon, SvgUserIcon, SvgAdultIcon } from '../../../../ui/icons';
 import styles from './overview-tab.module.scss';
 
 export const OverviewTab: FC = () => {

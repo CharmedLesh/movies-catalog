@@ -2,7 +2,7 @@ import { FC } from 'react';
 import styles from './submenu.module.scss';
 
 type TabsType = 'overview' | 'favorite' | 'rated' | 'watchlist' | 'lists';
-type SubTabsType = 'movies' | 'tv' | 'episodes';
+type SubTabsType = 'movies' | 'tv';
 
 interface ISubmenuProps {
     selectedSubTab: SubTabsType;
@@ -33,17 +33,6 @@ export const Submenu: FC<ISubmenuProps> = (props) => {
                     onChange={() => setSelectedSubTab('tv')}
                 />
             </label>
-            {selectedTab === 'rated' && (
-                <label>
-                    Episodes
-                    <input
-                        type="radio"
-                        value="episodes"
-                        checked={selectedSubTab === 'episodes'}
-                        onChange={() => setSelectedSubTab('episodes')}
-                    />
-                </label>
-            )}
         </form>
     );
 };
