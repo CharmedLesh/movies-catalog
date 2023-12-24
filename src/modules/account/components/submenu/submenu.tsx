@@ -1,5 +1,6 @@
 import { FC } from 'react';
-import styles from './submenu.module.scss';
+import { TabMenu } from '../../../../ui/menus/tab-menu/tab-menu';
+// import styles from './submenu.module.scss';
 
 type TabsType = 'overview' | 'favorite' | 'rated' | 'watchlist' | 'lists';
 type SubTabsType = 'movies' | 'tv';
@@ -13,26 +14,20 @@ interface ISubmenuProps {
 export const Submenu: FC<ISubmenuProps> = (props) => {
     const { selectedSubTab, setSelectedSubTab, selectedTab } = props;
 
-    return (
-        <form className={styles.subMenu}>
-            <label>
-                Movies
-                <input
-                    type="radio"
-                    value="movies"
-                    checked={selectedSubTab === 'movies'}
-                    onChange={() => setSelectedSubTab('movies')}
-                />
-            </label>
-            <label>
-                TV
-                <input
-                    type="radio"
-                    value="tv"
-                    checked={selectedSubTab === 'tv'}
-                    onChange={() => setSelectedSubTab('tv')}
-                />
-            </label>
-        </form>
-    );
+    const subMenuTabsDataArray = [
+        {
+            labelText: 'Movies',
+            inputValue: 'movies',
+            isChecked: selectedSubTab === 'movies',
+            onChange: () => setSelectedSubTab('movies')
+        },
+        {
+            labelText: 'TV',
+            inputValue: 'tv',
+            isChecked: selectedSubTab === 'tv',
+            onChange: () => setSelectedSubTab('tv')
+        }
+    ];
+
+    return <TabMenu tabDataArray={subMenuTabsDataArray} />;
 };

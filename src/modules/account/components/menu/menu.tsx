@@ -1,5 +1,6 @@
 import { FC } from 'react';
-import styles from './menu.module.scss';
+import { TabMenu } from '../../../../ui/menus/tab-menu/tab-menu';
+// import styles from './menu.module.scss';
 
 type TabsType = 'overview' | 'favorite' | 'rated' | 'watchlist' | 'lists';
 
@@ -11,53 +12,38 @@ interface IMenuProps {
 export const Menu: FC<IMenuProps> = (props) => {
     const { setSelectedTab, selectedTab } = props;
 
-    return (
-        <form className={styles.menu}>
-            <label>
-                Overview
-                <input
-                    type="radio"
-                    value="overview"
-                    checked={selectedTab === 'overview'}
-                    onChange={() => setSelectedTab('overview')}
-                />
-            </label>
-            <label>
-                Lists
-                <input
-                    type="radio"
-                    value="lists"
-                    checked={selectedTab === 'lists'}
-                    onChange={() => setSelectedTab('lists')}
-                />
-            </label>
-            <label>
-                Watchlist
-                <input
-                    type="radio"
-                    value="watchlist"
-                    checked={selectedTab === 'watchlist'}
-                    onChange={() => setSelectedTab('watchlist')}
-                />
-            </label>
-            <label>
-                Rated
-                <input
-                    type="radio"
-                    value="rated"
-                    checked={selectedTab === 'rated'}
-                    onChange={() => setSelectedTab('rated')}
-                />
-            </label>
-            <label>
-                Favorite
-                <input
-                    type="radio"
-                    value="favorite"
-                    checked={selectedTab === 'favorite'}
-                    onChange={() => setSelectedTab('favorite')}
-                />
-            </label>
-        </form>
-    );
+    const menuTabsDataArray = [
+        {
+            labelText: 'Overview',
+            inputValue: 'overview',
+            isChecked: selectedTab === 'overview',
+            onChange: () => setSelectedTab('overview')
+        },
+        {
+            labelText: 'Lists',
+            inputValue: 'lists',
+            isChecked: selectedTab === 'lists',
+            onChange: () => setSelectedTab('lists')
+        },
+        {
+            labelText: 'Watchlist',
+            inputValue: 'watchlist',
+            isChecked: selectedTab === 'watchlist',
+            onChange: () => setSelectedTab('watchlist')
+        },
+        {
+            labelText: 'Rated',
+            inputValue: 'rated',
+            isChecked: selectedTab === 'rated',
+            onChange: () => setSelectedTab('rated')
+        },
+        {
+            labelText: 'Favorite',
+            inputValue: 'favorite',
+            isChecked: selectedTab === 'favorite',
+            onChange: () => setSelectedTab('favorite')
+        }
+    ];
+
+    return <TabMenu tabDataArray={menuTabsDataArray} />;
 };
