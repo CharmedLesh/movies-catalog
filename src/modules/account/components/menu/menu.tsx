@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { TabMenu } from '../../../../ui/menus/tab-menu/tab-menu';
-// import styles from './menu.module.scss';
 
 type TabsType = 'overview' | 'favorite' | 'rated' | 'watchlist' | 'lists';
 

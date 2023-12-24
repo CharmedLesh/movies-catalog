@@ -4,6 +4,8 @@ import { Logger } from '../../../../services/logger/logger';
 import { useUser } from '../../../../services/hooks/store-hooks';
 import { simpleRequest } from '../../../../helpers/simple-request';
 import { ListsPromises } from '../../../../services/lists/lists-promises';
+import { ListCard } from '../list-card/list-card';
+import styles from './lists-tab.module.scss';
 
 export const ListsTab: FC = () => {
     const { user } = useUser();
@@ -25,5 +27,13 @@ export const ListsTab: FC = () => {
         }
     };
 
-    return <div>{JSON.stringify(lists?.results)}</div>;
+    return (
+        lists && (
+            <div className={styles.wrapper}>
+                <ListCard list={lists.results[0]} />
+                <ListCard list={lists.results[0]} />
+                <ListCard list={lists.results[0]} />
+            </div>
+        )
+    );
 };

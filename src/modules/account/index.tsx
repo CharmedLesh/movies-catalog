@@ -20,11 +20,7 @@ export const Account: FC = () => {
             <div className={styles.menusWrapper}>
                 <Menu selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
                 {(selectedTab === 'watchlist' || selectedTab === 'rated' || selectedTab === 'favorite') && (
-                    <Submenu
-                        selectedSubTab={selectedSubTab}
-                        setSelectedSubTab={setSelectedSubTab}
-                        selectedTab={selectedTab}
-                    />
+                    <Submenu selectedSubTab={selectedSubTab} setSelectedSubTab={setSelectedSubTab} />
                 )}
             </div>
             <div className={styles.tabWrapper}>

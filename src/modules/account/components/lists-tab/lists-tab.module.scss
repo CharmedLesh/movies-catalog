@@ -1,0 +1,11 @@
+.wrapper {
+    @media (min-width: 1024px) {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+
+    @media (min-width: 1440px) {
+        grid-template-columns: 33.3% 33.3% 33.3%;
+    }
+    padding: 0px 20px;
+}

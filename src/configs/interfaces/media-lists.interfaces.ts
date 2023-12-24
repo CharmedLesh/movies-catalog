@@ -42,7 +42,7 @@ interface ITVItemRated extends ITVItem {
 }
 
 ///////////////// LISTS ENTITIES /////////////////
-interface IListGeneralInfo {
+export interface IListGeneralInfo {
     description: string;
     favorite_count: number;
     id: number;

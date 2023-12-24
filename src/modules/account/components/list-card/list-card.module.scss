@@ -1,0 +1,86 @@
+@import '../../../../styles/colors';
+@import '../../../../styles/fonts';
+
+.card {
+    background-color: $grey-dark;
+    border-radius: 10px;
+    height: 300px;
+    position: relative;
+    cursor: pointer;
+    margin: 20px;
+
+    @media (min-width: 1440px) {
+        height: 250px;
+        grid-template-columns: 33.3% 33.3% 33.3%;
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+        .infoTouched {
+            height: 143px;
+        }
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            .info {
+                height: 143px;
+            }
+        }
+    }
+}
+
+// @media (hover: none) and (pointer: coarse) {
+//     .cardTouched {
+//         opacity: 100%;
+//     }
+// }
+
+.info {
+    transition: height 200ms ease;
+    color: $light;
+    width: 100%;
+    position: absolute;
+    border-radius: 10px;
+    background-color: $accent;
+    text-align: start;
+    bottom: 0px;
+    height: 47px;
+    overflow: hidden;
+}
+
+.title,
+.description {
+    padding: 0px 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.title {
+    font-size: 18px;
+    margin: 12px 0px 20px;
+    font-weight: 500;
+}
+
+.description {
+    font-size: 13px;
+    letter-spacing: 0.6px;
+    line-height: 20px;
+    font-weight: 300;
+    font-family: $roboto;
+    margin-bottom: 20px;
+}
+
+.inspectButton {
+    border-radius: 10px;
+    padding: 8px 12px;
+    background-color: $light;
+    color: $accent;
+    margin-left: 20px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+// todo:
+// background-image resizing
+// opacity
