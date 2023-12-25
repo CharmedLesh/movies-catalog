@@ -1,0 +1,46 @@
+@import '../../../../styles/colors';
+@import '../../../../styles/fonts';
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $grey-light;
+    margin: 10px 0px;
+
+    svg {
+        font-size: 24px;
+        fill: $grey-dark;
+        margin-right: 10px;
+
+        path {
+            fill: $grey-dark;
+        }
+    }
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    p {
+        white-space: nowrap;
+        &:nth-child(1) {
+            font-family: $noto-sans;
+            text-align: start;
+            font-size: 14px;
+        }
+
+        &:nth-child(2) {
+            font-weight: 500;
+        }
+    }
+}
+
+.greenValue {
+    color: $green;
+}
+
+.redValue {
+    color: $red;
+}

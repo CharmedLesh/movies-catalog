@@ -8,13 +8,20 @@ import { simpleRequest } from '../../helpers/simple-request';
 import { Disclaimer } from './components/disclaimer/disclaimer';
 import { ActionButton } from './components/action-button/action-button';
 import { Loader } from './components/loader/loader';
-import { Account } from '../../modules';
+import { Menus } from './components/menus/menus';
+import { Tabs } from './components/tabs/tabs';
 import styles from './account-page.module.scss';
+
+type TabsType = 'overview' | 'favorite' | 'rated' | 'watchlist' | 'lists';
+type SubTabsType = 'movies' | 'tv';
 
 export const AccountPage: FC = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const { status, error, isSessionId } = useSessionId();
+
+    const [selectedTab, setSelectedTab] = useState<TabsType>('overview');
+    const [selectedSubTab, setSelectedSubTab] = useState<SubTabsType>('movies');
 
     const getRequestTokenFromUrl = (): string | null => {
         const url = window.location.href;
@@ -73,9 +80,15 @@ export const AccountPage: FC = () => {
     };
 
     return pageStatus === 'authorized' ? (
-        <div className={styles.accountAuthorizedPage}>
-            <div className={styles.accountAuthorizedPageContent}>
-                <Account />
+        <div className={styles.authorizedPageWrapper}>
+            <div className={styles.authorizedPageContent}>
+                <Menus
+                    selectedTab={selectedTab}
+                    setSelectedTab={setSelectedTab}
+                    selectedSubTab={selectedSubTab}
+                    setSelectedSubTab={setSelectedSubTab}
+                />
+                <Tabs selectedTab={selectedTab} />
             </div>
         </div>
     ) : (

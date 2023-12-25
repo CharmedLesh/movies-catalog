@@ -3,11 +3,13 @@ import styles from './round-avatar.module.scss';
 
 interface IRoundAvatarProps {
     img: JSX.Element | null;
-    name: string;
+    name?: string | null;
 }
 
 export const RoundAvatar: FC<IRoundAvatarProps> = (props) => {
     const { img, name } = props;
 
-    return <div className={styles.roundAvatar}>{img ? img : name.charAt(0)}</div>;
+    const imageContent: string | JSX.Element = img ? img : name ? name.charAt(0) : '?';
+
+    return <div className={styles.roundAvatar}>{imageContent}</div>;
 };

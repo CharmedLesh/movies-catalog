@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TabMenu } from '../../../../ui/menus/tab-menu/tab-menu';
+import { TabMenu } from '../../../../ui/menus';
 
 type SubTabsType = 'movies' | 'tv';
 

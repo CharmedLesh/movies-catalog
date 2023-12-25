@@ -1,4 +1,5 @@
 export { ErrorModule } from './error';
 export { FooterModule } from './footer';
 export { HeaderModule } from './header';
-export { Account } from './account';
+export { AccountOverview } from './account-overview';
+export { AccountLists } from './account-lists';
