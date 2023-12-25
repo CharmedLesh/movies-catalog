@@ -27,13 +27,13 @@ export const ListsTab: FC = () => {
         }
     };
 
-    return (
-        lists && (
-            <div className={styles.wrapper}>
-                <ListCard list={lists.results[0]} />
-                <ListCard list={lists.results[0]} />
-                <ListCard list={lists.results[0]} />
-            </div>
-        )
-    );
+    const generateListsCardsArray = (lists: IListsCollection) => {
+        let listsCardsArray: JSX.Element[] = [];
+        lists.results.forEach((list) => {
+            listsCardsArray.push(<ListCard list={list} />);
+        });
+        return listsCardsArray;
+    };
+
+    return lists ? <div className={styles.wrapper}>{generateListsCardsArray(lists)}</div> : <></>;
 };

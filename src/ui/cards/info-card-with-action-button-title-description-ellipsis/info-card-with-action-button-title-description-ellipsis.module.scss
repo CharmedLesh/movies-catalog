@@ -1,13 +1,22 @@
-@import '../../../../styles/colors';
-@import '../../../../styles/fonts';
+@import '../../../styles/colors';
+@import '../../../styles/fonts';
 
 .card {
-    background-color: $grey-dark;
     border-radius: 10px;
     height: 300px;
     position: relative;
     cursor: pointer;
     margin: 20px;
+    opacity: 85%;
+    overflow: hidden;
+
+    &:hover {
+        .imageWrapper {
+            img {
+                transform: scale(1.1);
+            }
+        }
+    }
 
     @media (min-width: 1440px) {
         height: 250px;
@@ -15,37 +24,42 @@
     }
 
     @media (hover: none) and (pointer: coarse) {
-        .infoTouched {
+        .infoPanelTouched {
             height: 143px;
+            opacity: 95%;
         }
     }
 
     @media (hover: hover) and (pointer: fine) {
         &:hover {
-            .info {
+            opacity: 100%;
+
+            .infoPanel {
                 height: 143px;
+                opacity: 95%;
             }
         }
     }
 }
 
-// @media (hover: none) and (pointer: coarse) {
-//     .cardTouched {
-//         opacity: 100%;
-//     }
-// }
+@media (hover: none) and (pointer: coarse) {
+    .cardTouched {
+        opacity: 100%;
+    }
+}
 
-.info {
+.infoPanel {
     transition: height 200ms ease;
     color: $light;
     width: 100%;
     position: absolute;
-    border-radius: 10px;
+    border-radius: inherit;
     background-color: $accent;
     text-align: start;
     bottom: 0px;
     height: 47px;
     overflow: hidden;
+    opacity: 85%;
 }
 
 .title,
@@ -71,9 +85,9 @@
     margin-bottom: 20px;
 }
 
-.inspectButton {
-    border-radius: 10px;
-    padding: 8px 12px;
+.actionButton {
+    border-radius: inherit;
+    padding: 6px 10px;
     background-color: $light;
     color: $accent;
     margin-left: 20px;
@@ -81,6 +95,26 @@
     font-size: 16px;
 }
 
-// todo:
-// background-image resizing
-// opacity
+.imageWrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $grey-dark;
+
+    img {
+        border-radius: inherit;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 200ms;
+    }
+}
+
+.imageNotFound {
+    color: $grey;
+    font-size: 20px;
+}
