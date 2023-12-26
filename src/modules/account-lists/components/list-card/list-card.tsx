@@ -30,3 +30,8 @@ export const ListCard: FC<IListCardProps> = (props) => {
         />
     );
 };
+
+// todo
+// check if redirect works correctly if session id not provided
+// router remake
+// loader while fetching lists
