@@ -1,15 +1,20 @@
 import { FC, useEffect, useState } from 'react';
 import { IListsCollection } from '../../configs/interfaces/media-lists.interfaces';
-import { useUser } from '../../services/hooks/store-hooks';
+import { useSessionId, useUser } from '../../services/hooks/store-hooks';
 import { ListsPromises } from '../../services/lists/lists-promises';
 import { Logger } from '../../services/logger/logger';
 import { simpleRequest } from '../../helpers/simple-request';
 import { ListsCardsGrid } from './components/lists-cards-grid/lists-card-grid';
+import { TopPanel } from './components/top-panel/top-panel';
+import { NoListsBanner } from './components/no-lists-banner/no-lists-banner';
+import { CreateListForm } from './components/create-list-form/create-list-form';
 
 export const AccountLists: FC = () => {
+    const { sessionId } = useSessionId();
     const { user } = useUser();
 
     const [lists, setLists] = useState<IListsCollection | null>(null);
+    const [isCreateListFormOpen, setIsCreateListFormOpen] = useState<boolean>(false);
 
     useEffect(() => {
         getInitialListsState();
@@ -26,11 +31,27 @@ export const AccountLists: FC = () => {
         }
     };
 
-    return <div>{lists && <ListsCardsGrid lists={lists} />}</div>;
+    const createList = async (sessionId: string, name: string, description: string, language: string) => {
+        const data = await ListsPromises.createList(sessionId, name, description, language);
+        if (data) {
+            console.log(data);
+        }
+    };
+
+    return (
+        <div>
+            <TopPanel setIsCreateListFormOpen={setIsCreateListFormOpen} isCreateListFormOpen={isCreateListFormOpen} />
+            {isCreateListFormOpen ? (
+                <CreateListForm />
+            ) : lists?.results.length ? (
+                <ListsCardsGrid lists={lists.results} />
+            ) : (
+                <NoListsBanner />
+            )}
+        </div>
+    );
 };
 
 // todo
-// top-panel
 // change pages
-// no lists found banner
 // error getting data banner

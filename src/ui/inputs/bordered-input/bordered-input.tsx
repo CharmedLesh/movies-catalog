@@ -7,7 +7,7 @@ interface IBorderedInput extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const BorderedInput: FC<IBorderedInput> = (props) => {
-    const { onChange, required, placeholder, id, useLabel, labelValue, type, name, spellCheck } = props;
+    const { onChange, required, placeholder, id, useLabel, labelValue, type, name, spellCheck, autoComplete } = props;
 
     return (
         <div className={styles.borderedInputWrapper}>

@@ -1,18 +1,19 @@
 @import '../../../styles/colors';
 @import '../../../styles/fonts';
 
-.borderedInputWrapper {
+.borderedTextareaWrapper {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.borderedInputLabel {
+.borderedTextareaLabel {
     font-size: 18px;
     margin-bottom: 4px;
 }
 
-.borderedInput {
+.borderedTextarea {
+    resize: none;
     width: 100%;
     padding: 6px 8px;
     background-color: inherit;

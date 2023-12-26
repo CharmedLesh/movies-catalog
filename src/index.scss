@@ -43,6 +43,15 @@ button {
     }
 }
 
+input,
+textarea {
+    font-family: $poppins;
+
+    &::placeholder {
+        font-family: $roboto;
+    }
+}
+
 input[type='checkbox'] {
     cursor: pointer;
 

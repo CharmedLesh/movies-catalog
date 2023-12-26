@@ -1,0 +1,17 @@
+@import '../../../styles/colors';
+
+.accentFilledRoundedButton {
+    display: flex;
+    background-color: $accent;
+    border-radius: 4px;
+    color: $light;
+    padding: 6px 12px;
+
+    @media (min-width: 768px) {
+        padding: 8px 16px;
+    }
+
+    &:active {
+        opacity: 90%;
+    }
+}

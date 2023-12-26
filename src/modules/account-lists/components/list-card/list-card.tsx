@@ -17,12 +17,14 @@ export const ListCard: FC<IListCardProps> = (props) => {
         <img src={`https://www.themoviedb.org/t/p/w1000_and_h563_multi_faces${list.poster_path}`} />
     ) : null;
 
+    const description = list.description.length ? list.description : 'No description';
+
     return (
         <InfoCardWithActionButtonTitleDescriptionEllipsis
             image={posterImage}
             noImageText="POSTER NOT FOUND"
             title={list.name}
-            description={list.description}
+            description={description}
             actionButtonText="View List"
             actionButtonClickHandler={listCardClickHandler}
         />
