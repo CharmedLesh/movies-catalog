@@ -24,20 +24,31 @@ export class ListsPromises {
     }
 
     static async createList(sessionId: string, name: string, description: string, language: string) {
-        return $api.post<ICreateMediaListResponse>('https://api.themoviedb.org/3/list', {
-            headers: { 'content-type': 'application/json' },
-            params: { session_id: sessionId },
-            data: { name: name, description: description, language: language }
-        });
+        return $api.post<ICreateMediaListResponse>(
+            'https://api.themoviedb.org/3/list',
+            {
+                name: name,
+                description: description,
+                language: language
+            },
+            {
+                headers: {
+                    'content-type': 'application/json'
+                },
+                params: { session_id: sessionId }
+            }
+        );
     }
 
     static async addMediaItemToList(sessionId: string, listId: number, mediaItemId: number) {
         return $api.post<IAddMediaItemToListResponse>(
             `https://api.themoviedb.org/3/list/${listId.toString()}/add_item`,
             {
+                media_id: mediaItemId
+            },
+            {
                 headers: { 'content-type': 'application/json' },
-                params: { session_id: sessionId },
-                data: { media_id: mediaItemId }
+                params: { session_id: sessionId }
             }
         );
     }
@@ -46,9 +57,11 @@ export class ListsPromises {
         return $api.post<IRemoveMediaItemFromListResponse>(
             `https://api.themoviedb.org/3/list/${listId.toString()}/remove_item`,
             {
+                media_id: mediaItemId
+            },
+            {
                 headers: { 'content-type': 'application/json' },
-                params: { session_id: sessionId },
-                data: { media_id: mediaItemId }
+                params: { session_id: sessionId }
             }
         );
     }

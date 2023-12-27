@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { IListsCollection } from '../../configs/interfaces/media-lists.interfaces';
-import { useSessionId, useUser } from '../../services/hooks/store-hooks';
+import { useUser } from '../../services/hooks/store-hooks';
 import { ListsPromises } from '../../services/lists/lists-promises';
 import { Logger } from '../../services/logger/logger';
 import { simpleRequest } from '../../helpers/simple-request';
@@ -10,7 +10,6 @@ import { NoListsBanner } from './components/no-lists-banner/no-lists-banner';
 import { CreateListForm } from './components/create-list-form/create-list-form';
 
 export const AccountLists: FC = () => {
-    const { sessionId } = useSessionId();
     const { user } = useUser();
 
     const [lists, setLists] = useState<IListsCollection | null>(null);
@@ -28,13 +27,6 @@ export const AccountLists: FC = () => {
             }
         } else {
             Logger.logError('User id not found');
-        }
-    };
-
-    const createList = async (sessionId: string, name: string, description: string, language: string) => {
-        const data = await ListsPromises.createList(sessionId, name, description, language);
-        if (data) {
-            console.log(data);
         }
     };
 

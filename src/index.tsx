@@ -7,6 +7,7 @@ import { Logger } from './services/logger/logger';
 import { HeaderModule, FooterModule } from './modules';
 import { HomePage, ErrorPage, AccountPage } from './pages';
 import './index.scss';
+import { StatusNotificationBanner } from './components';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -33,6 +34,7 @@ root.render(
     <BrowserRouter>
         <Provider store={store}>
             <div className="app">
+                <StatusNotificationBanner />
                 <HeaderModule />
                 <div className="page-content-wrapper">{generateRoutes()}</div>
                 <FooterModule />

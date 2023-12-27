@@ -1,0 +1,36 @@
+@import '../../styles/colors';
+
+.bannerRed,
+.bannerGreen {
+    position: fixed;
+    z-index: 10;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 4px;
+    color: $light;
+    animation: fade-in 500ms ease-in;
+    cursor: default;
+}
+
+.bannerUnmounted {
+    opacity: 0;
+    transition: opacity 500ms ease-in;
+}
+
+.bannerGreen {
+    background-color: $green;
+}
+
+.bannerRed {
+    background-color: $red;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
