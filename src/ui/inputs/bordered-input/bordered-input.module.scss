@@ -27,4 +27,8 @@
             color: transparent;
         }
     }
+
+    &:disabled {
+        background-color: $grey;
+    }
 }

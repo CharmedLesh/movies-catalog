@@ -19,7 +19,8 @@ export const BorderedTextarea: FC<IBorderedTextareaProps> = (props) => {
         name,
         minLength,
         maxLength,
-        autoComplete
+        autoComplete,
+        disabled
     } = props;
 
     return (
@@ -41,6 +42,7 @@ export const BorderedTextarea: FC<IBorderedTextareaProps> = (props) => {
                 rows={rows}
                 minLength={minLength}
                 maxLength={maxLength}
+                disabled={disabled}
             />
         </div>
     );

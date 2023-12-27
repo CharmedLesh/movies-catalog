@@ -9,13 +9,13 @@
     padding: 10px;
     border-radius: 4px;
     color: $light;
-    animation: fade-in 500ms ease-in;
+    animation: fade-in 200ms ease-in;
     cursor: default;
 }
 
 .bannerUnmounted {
     opacity: 0;
-    transition: opacity 500ms ease-in;
+    transition: opacity 200ms ease-in;
 }
 
 .bannerGreen {

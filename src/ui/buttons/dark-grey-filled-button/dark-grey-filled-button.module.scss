@@ -9,4 +9,8 @@
     &:active {
         background-color: $grey;
     }
+
+    &:disabled {
+        background-color: $grey;
+    }
 }

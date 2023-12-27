@@ -1,13 +1,12 @@
-import { FC, SyntheticEvent, useState } from 'react';
+import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useSessionId, useUser } from '../../../../services/hooks/store-hooks';
 import { ListsPromises } from '../../../../services/lists/lists-promises';
-import { requestWithErrorNotification } from '../../../../helpers/request-with-status-notification';
+import { requestWithNotificationsAndPendingSetter } from '../../../../helpers/request-with-status-notification';
 import { BorderedInput } from '../../../../ui/inputs';
 import { BorderedTextarea } from '../../../../ui/textareas';
 import { DarkGreyFilledButton } from '../../../../ui/buttons';
 import styles from './create-list-form.module.scss';
-import axios from 'axios';
 
 export const CreateListForm: FC = () => {
     const { sessionId } = useSessionId();
@@ -18,7 +17,7 @@ export const CreateListForm: FC = () => {
 
     const [name, setName] = useState<string>('');
     const [description, setDescription] = useState<string>('');
-    const [isRequesting, setIsRequesting] = useState<boolean>(false);
+    const [isPending, setIsPending] = useState<boolean>(false);
 
     const nameInputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
@@ -37,14 +36,12 @@ export const CreateListForm: FC = () => {
             navigate(`${process.env.REACT_APP_URL_PATHNAME_CORE}/account`);
         }
         if (sessionId && user) {
-            // todo
-            // remake to isRequesting heleper
-            setIsRequesting(true);
-            await requestWithErrorNotification(
+            const data = await requestWithNotificationsAndPendingSetter(
                 dispatch,
-                ListsPromises.createList(sessionId, name, description, user.iso_639_1)
+                ListsPromises.createList(sessionId, name, description, user.iso_639_1),
+                setIsPending,
+                'List created'
             );
-            setIsRequesting(false);
         }
     };
 
@@ -66,6 +63,7 @@ export const CreateListForm: FC = () => {
                     spellCheck={false}
                     autoComplete="off"
                     onChange={nameInputChangeHandler}
+                    disabled={isPending}
                 />
                 <BorderedTextarea
                     useLabel={true}
@@ -77,8 +75,9 @@ export const CreateListForm: FC = () => {
                     autoComplete="off"
                     rows={4}
                     onChange={descriptionTextareaChangeHandler}
+                    disabled={isPending}
                 />
-                <DarkGreyFilledButton value="Create" />
+                <DarkGreyFilledButton value="Create" disabled={isPending} />
             </form>
         </div>
     );

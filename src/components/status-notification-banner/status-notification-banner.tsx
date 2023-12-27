@@ -11,7 +11,7 @@ export const StatusNotificationBanner: FC = () => {
     const [isMounted, setIsMounted] = useState(true);
     const [isHovered, setIsHovered] = useState(false);
 
-    const shouldRender = useDelayUnmount(isMounted, 500);
+    const shouldRender = useDelayUnmount(isMounted, 200);
 
     useEffect(() => {
         if (isSuccess !== null && message) {
