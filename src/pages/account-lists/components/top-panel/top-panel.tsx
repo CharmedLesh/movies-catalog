@@ -16,7 +16,7 @@ export const TopPanel: FC<ITopPanelProps> = (props) => {
 
     const onActionButtonClickHandler = () => {
         if (!sessionId) {
-            navigate(`${process.env.REACT_APP_URL_PATHNAME_CORE}/account`);
+            navigate(`/account`);
         }
         if (sessionId) {
             setIsCreateListFormOpen((prevState) => !prevState);

@@ -1,10 +1,10 @@
-.authorizedPageWrapper {
+.wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.authorizedPageContent {
+.content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,20 +15,6 @@
     }
 }
 
-.accountCenteredPage {
+.outlet {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 20px;
-}
-
-.accountCenteredPageContent {
-    display: flex;
-    padding: 20px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
-    @media (min-width: 400px) {
-        padding: 40px;
-    }
 }

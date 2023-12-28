@@ -1,15 +1,15 @@
 import { FC, useEffect, useState } from 'react';
-import { IListsCollection } from '../../configs/interfaces/media-lists.interfaces';
 import { useUser } from '../../services/hooks/store-hooks';
+import { IListsCollection } from '../../configs/interfaces/media-lists.interfaces';
 import { ListsPromises } from '../../services/lists/lists-promises';
 import { Logger } from '../../services/logger/logger';
 import { simpleRequest } from '../../helpers/simple-request';
-import { ListsCardsGrid } from './components/lists-cards-grid/lists-card-grid';
 import { TopPanel } from './components/top-panel/top-panel';
-import { NoListsBanner } from './components/no-lists-banner/no-lists-banner';
 import { CreateListForm } from './components/create-list-form/create-list-form';
+import { ListsCardsGrid } from './components/lists-cards-grid/lists-card-grid';
+import { NoListsBanner } from './components/no-lists-banner/no-lists-banner';
 
-export const AccountLists: FC = () => {
+export const AccountListsPage: FC = () => {
     const { user } = useUser();
 
     const [lists, setLists] = useState<IListsCollection | null>(null);
@@ -21,6 +21,8 @@ export const AccountLists: FC = () => {
 
     const getInitialListsState = async () => {
         if (user?.id) {
+            // todo
+            // simple request to request with notification
             const data = await simpleRequest(ListsPromises.getListsCollection(user.id.toString(), 1));
             if (data) {
                 setLists(data);
@@ -31,7 +33,7 @@ export const AccountLists: FC = () => {
     };
 
     return (
-        <div>
+        <>
             <TopPanel setIsCreateListFormOpen={setIsCreateListFormOpen} isCreateListFormOpen={isCreateListFormOpen} />
             {isCreateListFormOpen ? (
                 <CreateListForm />
@@ -40,10 +42,6 @@ export const AccountLists: FC = () => {
             ) : (
                 <NoListsBanner />
             )}
-        </div>
+        </>
     );
 };
-
-// todo
-// change pages
-// error getting data banner

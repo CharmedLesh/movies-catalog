@@ -27,16 +27,18 @@ export const CreateListForm: FC = () => {
         setDescription(event.target.value);
     };
 
+    console.log(sessionId);
+
     const onSubmitHandler = async (event: SyntheticEvent, sessionId: string | null) => {
         event.preventDefault();
 
-        if (!sessionId || user) {
+        if (!sessionId || !user) {
             // todo
-            // remake to checkAuth();
-            navigate(`${process.env.REACT_APP_URL_PATHNAME_CORE}/account`);
+            // check isAuth not expired
+            navigate(`/account`);
         }
         if (sessionId && user) {
-            const data = await requestWithNotificationsAndPendingSetter(
+            await requestWithNotificationsAndPendingSetter(
                 dispatch,
                 ListsPromises.createList(sessionId, name, description, user.iso_639_1),
                 setIsPending,

@@ -50,29 +50,22 @@ export class LocalStorageExpirable<T> {
         }
     }
 
-    resetExpirationDate(): void {
+    getAndResetIfNotExpired(): T | null {
         try {
-            const data: string | null = localStorage.getItem(this.key);
+            const data = localStorage.getItem(this.key);
             if (!data) {
-                throw new Error('Localstorage item not found');
+                return null;
             }
             const parsedData: { data: T; expirationTime: number } = JSON.parse(data);
-            this.set(parsedData.data);
-        } catch (error) {
-            if (error instanceof Error) {
-                Logger.logError(error.message);
+            const now = new Date();
+            console.log(now.getTime() > parsedData.expirationTime);
+            if (now.getTime() > parsedData.expirationTime) {
+                localStorage.removeItem(this.key);
+                return null;
+            } else {
+                this.set(parsedData.data);
+                return parsedData.data;
             }
-        }
-    }
-
-    getAndResetExpirationDate(): T | null {
-        try {
-            const data: T | null = this.get();
-            if (data) {
-                this.set(data);
-                return data;
-            }
-            return null;
         } catch (error) {
             if (error instanceof Error) {
                 Logger.logError(error.message);

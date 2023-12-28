@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './hamburger-menu.module.scss';
-import { useUser } from '../../../../services/hooks/store-hooks';
+import { useSessionId } from '../../../../services/hooks/store-hooks';
 
 interface IHamburgerMenuProps {
     isHamburgerMenuToggled: boolean;
@@ -12,7 +12,7 @@ interface IHamburgerMenuProps {
 
 export const HamburgerMenu: FC<IHamburgerMenuProps> = (props) => {
     const { isHamburgerMenuToggled, toggleHamburgerMenu, signOutHandler, hamburgerMenuButtonRef } = props;
-    const { isUser } = useUser();
+    const { isSessionId } = useSessionId();
 
     const hamburgerMenu = useRef<HTMLUListElement>(null);
 
@@ -33,45 +33,56 @@ export const HamburgerMenu: FC<IHamburgerMenuProps> = (props) => {
         }
     }, [isHamburgerMenuToggled]);
 
+    const sigOutClickHandler = () => {
+        signOutHandler();
+        toggleHamburgerMenu();
+    };
+
     const hamburgerMenuClassName = isHamburgerMenuToggled
         ? `${styles.hamburgerMenu} ${styles.hamburgerMenuToggled}`
         : styles.hamburgerMenu;
-
-    const accountLinkValue = isUser ? 'Account' : 'Sign In';
 
     return (
         <ul className={hamburgerMenuClassName} ref={hamburgerMenu}>
             <ul>
                 <li>
-                    <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}/trending`} onClick={toggleHamburgerMenu}>
-                        Trending
+                    <Link to={`/movies`} onClick={toggleHamburgerMenu}>
+                        Movies
                     </Link>
                 </li>
                 <li>
-                    <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}/popular`} onClick={toggleHamburgerMenu}>
-                        Popular
+                    <Link to={`/tv`} onClick={toggleHamburgerMenu}>
+                        TV Shows
                     </Link>
                 </li>
                 <li>
-                    <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}/about`} onClick={toggleHamburgerMenu}>
-                        About
+                    <Link to={`/people`} onClick={toggleHamburgerMenu}>
+                        People
                     </Link>
                 </li>
                 <li>
-                    <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}/contact`} onClick={toggleHamburgerMenu}>
-                        Contact
+                    <Link to={`/more`} onClick={toggleHamburgerMenu}>
+                        More
                     </Link>
                 </li>
             </ul>
             <ul>
-                <li>
-                    <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}/account`} onClick={toggleHamburgerMenu}>
-                        {accountLinkValue}
-                    </Link>
-                </li>
-                {isUser && (
+                {isSessionId ? (
                     <li>
-                        <button onClick={() => signOutHandler()}>Sign Out</button>
+                        <Link to={`/account`} onClick={toggleHamburgerMenu}>
+                            Account
+                        </Link>
+                    </li>
+                ) : (
+                    <li>
+                        <Link to={`/sign-in`} onClick={toggleHamburgerMenu}>
+                            Sign In
+                        </Link>
+                    </li>
+                )}
+                {isSessionId && (
+                    <li>
+                        <button onClick={sigOutClickHandler}>Sign Out</button>
                     </li>
                 )}
             </ul>

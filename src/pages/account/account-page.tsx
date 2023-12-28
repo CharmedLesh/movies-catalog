@@ -1,103 +1,86 @@
 import { FC, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Logger } from '../../services/logger/logger';
-import { AuthPromises } from '../../services/auth/auth-promises';
-import { useAppDispatch, useSessionId } from '../../services/hooks/store-hooks';
-import { getSessionId } from '../../services/store/async-thunks/session-async-thunks';
-import { simpleRequest } from '../../helpers/simple-request';
-import { Disclaimer } from './components/disclaimer/disclaimer';
-import { ActionButton } from './components/action-button/action-button';
-import { Loader } from './components/loader/loader';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useSessionId } from '../../services/hooks/store-hooks';
 import { Menus } from './components/menus/menus';
-import { Tabs } from './components/tabs/tabs';
 import styles from './account-page.module.scss';
 
 type TabsType = 'overview' | 'favorite' | 'rated' | 'watchlist' | 'lists';
 type SubTabsType = 'movies' | 'tv';
 
 export const AccountPage: FC = () => {
-    const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const { status, error, isSessionId } = useSessionId();
+    const { isSessionId } = useSessionId();
 
     const [selectedTab, setSelectedTab] = useState<TabsType>('overview');
     const [selectedSubTab, setSelectedSubTab] = useState<SubTabsType>('movies');
 
-    const getRequestTokenFromUrl = (): string | null => {
-        const url = window.location.href;
-        const urlSearchParams = new URLSearchParams(new URL(url).search);
-        const requestToken = urlSearchParams.get('request_token');
-
-        return requestToken;
-    };
-
-    const requestToken: string | null = getRequestTokenFromUrl();
-
-    const getPageInitialStatus = (): 'unauthorized' | 'authorizing' | 'authorized' => {
-        if (isSessionId) {
-            return 'authorized';
-        } else if (!isSessionId && requestToken) {
-            return 'authorizing';
-        } else {
-            return 'unauthorized';
-        }
-    };
-
-    const [pageStatus, setPageStatus] = useState<'unauthorized' | 'authorizing' | 'authorized'>(getPageInitialStatus());
-
-    // get session id if request token found and session id not found
+    // check if user authorized
+    // redirect if user tries to access /account
+    // set initial selected tab and subtub
     useEffect(() => {
-        if (!isSessionId && requestToken) {
-            dispatch(getSessionId(requestToken));
+        if (!isSessionId) {
+            navigate('/sign-in');
         }
-        if (requestToken) {
-            navigate(`${process.env.REACT_APP_URL_PATHNAME_CORE}/account`);
+        switch (window.location.pathname) {
+            case '/account':
+                navigate('/account/overview');
+                break;
+            case '/account/overview':
+                setSelectedTab('overview');
+                break;
+            case '/account/lists':
+                setSelectedTab('lists');
+                break;
+            case '/account/watchlist/movies':
+                setSelectedTab('watchlist');
+                setSelectedSubTab('movies');
+                break;
+            case '/account/watchlist/tv':
+                setSelectedTab('watchlist');
+                setSelectedSubTab('tv');
+                break;
+            case '/account/rated/movies':
+                setSelectedTab('rated');
+                setSelectedSubTab('movies');
+                break;
+            case '/account/rated/tv':
+                setSelectedTab('rated');
+                setSelectedSubTab('tv');
+                break;
+            case '/account/favorite/movies':
+                setSelectedTab('favorite');
+                setSelectedSubTab('movies');
+                break;
+            case '/account/favorite/tv':
+                setSelectedTab('favorite');
+                setSelectedSubTab('tv');
+                break;
+            default:
+                break;
         }
     }, []);
 
-    // change page status to authorized if session id exist
+    // redirect on tab change
     useEffect(() => {
-        if (isSessionId) {
-            setPageStatus('authorized');
-        }
-    }, [isSessionId]);
-
-    const getRequestToken = async () => {
-        const data = await simpleRequest(AuthPromises.getRequestToken());
-        const requestToken = data?.request_token;
-        if (requestToken) {
-            window.open(
-                `https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=${process.env.REACT_APP_URL_HOST}${process.env.REACT_APP_URL_PATHNAME_CORE}/account/approved`,
-                '_self'
-            );
+        if (selectedTab === 'overview' || selectedTab === 'lists') {
+            navigate(`/account/${selectedTab}`);
         } else {
-            Logger.logError('Error occured while trying to get request token');
+            navigate(`/account/${selectedTab}/${selectedSubTab}`);
         }
-    };
+    }, [selectedTab, selectedSubTab]);
 
-    const onActionButtonClickHandler = async () => {
-        await getRequestToken();
-    };
-
-    return pageStatus === 'authorized' ? (
-        <div className={styles.authorizedPageWrapper}>
-            <div className={styles.authorizedPageContent}>
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.content}>
                 <Menus
                     selectedTab={selectedTab}
                     setSelectedTab={setSelectedTab}
                     selectedSubTab={selectedSubTab}
                     setSelectedSubTab={setSelectedSubTab}
                 />
-                <Tabs selectedTab={selectedTab} />
-            </div>
-        </div>
-    ) : (
-        <div className={styles.accountCenteredPage}>
-            <div className={styles.accountCenteredPageContent}>
-                {pageStatus === 'unauthorized' && (
-                    <Disclaimer actionButton={<ActionButton onClick={onActionButtonClickHandler} />} />
-                )}
-                {pageStatus === 'authorizing' && <Loader status={status} error={error} />}
+                <div className={styles.outlet}>
+                    <Outlet />
+                </div>
             </div>
         </div>
     );

@@ -1,20 +1,10 @@
 .disclaimer {
-    max-width: 250px;
     font-size: 14px;
     display: flex;
     flex-direction: column;
 
     @media (min-width: 768px) {
-        max-width: 500px;
         font-size: 16px;
-    }
-
-    @media (min-width: 1024px) {
-        max-width: 700px;
-    }
-
-    @media (min-width: 1440px) {
-        max-width: 1000px;
     }
 
     ul {

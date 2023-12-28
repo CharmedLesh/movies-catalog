@@ -25,8 +25,7 @@ export const AccountDropdownMenu: FC<IAccountDropdownMenuProps> = (props) => {
                 </button>
             }
             menuItems={[
-                <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}/account`}>{user?.username}</Link>,
-                <Link to={`${process.env.REACT_APP_URL_PATHNAME_CORE}/watchlist`}>Watchlist</Link>,
+                <Link to={`/account`}>{user?.username}</Link>,
                 <button onClick={signOutHandler}>Sign Out</button>
             ]}
         />

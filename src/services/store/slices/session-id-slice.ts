@@ -14,7 +14,7 @@ const localstorageExpirable = new LocalStorageExpirable<string>({ key: 'SESSION_
 
 // interface for initial state
 const initialState: ISessionIdState = {
-    sessionId: localstorageExpirable.getAndResetExpirationDate(),
+    sessionId: localstorageExpirable.getAndResetIfNotExpired(),
     status: null,
     error: null
 };
@@ -23,11 +23,9 @@ export const sessionIdSlice = createSlice({
     name: 'session-id',
     initialState,
     reducers: {
-        removeSessionIdStatus: (state) => {
-            state.status = null;
-        },
         removeSessionId: (state) => {
             state.sessionId = null;
+            state.status = null;
         }
     },
     extraReducers: (builder) => {
@@ -49,7 +47,7 @@ export const sessionIdSlice = createSlice({
     }
 });
 
-export const { removeSessionIdStatus, removeSessionId } = sessionIdSlice.actions;
+export const { removeSessionId } = sessionIdSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectSessionId = (state: RootState) => state.sessionId.sessionId;

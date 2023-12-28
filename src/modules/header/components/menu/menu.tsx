@@ -15,7 +15,7 @@ export const Menu: FC<IMenuProps> = (props) => {
     const navigate = useNavigate();
 
     const navigateToAccountPage = () => {
-        navigate(`${process.env.REACT_APP_URL_PATHNAME_CORE}/account`);
+        navigate(`/sign-in`);
     };
 
     return (
