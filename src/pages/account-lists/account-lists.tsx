@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from 'react';
-import { useUser } from '../../services/hooks/store-hooks';
+import { useAppDispatch, useUser } from '../../services/hooks/store-hooks';
 import { IListsCollection } from '../../configs/interfaces/media-lists.interfaces';
 import { ListsPromises } from '../../services/lists/lists-promises';
 import { Logger } from '../../services/logger/logger';
-import { simpleRequest } from '../../helpers/simple-request';
+import { requestWithNotificationsAndPendingSetter } from '../../helpers/requests';
 import { TopPanel } from './components/top-panel/top-panel';
 import { CreateListForm } from './components/create-list-form/create-list-form';
 import { ListsCardsGrid } from './components/lists-cards-grid/lists-card-grid';
@@ -11,19 +11,26 @@ import { NoListsBanner } from './components/no-lists-banner/no-lists-banner';
 
 export const AccountListsPage: FC = () => {
     const { user } = useUser();
+    const dispatch = useAppDispatch();
 
     const [lists, setLists] = useState<IListsCollection | null>(null);
     const [isCreateListFormOpen, setIsCreateListFormOpen] = useState<boolean>(false);
+    const [isPending, setIsPending] = useState<boolean>(true);
 
     useEffect(() => {
         getInitialListsState();
     }, []);
 
     const getInitialListsState = async () => {
+        // todo
+        // try to do request with session id (often error on getting user on page reload)
         if (user?.id) {
-            // todo
-            // simple request to request with notification
-            const data = await simpleRequest(ListsPromises.getListsCollection(user.id.toString(), 1));
+            const data = await requestWithNotificationsAndPendingSetter(
+                dispatch,
+                ListsPromises.getListsCollection(user.id.toString(), 1),
+                setIsPending,
+                false
+            );
             if (data) {
                 setLists(data);
             }
@@ -36,11 +43,13 @@ export const AccountListsPage: FC = () => {
         <>
             <TopPanel setIsCreateListFormOpen={setIsCreateListFormOpen} isCreateListFormOpen={isCreateListFormOpen} />
             {isCreateListFormOpen ? (
+                // todo
+                // create list form to separate page
                 <CreateListForm />
-            ) : lists?.results.length ? (
-                <ListsCardsGrid lists={lists.results} />
-            ) : (
+            ) : !lists?.results.length && !isPending ? (
                 <NoListsBanner />
+            ) : (
+                <ListsCardsGrid lists={lists?.results ? lists.results : []} isPending={isPending} />
             )}
         </>
     );

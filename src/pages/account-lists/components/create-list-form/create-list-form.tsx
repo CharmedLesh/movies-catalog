@@ -1,8 +1,8 @@
-import { FC, SyntheticEvent, useEffect, useState } from 'react';
+import { FC, SyntheticEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useSessionId, useUser } from '../../../../services/hooks/store-hooks';
 import { ListsPromises } from '../../../../services/lists/lists-promises';
-import { requestWithNotificationsAndPendingSetter } from '../../../../helpers/request-with-status-notification';
+import { requestWithNotificationsAndPendingSetter } from '../../../../helpers/requests';
 import { BorderedInput } from '../../../../ui/inputs';
 import { BorderedTextarea } from '../../../../ui/textareas';
 import { DarkGreyFilledButton } from '../../../../ui/buttons';
@@ -42,7 +42,8 @@ export const CreateListForm: FC = () => {
                 dispatch,
                 ListsPromises.createList(sessionId, name, description, user.iso_639_1),
                 setIsPending,
-                'List created'
+                true,
+                { success: 'List created' }
             );
         }
     };

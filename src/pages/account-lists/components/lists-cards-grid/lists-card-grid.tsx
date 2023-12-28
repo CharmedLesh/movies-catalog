@@ -1,14 +1,16 @@
 import { FC } from 'react';
 import { IListGeneralInfo } from '../../../../configs/interfaces/media-lists.interfaces';
 import { ListCard } from '../list-card/list-card';
+import { InfoCard169Loader } from '../../../../ui/loaders';
 import styles from './lists-cards-grid.module.scss';
 
 interface IListsCardsGridProps {
     lists: IListGeneralInfo[];
+    isPending: boolean;
 }
 
 export const ListsCardsGrid: FC<IListsCardsGridProps> = (props) => {
-    const { lists } = props;
+    const { lists, isPending } = props;
 
     const generateListsCardsArray = () => {
         let listsCardsArray: JSX.Element[] = [];
@@ -18,5 +20,18 @@ export const ListsCardsGrid: FC<IListsCardsGridProps> = (props) => {
         return listsCardsArray;
     };
 
-    return <div className={styles.grid}>{generateListsCardsArray()}</div>;
+    return (
+        <div className={styles.grid}>
+            {isPending ? (
+                <>
+                    <InfoCard169Loader />
+                    <InfoCard169Loader />
+                    <InfoCard169Loader />
+                    <InfoCard169Loader />
+                </>
+            ) : (
+                generateListsCardsArray()
+            )}
+        </div>
+    );
 };

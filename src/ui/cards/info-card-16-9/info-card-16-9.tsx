@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef, useState } from 'react';
-import styles from './info-card-with-action-button-title-description-ellipsis.module.scss';
+import styles from './info-card-16-9.module.scss';
 
-interface IInfoCardWithActionButtonTitleDescriptionEllipsisProps {
+interface IInfoCard169Props {
     image: JSX.Element | null;
     noImageText: string;
     title: string;
@@ -10,9 +10,7 @@ interface IInfoCardWithActionButtonTitleDescriptionEllipsisProps {
     actionButtonClickHandler: () => void;
 }
 
-export const InfoCardWithActionButtonTitleDescriptionEllipsis: FC<
-    IInfoCardWithActionButtonTitleDescriptionEllipsisProps
-> = (props) => {
+export const InfoCard169: FC<IInfoCard169Props> = (props) => {
     const { image, noImageText, title, description, actionButtonText, actionButtonClickHandler } = props;
     const cardRef = useRef<HTMLDivElement>(null);
 

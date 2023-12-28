@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { IListGeneralInfo } from '../../../../configs/interfaces/media-lists.interfaces';
-import { InfoCardWithActionButtonTitleDescriptionEllipsis } from '../../../../ui/cards';
+import { InfoCard169 } from '../../../../ui/cards';
 
 interface IListCardProps {
     list: IListGeneralInfo;
@@ -20,7 +20,7 @@ export const ListCard: FC<IListCardProps> = (props) => {
     const description = list.description.length ? list.description : 'No description';
 
     return (
-        <InfoCardWithActionButtonTitleDescriptionEllipsis
+        <InfoCard169
             image={posterImage}
             noImageText="POSTER NOT FOUND"
             title={list.name}

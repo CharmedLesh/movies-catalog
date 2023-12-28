@@ -3,10 +3,7 @@
 
 .card {
     border-radius: 10px;
-    height: 250px;
-    // todo
-    // redesign
-    max-width: 450px;
+    aspect-ratio: 16 / 9;
     position: relative;
     cursor: pointer;
     opacity: 85%;
