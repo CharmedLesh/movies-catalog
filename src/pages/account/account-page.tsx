@@ -11,65 +11,59 @@ export const AccountPage: FC = () => {
     const navigate = useNavigate();
     const { isSessionId } = useSessionId();
 
-    const [selectedTab, setSelectedTab] = useState<TabsType>('overview');
-    const [selectedSubTab, setSelectedSubTab] = useState<SubTabsType>('movies');
+    const getTabStateByPathname = () => {
+        switch (window.location.pathname) {
+            case '/account/overview':
+                return 'overview';
+            case '/account/lists':
+                return 'lists';
+            case '/account/watchlist/movies':
+            case '/account/watchlist/tv':
+            case '/account/watchlist':
+                return 'watchlist';
+            case '/account/rated/movies':
+            case '/account/rated/tv':
+            case '/account/rated':
+                return 'rated';
+            case '/account/favorite/movies':
+            case '/account/favorite/tv':
+            case '/account/favorite':
+                return 'favorite';
+            default:
+                return 'overview';
+        }
+    };
+
+    const getSubTabStateByPathname = () => {
+        switch (window.location.pathname) {
+            case '/account/watchlist/movies':
+            case '/account/rated/movies':
+            case '/account/favorite/movies':
+                return 'movies';
+            case '/account/watchlist/tv':
+            case '/account/rated/tv':
+            case '/account/favorite/tv':
+                return 'tv';
+            default:
+                return 'movies';
+        }
+    };
+
+    const [selectedTab, setSelectedTab] = useState<TabsType>(getTabStateByPathname());
+    const [selectedSubTab, setSelectedSubTab] = useState<SubTabsType>(getSubTabStateByPathname());
 
     // check if user authorized
     // redirect if user tries to access /account
-    // set initial selected tab and subtub
     useEffect(() => {
         if (!isSessionId) {
             navigate('/sign-in');
         }
-        switch (window.location.pathname) {
-            case '/account':
-                navigate('/account/overview');
-                break;
-            case '/account/overview':
-                setSelectedTab('overview');
-                break;
-            case '/account/lists':
-                setSelectedTab('lists');
-                break;
-            case '/account/watchlist/movies':
-                setSelectedTab('watchlist');
-                setSelectedSubTab('movies');
-                break;
-            case '/account/watchlist/tv':
-                setSelectedTab('watchlist');
-                setSelectedSubTab('tv');
-                break;
-            case '/account/rated/movies':
-                setSelectedTab('rated');
-                setSelectedSubTab('movies');
-                break;
-            case '/account/rated/tv':
-                setSelectedTab('rated');
-                setSelectedSubTab('tv');
-                break;
-            case '/account/favorite/movies':
-                setSelectedTab('favorite');
-                setSelectedSubTab('movies');
-                break;
-            case '/account/favorite/tv':
-                setSelectedTab('favorite');
-                setSelectedSubTab('tv');
-                break;
-            default:
-                break;
+        if (isSessionId && window.location.pathname === '/account') {
+            navigate('/account/overview');
         }
     }, []);
 
-    // redirect on tab change
-    useEffect(() => {
-        if (selectedTab === 'overview' || selectedTab === 'lists') {
-            navigate(`/account/${selectedTab}`);
-        } else {
-            navigate(`/account/${selectedTab}/${selectedSubTab}`);
-        }
-    }, [selectedTab, selectedSubTab]);
-
-    return (
+    return isSessionId ? (
         <div className={styles.wrapper}>
             <div className={styles.content}>
                 <Menus
@@ -83,5 +77,5 @@ export const AccountPage: FC = () => {
                 </div>
             </div>
         </div>
-    );
+    ) : null;
 };

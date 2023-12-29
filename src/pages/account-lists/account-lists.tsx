@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { useAppDispatch, useUser } from '../../services/hooks/store-hooks';
+import { useAppDispatch, useSessionId, useUser } from '../../services/hooks/store-hooks';
 import { IListsCollection } from '../../configs/interfaces/media-lists.interfaces';
 import { ListsPromises } from '../../services/lists/lists-promises';
 import { Logger } from '../../services/logger/logger';
@@ -10,7 +10,7 @@ import { ListsCardsGrid } from './components/lists-cards-grid/lists-card-grid';
 import { NoListsBanner } from './components/no-lists-banner/no-lists-banner';
 
 export const AccountListsPage: FC = () => {
-    const { user } = useUser();
+    const { sessionId } = useSessionId();
     const dispatch = useAppDispatch();
 
     const [lists, setLists] = useState<IListsCollection | null>(null);
@@ -22,12 +22,10 @@ export const AccountListsPage: FC = () => {
     }, []);
 
     const getInitialListsState = async () => {
-        // todo
-        // try to do request with session id (often error on getting user on page reload)
-        if (user?.id) {
+        if (sessionId) {
             const data = await requestWithNotificationsAndPendingSetter(
                 dispatch,
-                ListsPromises.getListsCollection(user.id.toString(), 1),
+                ListsPromises.getListsCollection(sessionId, 1),
                 setIsPending,
                 false
             );
@@ -35,7 +33,7 @@ export const AccountListsPage: FC = () => {
                 setLists(data);
             }
         } else {
-            Logger.logError('User id not found');
+            Logger.logError('Session id not found');
         }
     };
 

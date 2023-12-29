@@ -1,5 +1,8 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Outlet, Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import { useAppDispatch, useSessionId, useUser } from '../hooks/store-hooks';
+import { removeUser } from '../store/slices/user-slice';
+import { getAccountDetails } from '../store/async-thunks/user-async-thunks';
 import {
     AccountFavoritePage,
     AccountRatedPage,
@@ -14,6 +17,20 @@ import {
 import { FooterModule, HeaderModule } from '../../modules';
 
 const Root: FC = () => {
+    const dispatch = useAppDispatch();
+    const { sessionId } = useSessionId();
+    const { isUser } = useUser();
+
+    // get user data if session id found
+    useEffect(() => {
+        if (sessionId && !isUser) {
+            dispatch(getAccountDetails(sessionId));
+        }
+        if (!sessionId && isUser) {
+            dispatch(removeUser());
+        }
+    }, [sessionId]);
+
     return (
         <>
             <HeaderModule />
@@ -52,4 +69,4 @@ export const router = createBrowserRouter(
 );
 
 // todo
-// fetch data in loader
+// private route wrapper

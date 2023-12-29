@@ -26,6 +26,7 @@ export const sessionIdSlice = createSlice({
         removeSessionId: (state) => {
             state.sessionId = null;
             state.status = null;
+            localstorageExpirable.remove();
         }
     },
     extraReducers: (builder) => {

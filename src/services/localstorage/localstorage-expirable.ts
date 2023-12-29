@@ -73,4 +73,8 @@ export class LocalStorageExpirable<T> {
             return null;
         }
     }
+
+    remove(): void {
+        localStorage.removeItem(this.key);
+    }
 }
