@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ErrorModule } from '../../modules';
+import { ErrorBanner } from '../../components';
 import styles from './error-page.module.scss';
 
 interface IErrorPageProps {
@@ -12,12 +12,12 @@ export const ErrorPage: FC<IErrorPageProps> = (props) => {
     const getPropperErrorModule = () => {
         switch (errorCode) {
             case 404:
-                return ErrorModule({
+                return ErrorBanner({
                     errorDescription: 'Sorry, page you are looking for doesn`t exist.',
                     errorInfo: 'Not Found'
                 });
             default:
-                return ErrorModule({
+                return ErrorBanner({
                     errorDescription: 'Sorry, an unexpected error has occurred.',
                     errorInfo: 'Unexpected Error'
                 });

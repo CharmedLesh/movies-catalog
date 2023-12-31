@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { useSessionId } from '../../services/hooks/store-hooks';
 import { Menus } from './components/menus/menus';
 import styles from './account-page.module.scss';
 
@@ -9,7 +8,6 @@ type SubTabsType = 'movies' | 'tv';
 
 export const AccountPage: FC = () => {
     const navigate = useNavigate();
-    const { isSessionId } = useSessionId();
 
     const getTabStateByPathname = () => {
         switch (window.location.pathname) {
@@ -52,18 +50,14 @@ export const AccountPage: FC = () => {
     const [selectedTab, setSelectedTab] = useState<TabsType>(getTabStateByPathname());
     const [selectedSubTab, setSelectedSubTab] = useState<SubTabsType>(getSubTabStateByPathname());
 
-    // check if user authorized
     // redirect if user tries to access /account
     useEffect(() => {
-        if (!isSessionId) {
-            navigate('/sign-in');
-        }
-        if (isSessionId && window.location.pathname === '/account') {
+        if (window.location.pathname === '/account') {
             navigate('/account/overview');
         }
     }, []);
 
-    return isSessionId ? (
+    return (
         <div className={styles.wrapper}>
             <div className={styles.content}>
                 <Menus
@@ -77,5 +71,5 @@ export const AccountPage: FC = () => {
                 </div>
             </div>
         </div>
-    ) : null;
+    );
 };

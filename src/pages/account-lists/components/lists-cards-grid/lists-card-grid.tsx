@@ -20,18 +20,5 @@ export const ListsCardsGrid: FC<IListsCardsGridProps> = (props) => {
         return listsCardsArray;
     };
 
-    return (
-        <div className={styles.grid}>
-            {isPending ? (
-                <>
-                    <InfoCard169Loader />
-                    <InfoCard169Loader />
-                    <InfoCard169Loader />
-                    <InfoCard169Loader />
-                </>
-            ) : (
-                generateListsCardsArray()
-            )}
-        </div>
-    );
+    return <div className={styles.grid}>{isPending ? <InfoCard169Loader /> : generateListsCardsArray()}</div>;
 };

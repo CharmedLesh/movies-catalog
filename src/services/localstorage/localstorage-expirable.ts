@@ -58,7 +58,6 @@ export class LocalStorageExpirable<T> {
             }
             const parsedData: { data: T; expirationTime: number } = JSON.parse(data);
             const now = new Date();
-            console.log(now.getTime() > parsedData.expirationTime);
             if (now.getTime() > parsedData.expirationTime) {
                 localStorage.removeItem(this.key);
                 return null;

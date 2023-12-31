@@ -27,8 +27,6 @@ export const CreateListForm: FC = () => {
         setDescription(event.target.value);
     };
 
-    console.log(sessionId);
-
     const onSubmitHandler = async (event: SyntheticEvent, sessionId: string | null) => {
         event.preventDefault();
 

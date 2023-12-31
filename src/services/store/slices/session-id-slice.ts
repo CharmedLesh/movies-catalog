@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { getSessionId } from '../async-thunks/session-async-thunks';
 import { LocalStorageExpirable } from '../../localstorage/localstorage-expirable';
+import { setStatusNotificationState } from './status-notification';
 
 // interface for the slice state
 export interface ISessionIdState {
@@ -43,6 +44,7 @@ export const sessionIdSlice = createSlice({
         });
         builder.addCase(getSessionId.rejected, (state, action) => {
             state.status = 'rejected';
+            setStatusNotificationState({ isSuccess: false, message: 'Error occured while requesting session token' });
             state.error = action.payload as string;
         });
     }

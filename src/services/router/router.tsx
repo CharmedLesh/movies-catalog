@@ -1,8 +1,9 @@
 import { FC, useEffect } from 'react';
-import { Outlet, Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import { Outlet, Route, createBrowserRouter, createRoutesFromElements, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useSessionId, useUser } from '../hooks/store-hooks';
 import { removeUser } from '../store/slices/user-slice';
 import { getAccountDetails } from '../store/async-thunks/user-async-thunks';
+import { FooterModule, HeaderModule } from '../../modules';
 import {
     AccountFavoritePage,
     AccountRatedPage,
@@ -14,7 +15,6 @@ import {
     AccountOverviewPage,
     AccountListsPage
 } from '../../pages';
-import { FooterModule, HeaderModule } from '../../modules';
 
 const Root: FC = () => {
     const dispatch = useAppDispatch();
@@ -42,13 +42,33 @@ const Root: FC = () => {
     );
 };
 
+interface IPrivateRouteProps {
+    element: React.ReactNode;
+}
+
+const PrivateRoute: FC<IPrivateRouteProps> = (props) => {
+    const { element } = props;
+    const { isSessionId } = useSessionId();
+    const navigate = useNavigate();
+
+    // check authentication status and redirect if necessary
+    useEffect(() => {
+        if (!isSessionId) {
+            navigate('/sign-in');
+        }
+    }, [isSessionId]);
+
+    // render if user is authenticated, otherwise redirect
+    return isSessionId ? <>{element}</> : null;
+};
+
 export const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<Root />}>
             <Route index element={<HomePage />} />
             <Route path="*" element={<ErrorPage errorCode={404} />} />
             <Route path="/sign-in" element={<SignInPage />} />
-            <Route path="/account" element={<AccountPage />}>
+            <Route path="/account" element={<PrivateRoute element={<AccountPage />} />}>
                 <Route path="overview" element={<AccountOverviewPage />} />
                 <Route path="lists" element={<AccountListsPage />} />
                 <Route path="watchlist" element={<AccountWatchlistPage />}>
@@ -67,6 +87,3 @@ export const router = createBrowserRouter(
         </Route>
     )
 );
-
-// todo
-// private route wrapper
