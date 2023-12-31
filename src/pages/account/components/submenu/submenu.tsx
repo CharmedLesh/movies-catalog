@@ -17,7 +17,7 @@ export const Submenu: FC<ISubmenuProps> = (props) => {
 
     const onChangeHandler = (subtab: SubTabsType) => {
         setSelectedSubTab(subtab);
-        navigate(`/account/${selectedTab}/${selectedSubTab}`);
+        navigate(`/account/${selectedTab}/${subtab}`);
     };
 
     const subMenuTabsDataArray = [

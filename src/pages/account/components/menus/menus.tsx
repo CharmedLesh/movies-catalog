@@ -18,7 +18,7 @@ export const Menus: FC<IMenuProps> = (props) => {
 
     return (
         <div className={styles.menus}>
-            <Menu selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+            <Menu selectedTab={selectedTab} setSelectedTab={setSelectedTab} selectedSubTab={selectedSubTab} />
             {(selectedTab === 'watchlist' || selectedTab === 'rated' || selectedTab === 'favorite') && (
                 <Submenu
                     selectedTab={selectedTab}

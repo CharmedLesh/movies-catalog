@@ -3,7 +3,7 @@ import { Outlet, Route, createBrowserRouter, createRoutesFromElements, useNaviga
 import { useAppDispatch, useSessionId, useUser } from '../hooks/store-hooks';
 import { removeUser } from '../store/slices/user-slice';
 import { getAccountDetails } from '../store/async-thunks/user-async-thunks';
-import { FooterModule, HeaderModule } from '../../modules';
+import { AccountListsGrid, FooterModule, HeaderModule } from '../../modules';
 import {
     AccountFavoritePage,
     AccountRatedPage,
@@ -15,6 +15,7 @@ import {
     AccountOverviewPage,
     AccountListsPage
 } from '../../pages';
+import { CreateListForm } from '../../modules/create-list-form/create-list-form';
 
 const Root: FC = () => {
     const dispatch = useAppDispatch();
@@ -70,7 +71,11 @@ export const router = createBrowserRouter(
             <Route path="/sign-in" element={<SignInPage />} />
             <Route path="/account" element={<PrivateRoute element={<AccountPage />} />}>
                 <Route path="overview" element={<AccountOverviewPage />} />
-                <Route path="lists" element={<AccountListsPage />} />
+                <Route path="lists" element={<AccountListsPage />}>
+                    <Route index element={<AccountListsGrid />} />
+                    <Route path="create" element={<CreateListForm />} />
+                    <Route path=":id" element={<div>List details route</div>} />
+                </Route>
                 <Route path="watchlist" element={<AccountWatchlistPage />}>
                     <Route path="movies" element={<div>Account Watchlist Movies</div>} />
                     <Route path="tv" element={<div>Account Watchlist TV</div>} />

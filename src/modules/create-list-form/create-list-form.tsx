@@ -1,11 +1,11 @@
 import { FC, SyntheticEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useSessionId, useUser } from '../../../../services/hooks/store-hooks';
-import { ListsPromises } from '../../../../services/lists/lists-promises';
-import { requestWithNotificationsAndPendingSetter } from '../../../../helpers/requests';
-import { BorderedInput } from '../../../../ui/inputs';
-import { BorderedTextarea } from '../../../../ui/textareas';
-import { DarkGreyFilledButton } from '../../../../ui/buttons';
+import { useAppDispatch, useSessionId, useUser } from '../../services/hooks/store-hooks';
+import { ListsPromises } from '../../services/lists/lists-promises';
+import { requestWithNotificationsAndPendingSetter } from '../../helpers/requests';
+import { BorderedInput } from '../../ui/inputs';
+import { BorderedTextarea } from '../../ui/textareas';
+import { DarkGreyFilledButton } from '../../ui/buttons';
 import styles from './create-list-form.module.scss';
 
 export const CreateListForm: FC = () => {

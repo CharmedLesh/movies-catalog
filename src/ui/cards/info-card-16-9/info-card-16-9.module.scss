@@ -10,11 +10,10 @@
     overflow: hidden;
     width: 100%;
 
-    // todo
-    // check image resize + text resize
     &:hover {
         .imageWrapper {
-            img {
+            img,
+            .imageNotFound {
                 transform: scale(1.1);
             }
         }
@@ -114,4 +113,5 @@
 .imageNotFound {
     color: $grey;
     font-size: 20px;
+    transition: 200ms;
 }

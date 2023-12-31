@@ -10,22 +10,18 @@ export const AccountPage: FC = () => {
     const navigate = useNavigate();
 
     const getTabStateByPathname = () => {
-        switch (window.location.pathname) {
-            case '/account/overview':
+        const pathParts = window.location.pathname.split('/');
+
+        switch (pathParts[2]) {
+            case 'overview':
                 return 'overview';
-            case '/account/lists':
+            case 'lists':
                 return 'lists';
-            case '/account/watchlist/movies':
-            case '/account/watchlist/tv':
-            case '/account/watchlist':
+            case 'watchlist':
                 return 'watchlist';
-            case '/account/rated/movies':
-            case '/account/rated/tv':
-            case '/account/rated':
+            case 'rated':
                 return 'rated';
-            case '/account/favorite/movies':
-            case '/account/favorite/tv':
-            case '/account/favorite':
+            case 'favorite':
                 return 'favorite';
             default:
                 return 'overview';
@@ -33,14 +29,12 @@ export const AccountPage: FC = () => {
     };
 
     const getSubTabStateByPathname = () => {
-        switch (window.location.pathname) {
-            case '/account/watchlist/movies':
-            case '/account/rated/movies':
-            case '/account/favorite/movies':
+        const pathParts = window.location.pathname.split('/');
+
+        switch (pathParts[3]) {
+            case 'movies':
                 return 'movies';
-            case '/account/watchlist/tv':
-            case '/account/rated/tv':
-            case '/account/favorite/tv':
+            case 'tv':
                 return 'tv';
             default:
                 return 'movies';
