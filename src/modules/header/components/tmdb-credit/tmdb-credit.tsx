@@ -6,16 +6,26 @@ import styles from './tmdb-credit.module.scss';
 
 export const TmdbCredit: FC = () => {
     return (
-        <Link
-            to={externalLinksData.tmdb.url}
-            title={externalLinksData.tmdb.title}
-            rel={externalLinksData.tmdb.rel}
-            target="_blank"
-            type="credit"
-            className={styles.tmdbCredit}
-        >
-            <img src={tmdbLogo} alt="TMDB logo" />
-            <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
-        </Link>
+        <div className={styles.tmdbCredit}>
+            <Link
+                to={externalLinksData.tmdb.url}
+                title={externalLinksData.tmdb.title}
+                rel={externalLinksData.tmdb.rel}
+                target="_blank"
+                type="credit"
+                className={styles.imageContainer}
+            >
+                <img src={tmdbLogo} alt="TMDB logo" />
+            </Link>
+            <Link
+                to={externalLinksData.tmdb.url}
+                title={externalLinksData.tmdb.title}
+                rel={externalLinksData.tmdb.rel}
+                target="_blank"
+                type="credit"
+            >
+                This product uses the TMDB API but is not endorsed or certified by TMDB.
+            </Link>
+        </div>
     );
 };
