@@ -1,5 +1,5 @@
-import { FC, useEffect, useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { FC, useEffect } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Menus } from './components/menus/menus';
 import styles from './account-page.module.scss';
 
@@ -8,45 +8,14 @@ type SubTabsType = 'movies' | 'tv';
 
 export const AccountPage: FC = () => {
     const navigate = useNavigate();
+    const location = useLocation();
 
-    const getTabStateByPathname = () => {
-        const pathParts = window.location.pathname.split('/');
-
-        switch (pathParts[2]) {
-            case 'overview':
-                return 'overview';
-            case 'lists':
-                return 'lists';
-            case 'watchlist':
-                return 'watchlist';
-            case 'rated':
-                return 'rated';
-            case 'favorite':
-                return 'favorite';
-            default:
-                return 'overview';
-        }
-    };
-
-    const getSubTabStateByPathname = () => {
-        const pathParts = window.location.pathname.split('/');
-
-        switch (pathParts[3]) {
-            case 'movies':
-                return 'movies';
-            case 'tv':
-                return 'tv';
-            default:
-                return 'movies';
-        }
-    };
-
-    const [selectedTab, setSelectedTab] = useState<TabsType>(getTabStateByPathname());
-    const [selectedSubTab, setSelectedSubTab] = useState<SubTabsType>(getSubTabStateByPathname());
+    const page = location.pathname.split('/')[2] as TabsType;
+    const subpage = location.pathname.split('/')[3] as SubTabsType;
 
     // redirect if user tries to access /account
     useEffect(() => {
-        if (window.location.pathname === '/account') {
+        if (location.pathname === '/account') {
             navigate('/account/overview');
         }
     }, []);
@@ -54,12 +23,7 @@ export const AccountPage: FC = () => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.content}>
-                <Menus
-                    selectedTab={selectedTab}
-                    setSelectedTab={setSelectedTab}
-                    selectedSubTab={selectedSubTab}
-                    setSelectedSubTab={setSelectedSubTab}
-                />
+                <Menus selectedTab={page} selectedSubTab={subpage} />
                 <div className={styles.outlet}>
                     <Outlet />
                 </div>

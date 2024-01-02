@@ -8,15 +8,13 @@ type SubTabsType = 'movies' | 'tv';
 interface ISubmenuProps {
     selectedTab: TabsType;
     selectedSubTab: SubTabsType;
-    setSelectedSubTab: React.Dispatch<React.SetStateAction<SubTabsType>>;
 }
 
 export const Submenu: FC<ISubmenuProps> = (props) => {
-    const { selectedTab, selectedSubTab, setSelectedSubTab } = props;
+    const { selectedTab, selectedSubTab } = props;
     const navigate = useNavigate();
 
     const onChangeHandler = (subtab: SubTabsType) => {
-        setSelectedSubTab(subtab);
         navigate(`/account/${selectedTab}/${subtab}`);
     };
 

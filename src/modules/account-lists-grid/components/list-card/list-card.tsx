@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { IListGeneralInfo } from '../../../../configs/interfaces/media-lists.interfaces';
 import { InfoCard169 } from '../../../../ui/cards';
 
@@ -8,9 +9,10 @@ interface IListCardProps {
 
 export const ListCard: FC<IListCardProps> = (props) => {
     const { list } = props;
+    const navigate = useNavigate();
 
     const listCardClickHandler = () => {
-        console.log('list card action button clicked');
+        navigate(`/account/lists/${list.id}`);
     };
 
     const posterImage = list.poster_path ? (

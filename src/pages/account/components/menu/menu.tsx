@@ -6,22 +6,15 @@ type TabsType = 'overview' | 'favorite' | 'rated' | 'watchlist' | 'lists';
 type SubTabsType = 'movies' | 'tv';
 
 interface IMenuProps {
-    setSelectedTab: React.Dispatch<React.SetStateAction<TabsType>>;
     selectedTab: TabsType;
-    selectedSubTab: SubTabsType;
 }
 
 export const Menu: FC<IMenuProps> = (props) => {
-    const { setSelectedTab, selectedTab, selectedSubTab } = props;
+    const { selectedTab } = props;
     const navigate = useNavigate();
 
     const onChangeHandler = (tab: TabsType) => {
-        setSelectedTab(tab);
-        if (tab === 'overview' || tab === 'lists') {
-            navigate(`/account/${tab}`);
-        } else {
-            navigate(`/account/${tab}/${selectedSubTab}`);
-        }
+        navigate(`/account/${tab}`);
     };
 
     const menuTabsDataArray = [

@@ -8,23 +8,17 @@ type SubTabsType = 'movies' | 'tv';
 
 interface IMenuProps {
     selectedTab: TabsType;
-    setSelectedTab: React.Dispatch<React.SetStateAction<TabsType>>;
     selectedSubTab: SubTabsType;
-    setSelectedSubTab: React.Dispatch<React.SetStateAction<SubTabsType>>;
 }
 
 export const Menus: FC<IMenuProps> = (props) => {
-    const { selectedTab, setSelectedTab, selectedSubTab, setSelectedSubTab } = props;
+    const { selectedTab, selectedSubTab } = props;
 
     return (
         <div className={styles.menus}>
-            <Menu selectedTab={selectedTab} setSelectedTab={setSelectedTab} selectedSubTab={selectedSubTab} />
+            <Menu selectedTab={selectedTab} />
             {(selectedTab === 'watchlist' || selectedTab === 'rated' || selectedTab === 'favorite') && (
-                <Submenu
-                    selectedTab={selectedTab}
-                    selectedSubTab={selectedSubTab}
-                    setSelectedSubTab={setSelectedSubTab}
-                />
+                <Submenu selectedTab={selectedTab} selectedSubTab={selectedSubTab} />
             )}
         </div>
     );
