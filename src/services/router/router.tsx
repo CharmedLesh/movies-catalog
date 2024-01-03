@@ -13,7 +13,8 @@ import {
     SignInPage,
     AccountPage,
     AccountOverviewPage,
-    AccountListsPage
+    AccountListsPage,
+    AccountListPage
 } from '../../pages';
 import { CreateListForm } from '../../modules/create-list-form/create-list-form';
 
@@ -70,11 +71,11 @@ export const router = createBrowserRouter(
             <Route path="*" element={<ErrorPage errorCode={404} />} />
             <Route path="/sign-in" element={<SignInPage />} />
             <Route path="/account" element={<PrivateRoute element={<AccountPage />} />}>
-                <Route path="overview" element={<AccountOverviewPage />} />
+                <Route index element={<AccountOverviewPage />} />
                 <Route path="lists" element={<AccountListsPage />}>
                     <Route index element={<AccountListsGrid />} />
                     <Route path="create" element={<CreateListForm />} />
-                    <Route path=":id" element={<div>List details route</div>} />
+                    <Route path=":id" element={<AccountListPage />} />
                 </Route>
                 <Route path="watchlist" element={<AccountWatchlistPage />}>
                     <Route path="movies" element={<div>Account Watchlist Movies</div>} />

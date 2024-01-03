@@ -1,0 +1,27 @@
+@import '../../../styles/colors';
+
+.accentOutlinedRoundedButton {
+    display: flex;
+    background-color: transparent;
+    border: 2px solid $accent;
+    color: $accent;
+    font-weight: 500;
+    border-radius: 4px;
+    padding: 6px 12px;
+    white-space: nowrap;
+
+    @media (min-width: 768px) {
+        padding: 8px 16px;
+    }
+
+    &:disabled {
+        color: $grey-dark;
+        border-color: $grey-dark;
+    }
+
+    &:not(:disabled) {
+        &:active {
+            scale: 0.95;
+        }
+    }
+}

@@ -2,8 +2,7 @@ import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TabMenu } from '../../../../ui/menus';
 
-type TabsType = 'overview' | 'favorite' | 'rated' | 'watchlist' | 'lists';
-type SubTabsType = 'movies' | 'tv';
+type TabsType = undefined | 'favorite' | 'rated' | 'watchlist' | 'lists';
 
 interface IMenuProps {
     selectedTab: TabsType;
@@ -21,8 +20,8 @@ export const Menu: FC<IMenuProps> = (props) => {
         {
             labelText: 'Overview',
             inputValue: 'overview',
-            isChecked: selectedTab === 'overview',
-            onChange: () => onChangeHandler('overview')
+            isChecked: selectedTab === undefined,
+            onChange: () => navigate('/account')
         },
         {
             labelText: 'Lists',

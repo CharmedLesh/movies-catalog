@@ -17,9 +17,9 @@ export class ListsPromises {
         });
     }
 
-    static async getListDetails(listId: number, language: string, page: number) {
+    static async getListDetails(listId: number, page: number, language?: string) {
         return $api.get<IListDetails>(`https://api.themoviedb.org/3/list/${listId.toString()}`, {
-            params: { language: language, page: page.toString() }
+            params: { language: language ? language : 'en', page: page.toString() }
         });
     }
 

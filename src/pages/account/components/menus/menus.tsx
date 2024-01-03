@@ -3,7 +3,7 @@ import { Menu } from '../menu/menu';
 import { Submenu } from '../submenu/submenu';
 import styles from './menus.module.scss';
 
-type TabsType = 'overview' | 'favorite' | 'rated' | 'watchlist' | 'lists';
+type TabsType = undefined | 'favorite' | 'rated' | 'watchlist' | 'lists';
 type SubTabsType = 'movies' | 'tv';
 
 interface IMenuProps {
