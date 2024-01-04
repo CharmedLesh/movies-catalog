@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import $api from '../../configs/api/interceptors';
+import $api from '../../interceptor';
 
 interface IGetRequestTokenResponse {
     success: boolean;

@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useSessionId } from '../../services/hooks/store-hooks';
 import { getSessionId } from '../../services/store/async-thunks/session-async-thunks';
-import { AuthPromises } from '../../services/auth/auth-promises';
+import { AuthPromises } from '../../services/api/promises';
 import { requestWithNotificationsAndPendingSetter } from '../../helpers/requests';
 import { ActionButton } from './components/action-button/action-button';
 import { Disclaimer } from './components/disclaimer/disclaimer';
@@ -69,7 +69,7 @@ export const SignInPage: FC = () => {
 
     return (
         <div className={styles.wrapper}>
-            {!status && (
+            {status ? (
                 <div className={`${styles.content} ${styles.bannerWrapper}`}>
                     <Disclaimer
                         actionButton={
@@ -77,8 +77,7 @@ export const SignInPage: FC = () => {
                         }
                     />
                 </div>
-            )}
-            {status && (
+            ) : (
                 <div className={styles.content}>
                     <Loader status={status} error={error} />
                 </div>

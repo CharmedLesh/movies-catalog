@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from 'react';
 import { Logger } from '../../services/logger/logger';
 import { useAppDispatch, useUser } from '../../services/hooks/store-hooks';
-import { ListsPromises } from '../../services/lists/lists-promises';
+import { ListsPromises } from '../../services/api/promises';
 import { requestWithNotificationsAndPendingSetter } from '../../helpers/requests';
-import { IListDetails } from '../../configs/interfaces/media-lists.interfaces';
+import { IListDetails } from '../../configs/interfaces/lists.interfaces';
 import { ErrorBanner } from '../../components';
 import { EssentialInfo } from './components/essential-info/essential-info';
 import styles from './index.module.scss';
@@ -14,6 +14,7 @@ export const ListDetails: FC = () => {
 
     const [list, setList] = useState<IListDetails>();
     const [isPending, setIsPending] = useState<boolean>(true);
+    const [error, setError] = useState<string>();
 
     useEffect(() => {
         getInitialListData();
@@ -27,7 +28,9 @@ export const ListDetails: FC = () => {
                 dispatch,
                 ListsPromises.getListDetails(listId, 1, user?.iso_639_1),
                 setIsPending,
-                false
+                false,
+                undefined,
+                setError
             );
             if (data) {
                 setList(data);
@@ -38,13 +41,11 @@ export const ListDetails: FC = () => {
         }
     };
 
+    if (error) return <ErrorBanner errorDescription={error} errorInfo="Error" />;
+
     return (
         <div className={styles.wrapper}>
-            {!isPending && !list ? (
-                <ErrorBanner errorDescription="No data found for requested list" errorInfo="Not Found" />
-            ) : (
-                <EssentialInfo list={list} isPending={isPending} />
-            )}
+            <EssentialInfo list={list} isPending={isPending} />
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AuthPromises } from '../../auth/auth-promises';
+import { AuthPromises } from '../../api/promises';
 import { LocalStorageExpirable } from '../../localstorage/localstorage-expirable';
 
 export const getSessionId = createAsyncThunk('session', async (requestToken: string, { rejectWithValue }) => {

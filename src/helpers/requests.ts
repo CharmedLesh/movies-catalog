@@ -18,7 +18,8 @@ export const requestWithNotifications = async <T>(
     dispatch: AppDispatch,
     promise: Promise<AxiosResponse<T>>,
     showSuccessMessage: boolean,
-    messages?: { success?: string; error?: string }
+    messages?: { success?: string; error?: string },
+    setError?: React.Dispatch<React.SetStateAction<string | undefined>>
 ): Promise<T | undefined> => {
     try {
         const response = await promise;
@@ -37,10 +38,14 @@ export const requestWithNotifications = async <T>(
     } catch (error) {
         if (axios.isAxiosError(error)) {
             Logger.logAxiosError(error);
+            const message = messages?.error ? messages.error : error.message;
+            if (setError) {
+                setError(message);
+            }
             dispatch(
                 setStatusNotificationState({
                     isSuccess: false,
-                    message: messages?.error ? messages.error : error.message
+                    message: message
                 })
             );
         }
@@ -52,7 +57,8 @@ export const requestWithNotificationsAndPendingSetter = async <T>(
     promise: Promise<AxiosResponse<T>>,
     setIsPending: React.Dispatch<React.SetStateAction<boolean>>,
     showSuccessMessage: boolean,
-    messages?: { success?: string; error?: string }
+    messages?: { success?: string; error?: string },
+    setError?: React.Dispatch<React.SetStateAction<string | undefined>>
 ): Promise<T | undefined> => {
     setIsPending(true);
     try {
@@ -72,10 +78,14 @@ export const requestWithNotificationsAndPendingSetter = async <T>(
     } catch (error) {
         if (axios.isAxiosError(error)) {
             Logger.logAxiosError(error);
+            const message = messages?.error ? messages.error : error.message;
+            if (setError) {
+                setError(message);
+            }
             dispatch(
                 setStatusNotificationState({
                     isSuccess: false,
-                    message: messages?.error ? messages.error : error.message
+                    message: message
                 })
             );
         }

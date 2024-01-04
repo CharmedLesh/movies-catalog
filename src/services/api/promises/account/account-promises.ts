@@ -1,12 +1,11 @@
-import $api from '../../configs/api/interceptors';
+import $api from '../../interceptor';
 import {
     IMoviesCollection,
     IMoviesRatedCollection,
     ITVCollection,
-    ITVRatedCollection,
-    IAddOrRemoveFavoriteItem,
-    IAddOrRemoveWatchlistItem
-} from '../../configs/interfaces/media-lists.interfaces';
+    ITVRatedCollection
+} from '../../../../configs/interfaces/media.interfaces';
+import { IAddOrRemoveFavoriteItem, IAddOrRemoveWatchlistItem } from '../../../../configs/interfaces/account.interfaces';
 
 type SortingType = 'created_at.asc' | 'created_at.desc';
 

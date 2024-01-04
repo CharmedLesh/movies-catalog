@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { IListDetails } from '../../../../configs/interfaces/media-lists.interfaces';
+import { IListDetails } from '../../../../configs/interfaces/lists.interfaces';
 import { ActionButtons } from '../action-buttons/action-buttons';
 import { Dots } from '../../../../ui/loaders';
 import styles from './essential-info.module.scss';

@@ -1,4 +1,4 @@
-import $api from '../../configs/api/interceptors';
+import $api from '../../interceptor';
 import {
     IListsCollection,
     IListDetails,
@@ -8,7 +8,7 @@ import {
     ICheckIfMediaItemInListResponse,
     IClearAllItemsInListResponse,
     IDeleteListResponse
-} from '../../configs/interfaces/media-lists.interfaces';
+} from '../../../../configs/interfaces/lists.interfaces';
 
 export class ListsPromises {
     static async getListsCollection(sessionOrAccountId: string, page: number) {

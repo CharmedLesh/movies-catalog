@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AccountPromises } from '../../account/account-promises';
+import { AccountPromises } from '../../api/promises';
 
 export const getAccountDetails = createAsyncThunk('user', async (sessionId: string, { rejectWithValue }) => {
     try {

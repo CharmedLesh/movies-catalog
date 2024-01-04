@@ -1,7 +1,7 @@
 import { FC, SyntheticEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useSessionId, useUser } from '../../services/hooks/store-hooks';
-import { ListsPromises } from '../../services/lists/lists-promises';
+import { ListsPromises } from '../../services/api/promises';
 import { requestWithNotificationsAndPendingSetter } from '../../helpers/requests';
 import { BorderedInput } from '../../ui/inputs';
 import { BorderedTextarea } from '../../ui/textareas';
@@ -32,7 +32,7 @@ export const CreateListForm: FC = () => {
 
         if (!sessionId || !user) {
             // todo
-            // check isAuth not expired
+            // check sessionId not expired
             navigate(`/account`);
         }
         if (sessionId && user) {
