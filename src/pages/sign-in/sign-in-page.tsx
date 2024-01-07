@@ -69,7 +69,7 @@ export const SignInPage: FC = () => {
 
     return (
         <div className={styles.wrapper}>
-            {status ? (
+            {!status ? (
                 <div className={`${styles.content} ${styles.bannerWrapper}`}>
                     <Disclaimer
                         actionButton={

@@ -1,4 +1,5 @@
-import $api from '../../interceptor';
+import { AxiosResponse } from 'axios';
+import { $apiV3, $apiV4 } from '../../interceptor';
 import {
     IListsCollection,
     IListDetails,
@@ -11,21 +12,29 @@ import {
 } from '../../../../configs/interfaces/lists.interfaces';
 
 export class ListsPromises {
-    static async getListsCollection(sessionOrAccountId: string, page: number) {
-        return $api.get<IListsCollection>(`https://api.themoviedb.org/3/account/${sessionOrAccountId}/lists`, {
+    static async getListsCollection(
+        sessionOrAccountId: string,
+        page: number
+    ): Promise<AxiosResponse<IListsCollection>> {
+        return $apiV3.get<IListsCollection>(`/account/${sessionOrAccountId}/lists`, {
             params: { page: page.toString() }
         });
     }
 
-    static async getListDetails(listId: number, page: number, language?: string) {
-        return $api.get<IListDetails>(`https://api.themoviedb.org/3/list/${listId.toString()}`, {
-            params: { language: language ? language : 'en', page: page.toString() }
+    static async getListDetails(listId: number, page: number, language?: string): Promise<AxiosResponse<IListDetails>> {
+        return $apiV4.get<IListDetails>(`/list/${listId.toString()}`, {
+            params: { language: language ? language : 'en-US', page: page.toString() }
         });
     }
 
-    static async createList(sessionId: string, name: string, description: string, language: string) {
-        return $api.post<ICreateMediaListResponse>(
-            'https://api.themoviedb.org/3/list',
+    static async createList(
+        sessionId: string,
+        name: string,
+        description: string,
+        language: string
+    ): Promise<AxiosResponse<ICreateMediaListResponse>> {
+        return $apiV3.post<ICreateMediaListResponse>(
+            '/list',
             {
                 name: name,
                 description: description,
@@ -40,9 +49,13 @@ export class ListsPromises {
         );
     }
 
-    static async addMediaItemToList(sessionId: string, listId: number, mediaItemId: number) {
-        return $api.post<IAddMediaItemToListResponse>(
-            `https://api.themoviedb.org/3/list/${listId.toString()}/add_item`,
+    static async addMediaItemToList(
+        sessionId: string,
+        listId: number,
+        mediaItemId: number
+    ): Promise<AxiosResponse<IAddMediaItemToListResponse>> {
+        return $apiV3.post<IAddMediaItemToListResponse>(
+            `/list/${listId.toString()}/add_item`,
             {
                 media_id: mediaItemId
             },
@@ -53,9 +66,13 @@ export class ListsPromises {
         );
     }
 
-    static async removeMediaItemFromList(sessionId: string, listId: number, mediaItemId: number) {
-        return $api.post<IRemoveMediaItemFromListResponse>(
-            `https://api.themoviedb.org/3/list/${listId.toString()}/remove_item`,
+    static async removeMediaItemFromList(
+        sessionId: string,
+        listId: number,
+        mediaItemId: number
+    ): Promise<AxiosResponse<IRemoveMediaItemFromListResponse>> {
+        return $apiV3.post<IRemoveMediaItemFromListResponse>(
+            `/list/${listId.toString()}/remove_item`,
             {
                 media_id: mediaItemId
             },
@@ -67,23 +84,27 @@ export class ListsPromises {
     }
 
     // usage example: check if item has already been added to the list
-    static async checkIfMediaItemInList(listId: number, movieId: number) {
-        return $api.get<ICheckIfMediaItemInListResponse>(
-            `https://api.themoviedb.org/3/list/${listId.toString()}/item_status`,
-            {
-                data: { movie_id: movieId }
-            }
-        );
+    static async checkIfMediaItemInList(
+        listId: number,
+        movieId: number
+    ): Promise<AxiosResponse<ICheckIfMediaItemInListResponse>> {
+        return $apiV3.get<ICheckIfMediaItemInListResponse>(`/list/${listId.toString()}/item_status`, {
+            data: { movie_id: movieId }
+        });
     }
 
-    static async clearAllItemsInList(sessionId: string, listId: number, isConfirmed: boolean) {
-        return $api.post<IClearAllItemsInListResponse>(`https://api.themoviedb.org/3/list/${listId.toString()}/clear`, {
+    static async clearAllItemsInList(
+        sessionId: string,
+        listId: number,
+        isConfirmed: boolean
+    ): Promise<AxiosResponse<IClearAllItemsInListResponse>> {
+        return $apiV3.post<IClearAllItemsInListResponse>(`/list/${listId.toString()}/clear`, {
             params: { session_id: sessionId, confirm: isConfirmed }
         });
     }
 
-    static async deleteList(sessionId: string, listId: number) {
-        return $api.post<IDeleteListResponse>(`https://api.themoviedb.org/3/list/${listId.toString()}`, {
+    static async deleteList(sessionId: string, listId: number): Promise<AxiosResponse<IDeleteListResponse>> {
+        return $apiV3.post<IDeleteListResponse>(`/list/${listId.toString()}`, {
             params: { session_id: sessionId }
         });
     }

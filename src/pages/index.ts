@@ -8,3 +8,4 @@ export { AccountListPage } from './account-list/account-list';
 export { AccountWatchlistPage } from './account-watchlist/account-watchlist';
 export { AccountRatedPage } from './account-rated/account-rated';
 export { AccountFavoritePage } from './account-favorite/account-favorite';
+export { RootPage } from './root/root-page';

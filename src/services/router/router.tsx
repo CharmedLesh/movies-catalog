@@ -1,9 +1,7 @@
 import { FC, useEffect } from 'react';
-import { Outlet, Route, createBrowserRouter, createRoutesFromElements, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useSessionId, useUser } from '../hooks/store-hooks';
-import { removeUser } from '../store/slices/user-slice';
-import { getAccountDetails } from '../store/async-thunks/user-async-thunks';
-import { AccountListsGrid, FooterModule, HeaderModule } from '../../modules';
+import { Route, createBrowserRouter, createRoutesFromElements, useNavigate } from 'react-router-dom';
+import { useSessionId } from '../hooks/store-hooks';
+import { AccountListsGrid, CreateListForm } from '../../modules';
 import {
     AccountFavoritePage,
     AccountRatedPage,
@@ -14,35 +12,9 @@ import {
     AccountPage,
     AccountOverviewPage,
     AccountListsPage,
-    AccountListPage
+    AccountListPage,
+    RootPage
 } from '../../pages';
-import { CreateListForm } from '../../modules/create-list-form/create-list-form';
-
-const Root: FC = () => {
-    const dispatch = useAppDispatch();
-    const { sessionId } = useSessionId();
-    const { isUser } = useUser();
-
-    // get user data if session id found
-    useEffect(() => {
-        if (sessionId && !isUser) {
-            dispatch(getAccountDetails(sessionId));
-        }
-        if (!sessionId && isUser) {
-            dispatch(removeUser());
-        }
-    }, [sessionId]);
-
-    return (
-        <>
-            <HeaderModule />
-            <div className="page-content-wrapper">
-                <Outlet />
-            </div>
-            <FooterModule />
-        </>
-    );
-};
 
 interface IPrivateRouteProps {
     element: React.ReactNode;
@@ -66,7 +38,7 @@ const PrivateRoute: FC<IPrivateRouteProps> = (props) => {
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path="/" element={<Root />}>
+        <Route path="/" element={<RootPage />}>
             <Route index element={<HomePage />} />
             <Route path="*" element={<ErrorPage errorCode={404} />} />
             <Route path="/sign-in" element={<SignInPage />} />

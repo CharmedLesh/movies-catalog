@@ -1,15 +1,24 @@
 import axios from 'axios';
 
-export const API_URL = 'https://api.themoviedb.org/3';
+const API_V3_URL = 'https://api.themoviedb.org/3';
+const API_V4_URL = 'https://api.themoviedb.org/4';
 
-const $api = axios.create({
-    baseURL: API_URL
+export const $apiV3 = axios.create({
+    baseURL: API_V3_URL
 });
 
-$api.interceptors.request.use((config: any) => {
+export const $apiV4 = axios.create({
+    baseURL: API_V4_URL
+});
+
+$apiV3.interceptors.request.use((config: any) => {
     config.headers.Authorization = `Bearer ${process.env.REACT_APP_TMDB_ACCESS_TOKEN}`;
     config.headers.accept = 'application/json';
     return config;
 });
 
-export default $api;
+$apiV4.interceptors.request.use((config: any) => {
+    config.headers.Authorization = `Bearer ${process.env.REACT_APP_TMDB_ACCESS_TOKEN}`;
+    config.headers.accept = 'application/json';
+    return config;
+});

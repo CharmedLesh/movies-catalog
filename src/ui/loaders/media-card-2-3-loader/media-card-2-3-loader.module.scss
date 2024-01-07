@@ -1,0 +1,27 @@
+@import '../../../styles/colors';
+
+.card {
+    border-radius: 10px;
+    aspect-ratio: 2 / 3;
+    opacity: 85%;
+    width: 100%;
+    background: linear-gradient(110deg, $grey-dark 8%, #828282 14%, $grey-dark 22%);
+    background-size: 200% 100%;
+    animation: 1.5s shine linear infinite;
+    position: relative;
+}
+
+.infoPanel {
+    width: 100%;
+    position: absolute;
+    border-radius: inherit;
+    background-color: $accent;
+    bottom: 0px;
+    height: 47px;
+}
+
+@keyframes shine {
+    to {
+        background-position-x: -200%;
+    }
+}

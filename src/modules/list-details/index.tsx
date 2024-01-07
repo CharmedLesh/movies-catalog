@@ -6,6 +6,7 @@ import { requestWithNotificationsAndPendingSetter } from '../../helpers/requests
 import { IListDetails } from '../../configs/interfaces/lists.interfaces';
 import { ErrorBanner } from '../../components';
 import { EssentialInfo } from './components/essential-info/essential-info';
+import { ListItemsGrid } from './components/list-items-grid/list-items-grid';
 import styles from './index.module.scss';
 
 export const ListDetails: FC = () => {
@@ -46,6 +47,7 @@ export const ListDetails: FC = () => {
     return (
         <div className={styles.wrapper}>
             <EssentialInfo list={list} isPending={isPending} />
+            <ListItemsGrid isPending={isPending} items={list?.results} />
         </div>
     );
 };

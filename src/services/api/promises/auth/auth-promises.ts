@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import $api from '../../interceptor';
+import { $apiV3 } from '../../interceptor';
 
 interface IGetRequestTokenResponse {
     success: boolean;
@@ -20,14 +20,14 @@ interface IGetGuestSessionIdResponse {
 
 export class AuthPromises {
     static async getRequestToken(): Promise<AxiosResponse<IGetRequestTokenResponse>> {
-        return $api.get<IGetRequestTokenResponse>('/authentication/token/new');
+        return $apiV3.get<IGetRequestTokenResponse>('/authentication/token/new');
     }
 
     static async getSessionId(requestToken: string): Promise<AxiosResponse<IGetSessionIdResponse>> {
-        return $api.post<IGetSessionIdResponse>('/authentication/session/new', { request_token: requestToken });
+        return $apiV3.post<IGetSessionIdResponse>('/authentication/session/new', { request_token: requestToken });
     }
 
     static async getGuestSessionId(): Promise<AxiosResponse<IGetGuestSessionIdResponse>> {
-        return $api.get<IGetGuestSessionIdResponse>('/authentication/guest_session/new');
+        return $apiV3.get<IGetGuestSessionIdResponse>('/authentication/guest_session/new');
     }
 }

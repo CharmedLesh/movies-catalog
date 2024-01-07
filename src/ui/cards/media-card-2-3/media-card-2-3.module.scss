@@ -1,0 +1,133 @@
+@import '../../../styles/colors';
+@import '../../../styles/fonts';
+
+.card {
+    border-radius: 10px;
+    aspect-ratio: 2 / 3;
+    position: relative;
+    cursor: pointer;
+    opacity: 85%;
+    overflow: hidden;
+    width: 100%;
+
+    &:hover {
+        .imageWrapper {
+            img,
+            .imageNotFound {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+        .infoPanelTouched {
+            height: 143px;
+            opacity: 95%;
+        }
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            opacity: 100%;
+
+            .infoPanel {
+                height: 143px;
+                opacity: 95%;
+            }
+        }
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .cardTouched {
+        opacity: 100%;
+    }
+}
+
+.infoPanel {
+    transition: height 200ms ease;
+    color: $light;
+    width: 100%;
+    position: absolute;
+    border-radius: inherit;
+    background-color: $accent;
+    text-align: start;
+    bottom: 0px;
+    height: 47px;
+    overflow: hidden;
+    opacity: 85%;
+}
+
+.title,
+.description {
+    padding: 0px 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.title {
+    font-size: 18px;
+    margin: 12px 0px 20px;
+    font-weight: 500;
+}
+
+.description {
+    font-size: 13px;
+    letter-spacing: 0.6px;
+    line-height: 20px;
+    font-weight: 300;
+    font-family: $roboto;
+    margin-bottom: 20px;
+}
+
+.actionButton {
+    border-radius: inherit;
+    padding: 6px 10px;
+    background-color: $light;
+    color: $accent;
+    margin-left: 20px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.imageWrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $grey-dark;
+
+    img {
+        border-radius: inherit;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 200ms;
+    }
+}
+
+.imageNotFound {
+    color: $grey;
+    font-size: 20px;
+    transition: 200ms;
+}
+
+.stars {
+    position: absolute;
+    display: flex;
+    line-height: 1;
+    padding: 5px 0px 0px 5px;
+    font-size: 20px;
+
+    &::before {
+        content: '★★★★★';
+        background: linear-gradient(90deg, yellow var(--rating-percentage), transparent var(--rating-percentage));
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+}

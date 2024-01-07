@@ -14,7 +14,7 @@ export const AccountDropdownMenu: FC<IAccountDropdownMenuProps> = (props) => {
     const { user } = useUser();
 
     const avatarImage = user?.avatar.tmdb.avatar_path ? (
-        <img src={`https://www.themoviedb.org/t/p/w50_and_h50_face/${user.avatar.tmdb.avatar_path}`} />
+        <img src={`https://www.themoviedb.org/t/p/w50_and_h50_face${user.avatar.tmdb.avatar_path}`} />
     ) : null;
 
     return (

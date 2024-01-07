@@ -1,61 +1,44 @@
-import $api from '../../interceptor';
+import { $apiV3 } from '../../interceptor';
 import {
     IMoviesCollection,
     IMoviesRatedCollection,
     ITVCollection,
     ITVRatedCollection
 } from '../../../../configs/interfaces/media.interfaces';
-import { IAddOrRemoveFavoriteItem, IAddOrRemoveWatchlistItem } from '../../../../configs/interfaces/account.interfaces';
-
-type SortingType = 'created_at.asc' | 'created_at.desc';
-
-interface IDetails {
-    avatar: {
-        gravatar: {
-            hash: string;
-        };
-        tmdb: {
-            avatar_path: null | string;
-        };
-    };
-    id: number;
-    iso_639_1: string;
-    iso_3166_1: string;
-    name: string;
-    include_adult: boolean;
-    username: string;
-}
+import {
+    IAccountDetails,
+    IAddOrRemoveFavoriteItem,
+    IAddOrRemoveWatchlistItem
+} from '../../../../configs/interfaces/account.interfaces';
+import { SortingTypeV3 } from '../../../../configs/interfaces/shared.interfaces';
 
 export class AccountPromises {
     static async getAccountDetails(sessionOrAccountId: string) {
-        return $api.get<IDetails>(`https://api.themoviedb.org/3/account/${sessionOrAccountId}`);
+        return $apiV3.get<IAccountDetails>(`/account/${sessionOrAccountId}`);
     }
 
     static async getMoviesFavoriteCollection(
         sessionIdOrAccountId: string,
         language: string,
         page: number,
-        sorting: SortingType
+        sorting: SortingTypeV3
     ) {
-        return $api.get<IMoviesCollection>(
-            `https://api.themoviedb.org/3/account/${sessionIdOrAccountId}/favorite/movies`,
-            {
-                params: {
-                    language: language,
-                    page: page.toString(),
-                    sort_by: sorting
-                }
+        return $apiV3.get<IMoviesCollection>(`/account/${sessionIdOrAccountId}/favorite/movies`, {
+            params: {
+                language: language,
+                page: page.toString(),
+                sort_by: sorting
             }
-        );
+        });
     }
 
     static async getTVFavoriteCollection(
         sessionIdOrAccountId: string,
         language: string,
         page: number,
-        sorting: SortingType
+        sorting: SortingTypeV3
     ) {
-        return $api.get<ITVCollection>(`https://api.themoviedb.org/3/account/${sessionIdOrAccountId}/favorite/tv`, {
+        return $apiV3.get<ITVCollection>(`/account/${sessionIdOrAccountId}/favorite/tv`, {
             params: {
                 language: language,
                 page: page.toString(),
@@ -70,40 +53,34 @@ export class AccountPromises {
         mediaId: number,
         isFavorite: boolean
     ) {
-        return $api.post<IAddOrRemoveFavoriteItem>(
-            `https://api.themoviedb.org/3/account/${sessionIdOrAccountId}/favorite`,
-            {
-                headers: { 'content-type': 'application/json' },
-                data: { media_type: mediaType, media_id: mediaId, favorite: isFavorite }
-            }
-        );
+        return $apiV3.post<IAddOrRemoveFavoriteItem>(`/account/${sessionIdOrAccountId}/favorite`, {
+            headers: { 'content-type': 'application/json' },
+            data: { media_type: mediaType, media_id: mediaId, favorite: isFavorite }
+        });
     }
 
     static async getMoviesWatchlistCollection(
         sessionIdOrAccountId: string,
         language: string,
         page: number,
-        sorting: SortingType
+        sorting: SortingTypeV3
     ) {
-        return $api.get<IMoviesCollection>(
-            `https://api.themoviedb.org/3/account/${sessionIdOrAccountId}/watchlist/movies`,
-            {
-                params: {
-                    language: language,
-                    page: page.toString(),
-                    sort_by: sorting
-                }
+        return $apiV3.get<IMoviesCollection>(`/account/${sessionIdOrAccountId}/watchlist/movies`, {
+            params: {
+                language: language,
+                page: page.toString(),
+                sort_by: sorting
             }
-        );
+        });
     }
 
     static async getTVWatchlistCollection(
         sessionIdOrAccountId: string,
         language: string,
         page: number,
-        sorting: SortingType
+        sorting: SortingTypeV3
     ) {
-        return $api.get<ITVCollection>(`https://api.themoviedb.org/3/account/${sessionIdOrAccountId}/watchlist/tv`, {
+        return $apiV3.get<ITVCollection>(`/account/${sessionIdOrAccountId}/watchlist/tv`, {
             params: {
                 language: language,
                 page: page.toString(),
@@ -118,40 +95,34 @@ export class AccountPromises {
         mediaId: number,
         isWatchlist: boolean
     ) {
-        return $api.post<IAddOrRemoveWatchlistItem>(
-            `https://api.themoviedb.org/3/account/${sessionIdOrAccountId}/watchlist`,
-            {
-                headers: { 'content-type': 'application/json' },
-                data: { media_type: mediaType, media_id: mediaId, watchlist: isWatchlist }
-            }
-        );
+        return $apiV3.post<IAddOrRemoveWatchlistItem>(`/account/${sessionIdOrAccountId}/watchlist`, {
+            headers: { 'content-type': 'application/json' },
+            data: { media_type: mediaType, media_id: mediaId, watchlist: isWatchlist }
+        });
     }
 
     static async getMoviesRatedCollection(
         sessionIdOrAccountId: string,
         language: string,
         page: number,
-        sorting: SortingType
+        sorting: SortingTypeV3
     ) {
-        return $api.get<IMoviesRatedCollection>(
-            `https://api.themoviedb.org/3/account/${sessionIdOrAccountId}/rated/movies`,
-            {
-                params: {
-                    language: language,
-                    page: page.toString(),
-                    sort_by: sorting
-                }
+        return $apiV3.get<IMoviesRatedCollection>(`/account/${sessionIdOrAccountId}/rated/movies`, {
+            params: {
+                language: language,
+                page: page.toString(),
+                sort_by: sorting
             }
-        );
+        });
     }
 
     static async getTVRatedCollection(
         sessionIdOrAccountId: string,
         language: string,
         page: number,
-        sorting: SortingType
+        sorting: SortingTypeV3
     ) {
-        return $api.get<ITVRatedCollection>(`https://api.themoviedb.org/3/account/${sessionIdOrAccountId}/rated/tv`, {
+        return $apiV3.get<ITVRatedCollection>(`/account/${sessionIdOrAccountId}/rated/tv`, {
             params: {
                 language: language,
                 page: page.toString(),

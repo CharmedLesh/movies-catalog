@@ -1,5 +1,5 @@
-import { IMovieItem, ITVItem } from './media.interfaces';
-import { ICollectionSkeleton, ICommonActionResponse } from './shared.interfaces';
+import { IMediaItem } from './media.interfaces';
+import { ICollectionSkeleton, ICommonActionResponse, IUserBaseInfo, SortingTypeV4 } from './shared.interfaces';
 
 ///////////////// LISTS ENTITIES /////////////////
 export interface IListGeneralInfo {
@@ -13,19 +13,35 @@ export interface IListGeneralInfo {
     poster_path: null | string;
 }
 
+// for v4 api
+interface IComments {
+    [key: `${'movie' | 'tv'}:${number}`]: string | null;
+}
+
 export interface IListDetails {
-    created_by: string;
+    average_rating: number;
+    backdrop_path: null | string;
+    comments: IComments | {};
+    object_ids: {}; // ?
+    public: boolean;
+    revenue: number;
+    runtime: number;
+    sort_by: SortingTypeV4;
+    created_by: IUserBaseInfo & {
+        avatar_path: string;
+        gravatar_hash: string;
+    };
     description: string;
-    favorite_count: number;
     id: number;
     iso_639_1: string;
+    iso_3166_1: string;
     item_count: number;
     name: string;
     page: number;
     poster_path: null | string;
     total_pages: number;
     total_results: number;
-    items: IMovieItem[] | ITVItem[];
+    results: IMediaItem[];
 }
 
 ///////////////// COOLLECTIONS ENTITIES /////////////////
