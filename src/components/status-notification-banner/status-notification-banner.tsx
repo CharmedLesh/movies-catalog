@@ -26,7 +26,7 @@ export const StatusNotificationBanner: FC = () => {
             if (!isHovered) {
                 timer = setTimeout(() => {
                     setIsMounted(false);
-                }, 3000);
+                }, 5000);
             }
 
             return () => {

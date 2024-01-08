@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useSession } from '../../../../services/hooks/store-hooks';
 import styles from './hamburger-menu.module.scss';
-import { useSessionId } from '../../../../services/hooks/store-hooks';
 
 interface IHamburgerMenuProps {
     isHamburgerMenuToggled: boolean;
@@ -12,7 +12,7 @@ interface IHamburgerMenuProps {
 
 export const HamburgerMenu: FC<IHamburgerMenuProps> = (props) => {
     const { isHamburgerMenuToggled, toggleHamburgerMenu, signOutHandler, hamburgerMenuButtonRef } = props;
-    const { isSessionId } = useSessionId();
+    const { isSession } = useSession();
 
     const hamburgerMenu = useRef<HTMLUListElement>(null);
 
@@ -67,7 +67,7 @@ export const HamburgerMenu: FC<IHamburgerMenuProps> = (props) => {
                 </li>
             </ul>
             <ul>
-                {isSessionId ? (
+                {isSession ? (
                     <li>
                         <Link to={`/account`} onClick={toggleHamburgerMenu}>
                             Account
@@ -80,7 +80,7 @@ export const HamburgerMenu: FC<IHamburgerMenuProps> = (props) => {
                         </Link>
                     </li>
                 )}
-                {isSessionId && (
+                {isSession && (
                     <li>
                         <button onClick={sigOutClickHandler}>Sign Out</button>
                     </li>

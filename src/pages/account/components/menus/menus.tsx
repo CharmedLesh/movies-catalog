@@ -23,3 +23,6 @@ export const Menus: FC<IMenuProps> = (props) => {
         </div>
     );
 };
+
+// todo
+// remove submenu double render

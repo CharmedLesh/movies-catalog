@@ -1,6 +1,5 @@
 import { FC, SyntheticEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useSessionId, useUser } from '../../services/hooks/store-hooks';
+import { useAppDispatch, useSession, useUser } from '../../services/hooks/store-hooks';
 import { ListsPromises } from '../../services/api/promises';
 import { requestWithNotificationsAndPendingSetter } from '../../helpers/requests';
 import { BorderedInput } from '../../ui/inputs';
@@ -9,11 +8,10 @@ import { DarkGreyFilledButton } from '../../ui/buttons';
 import styles from './create-list-form.module.scss';
 
 export const CreateListForm: FC = () => {
-    const { sessionId } = useSessionId();
+    const { isSession, sessionId } = useSession();
     const { user } = useUser();
 
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
 
     const [name, setName] = useState<string>('');
     const [description, setDescription] = useState<string>('');
@@ -30,12 +28,7 @@ export const CreateListForm: FC = () => {
     const onSubmitHandler = async (event: SyntheticEvent, sessionId: string | null) => {
         event.preventDefault();
 
-        if (!sessionId || !user) {
-            // todo
-            // check sessionId not expired
-            navigate(`/account`);
-        }
-        if (sessionId && user) {
+        if (isSession && sessionId && user) {
             await requestWithNotificationsAndPendingSetter(
                 dispatch,
                 ListsPromises.createList(sessionId, name, description, user.iso_639_1),
@@ -83,3 +76,6 @@ export const CreateListForm: FC = () => {
         </div>
     );
 };
+
+// todo
+// check sessionId not expired

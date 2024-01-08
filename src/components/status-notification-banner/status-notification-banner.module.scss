@@ -5,12 +5,17 @@
     position: fixed;
     z-index: 10;
     top: 20px;
-    right: 20px;
     padding: 10px;
     border-radius: 4px;
     color: $light;
     animation: fade-in 200ms ease-in;
     cursor: default;
+    max-width: calc(100% - 40px);
+
+    @media (min-width: 480px) {
+        max-width: 300px;
+        right: 20px;
+    }
 }
 
 .bannerUnmounted {

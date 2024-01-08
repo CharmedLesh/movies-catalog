@@ -1,6 +1,7 @@
 import { FC, useEffect } from 'react';
 import { Route, createBrowserRouter, createRoutesFromElements, useNavigate } from 'react-router-dom';
-import { useSessionId } from '../hooks/store-hooks';
+import { useAppDispatch, useSession } from '../hooks/store-hooks';
+import { checkAndUpdateSession, removeSession } from '../store/slices/session-slice';
 import { AccountListsGrid, CreateListForm } from '../../modules';
 import {
     AccountFavoritePage,
@@ -22,18 +23,24 @@ interface IPrivateRouteProps {
 
 const PrivateRoute: FC<IPrivateRouteProps> = (props) => {
     const { element } = props;
-    const { isSessionId } = useSessionId();
+    const { isSession } = useSession();
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(checkAndUpdateSession());
+    });
 
     // check authentication status and redirect if necessary
     useEffect(() => {
-        if (!isSessionId) {
+        if (!isSession) {
+            dispatch(removeSession());
             navigate('/sign-in');
         }
-    }, [isSessionId]);
+    }, [isSession]);
 
     // render if user is authenticated, otherwise redirect
-    return isSessionId ? <>{element}</> : null;
+    return isSession ? <>{element}</> : null;
 };
 
 export const router = createBrowserRouter(

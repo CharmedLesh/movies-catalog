@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from 'react';
-import { useAppDispatch, useSessionId } from '../../services/hooks/store-hooks';
+import { useAppDispatch, useSession } from '../../services/hooks/store-hooks';
 import { ListsPromises } from '../../services/api/promises';
-import { Logger } from '../../services/logger/logger';
 import { requestWithNotificationsAndPendingSetter } from '../../helpers/requests';
 import { IListsCollection } from '../../configs/interfaces/lists.interfaces';
 import { ErrorBanner } from '../../components';
@@ -15,7 +14,7 @@ export const AccountListsGrid: FC = () => {
         ? document.getElementsByTagName('footer')[0].offsetHeight
         : 107;
 
-    const { sessionId } = useSessionId();
+    const { isSession, sessionId } = useSession();
     const dispatch = useAppDispatch();
 
     const [lists, setLists] = useState<IListsCollection>();
@@ -42,7 +41,7 @@ export const AccountListsGrid: FC = () => {
     }, [isNextPageRequested]);
 
     const getInitialListsData = async () => {
-        if (sessionId) {
+        if (isSession && sessionId) {
             const data = await requestWithNotificationsAndPendingSetter(
                 dispatch,
                 ListsPromises.getListsCollection(sessionId, 1),
@@ -55,14 +54,12 @@ export const AccountListsGrid: FC = () => {
                 setLists(data);
             }
             setIsNextPageRequested(false);
-        } else {
-            Logger.logError('Session id not found');
         }
     };
 
     const getNextPageOfLists = async () => {
         if (lists && lists?.total_pages > lists?.page) {
-            if (sessionId) {
+            if (isSession && sessionId) {
                 const data = await requestWithNotificationsAndPendingSetter(
                     dispatch,
                     ListsPromises.getListsCollection(sessionId, lists.page + 1),
@@ -73,8 +70,6 @@ export const AccountListsGrid: FC = () => {
                     data.results = [...lists.results, ...data.results];
                     setLists(data);
                 }
-            } else {
-                Logger.logError('Session id not found');
             }
         }
     };

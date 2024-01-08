@@ -1,21 +1,22 @@
 import { FC, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useAppDispatch, useSessionId, useUser } from '../../services/hooks/store-hooks';
+import { useAppDispatch, useSession, useUser } from '../../services/hooks/store-hooks';
 import { removeUser } from '../../services/store/slices/user-slice';
 import { getAccountDetails } from '../../services/store/async-thunks/user-async-thunks';
 import { FooterModule, HeaderModule } from '../../modules';
 
 export const RootPage: FC = () => {
     const dispatch = useAppDispatch();
-    const { sessionId } = useSessionId();
+    const { isSession, sessionId } = useSession();
     const { isUser } = useUser();
 
-    // get user data if session id found
     useEffect(() => {
-        if (sessionId && !isUser) {
+        // get user data if session found
+        if (!isUser && isSession && sessionId) {
             dispatch(getAccountDetails(sessionId));
         }
-        if (!sessionId && isUser) {
+        // remove user data if session removed
+        if (!isSession && isUser) {
             dispatch(removeUser());
         }
     }, [sessionId]);

@@ -9,27 +9,3 @@
         padding: 40px;
     }
 }
-
-.content {
-    display: flex;
-    padding: 20px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
-    @media (min-width: 400px) {
-        padding: 40px;
-    }
-}
-
-.bannerWrapper {
-    @media (min-width: 1024px) {
-        width: 60%;
-    }
-
-    @media (min-width: 1440px) {
-        width: 50%;
-    }
-
-    @media (min-width: 1920px) {
-        width: 40%;
-    }
-}

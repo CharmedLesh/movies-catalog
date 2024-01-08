@@ -38,7 +38,7 @@ export class LocalStorageExpirable<T> {
             const parsedData: { data: T; expirationTime: number } = JSON.parse(data);
             const now = new Date();
             if (now.getTime() > parsedData.expirationTime) {
-                localStorage.removeItem(this.key);
+                this.remove();
                 return null;
             }
             return parsedData.data;
@@ -59,7 +59,7 @@ export class LocalStorageExpirable<T> {
             const parsedData: { data: T; expirationTime: number } = JSON.parse(data);
             const now = new Date();
             if (now.getTime() > parsedData.expirationTime) {
-                localStorage.removeItem(this.key);
+                this.remove();
                 return null;
             } else {
                 this.set(parsedData.data);
@@ -75,5 +75,26 @@ export class LocalStorageExpirable<T> {
 
     remove(): void {
         localStorage.removeItem(this.key);
+    }
+
+    check(): boolean {
+        try {
+            const data = localStorage.getItem(this.key);
+            if (!data) {
+                return false;
+            }
+            const parsedData: { data: T; expirationTime: number } = JSON.parse(data);
+            const now = new Date();
+            if (now.getTime() > parsedData.expirationTime) {
+                this.remove();
+                return false;
+            }
+            return true;
+        } catch (error) {
+            if (error instanceof Error) {
+                Logger.logError(error.message);
+            }
+            return false;
+        }
     }
 }

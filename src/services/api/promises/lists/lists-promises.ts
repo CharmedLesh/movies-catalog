@@ -16,7 +16,7 @@ export class ListsPromises {
         sessionOrAccountId: string,
         page: number
     ): Promise<AxiosResponse<IListsCollection>> {
-        return $apiV3.get<IListsCollection>(`/account/${sessionOrAccountId}/lists`, {
+        return $apiV4.get<IListsCollection>(`/account/${sessionOrAccountId}/lists`, {
             params: { page: page.toString() }
         });
     }

@@ -1,5 +1,6 @@
 import { ICommonActionResponse, IUserBaseInfo } from './shared.interfaces';
 
+///////////////// ACCOUNT INFO RESPONSES /////////////////
 export interface IAccountDetails extends IUserBaseInfo {
     avatar: {
         gravatar: {

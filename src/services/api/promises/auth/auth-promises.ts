@@ -1,11 +1,6 @@
 import { AxiosResponse } from 'axios';
-import { $apiV3 } from '../../interceptor';
-
-interface IGetRequestTokenResponse {
-    success: boolean;
-    expires_at: string;
-    request_token: string;
-}
+import { $apiV3, $apiV4 } from '../../interceptor';
+import { IGetAccessTokenResponse, IGetRequestTokenResponse } from '../../../../configs/interfaces/auth.interfaces';
 
 interface IGetSessionIdResponse {
     success: boolean;
@@ -20,11 +15,39 @@ interface IGetGuestSessionIdResponse {
 
 export class AuthPromises {
     static async getRequestToken(): Promise<AxiosResponse<IGetRequestTokenResponse>> {
-        return $apiV3.get<IGetRequestTokenResponse>('/authentication/token/new');
+        return $apiV4.post<IGetRequestTokenResponse>(
+            '/auth/request_token',
+            {
+                redirect_to: `${process.env.REACT_APP_URL_HOST}/sign-in`
+            },
+            {
+                headers: { 'content-type': 'application/json' }
+            }
+        );
     }
 
-    static async getSessionId(requestToken: string): Promise<AxiosResponse<IGetSessionIdResponse>> {
-        return $apiV3.post<IGetSessionIdResponse>('/authentication/session/new', { request_token: requestToken });
+    static async getAccessToken(requestToken: string) {
+        return $apiV4.post<IGetAccessTokenResponse>(
+            '/auth/access_token',
+            {
+                request_token: requestToken
+            },
+            {
+                headers: { 'content-type': 'application/json' }
+            }
+        );
+    }
+
+    static async getSessionId(accessToken: string): Promise<AxiosResponse<IGetSessionIdResponse>> {
+        return $apiV3.post<IGetSessionIdResponse>(
+            '/authentication/session/convert/4',
+            {
+                access_token: accessToken
+            },
+            {
+                headers: { 'content-type': 'application/json' }
+            }
+        );
     }
 
     static async getGuestSessionId(): Promise<AxiosResponse<IGetGuestSessionIdResponse>> {

@@ -3,12 +3,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 200px;
-    height: 150px;
+    max-width: 300px;
+    min-height: 120px;
 }
 
 .statusText {
+    font-size: 14px;
     margin-top: 20px;
-    font-size: 18px;
     text-align: center;
+
+    @media (min-width: 768px) {
+        font-size: 16px;
+    }
 }

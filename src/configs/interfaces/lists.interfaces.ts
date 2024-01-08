@@ -2,15 +2,36 @@ import { IMediaItem } from './media.interfaces';
 import { ICollectionSkeleton, ICommonActionResponse, IUserBaseInfo, SortingTypeV4 } from './shared.interfaces';
 
 ///////////////// LISTS ENTITIES /////////////////
+// export interface IListGeneralInfo {
+//     description: string;
+//     favorite_count: number;
+//     id: number;
+//     item_count: number;
+//     iso_639_1: string;
+//     list_type: 'movie' | 'tv';
+//     name: string;
+//     poster_path: null | string;
+// }
+
 export interface IListGeneralInfo {
+    account_object_id: string;
+    adult: 0 | 1;
+    average_rating: number;
+    backdrop_path: string | null;
+    created_at: string;
     description: string;
-    favorite_count: number;
+    featured: number;
     id: number;
-    item_count: number;
+    iso_3166_1: string;
     iso_639_1: string;
-    list_type: 'movie' | 'tv';
     name: string;
-    poster_path: null | string;
+    number_of_items: number;
+    poster_path: string | null;
+    public: 0 | 1;
+    revenue: number;
+    runtime: string;
+    sort_by: number;
+    updated_at: string;
 }
 
 // for v4 api

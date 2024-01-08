@@ -10,6 +10,9 @@ export const simpleRequest = async <T>(promise: Promise<AxiosResponse<T>>): Prom
     } catch (error) {
         if (axios.isAxiosError(error)) {
             Logger.logAxiosError(error);
+        } else {
+            const unexpectedErrorMessage = 'Unexpected error occurred.';
+            Logger.logError(unexpectedErrorMessage);
         }
     }
 };
@@ -38,7 +41,11 @@ export const requestWithNotifications = async <T>(
     } catch (error) {
         if (axios.isAxiosError(error)) {
             Logger.logAxiosError(error);
-            const message = messages?.error ? messages.error : error.message;
+            const message = messages?.error
+                ? messages.error
+                : error.response?.data.status_message
+                ? error.response.data.status_message
+                : error.message;
             if (setError) {
                 setError(message);
             }
@@ -46,6 +53,15 @@ export const requestWithNotifications = async <T>(
                 setStatusNotificationState({
                     isSuccess: false,
                     message: message
+                })
+            );
+        } else {
+            const unexpectedErrorMessage = 'Unexpected error occurred.';
+            Logger.logError(unexpectedErrorMessage);
+            dispatch(
+                setStatusNotificationState({
+                    isSuccess: false,
+                    message: unexpectedErrorMessage
                 })
             );
         }
@@ -78,7 +94,11 @@ export const requestWithNotificationsAndPendingSetter = async <T>(
     } catch (error) {
         if (axios.isAxiosError(error)) {
             Logger.logAxiosError(error);
-            const message = messages?.error ? messages.error : error.message;
+            const message = messages?.error
+                ? messages.error
+                : error.response?.data.status_message
+                ? error.response.data.status_message
+                : error.message;
             if (setError) {
                 setError(message);
             }
@@ -86,6 +106,15 @@ export const requestWithNotificationsAndPendingSetter = async <T>(
                 setStatusNotificationState({
                     isSuccess: false,
                     message: message
+                })
+            );
+        } else {
+            const unexpectedErrorMessage = 'Unexpected error occurred.';
+            Logger.logError(unexpectedErrorMessage);
+            dispatch(
+                setStatusNotificationState({
+                    isSuccess: false,
+                    message: unexpectedErrorMessage
                 })
             );
         }

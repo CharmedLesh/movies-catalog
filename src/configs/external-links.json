@@ -4,6 +4,16 @@
         "url": "https://www.themoviedb.org",
         "rel": "external noopener"
     },
+    "tmdb_terms_of_use": {
+        "title": "The Movie Database - terms of use",
+        "url": "https://www.themoviedb.org/terms-of-use",
+        "rel": "external noopener"
+    },
+    "tmdb_privacy_policy": {
+        "title": "The Movie Database - privacy policy",
+        "url": "https://www.themoviedb.org/terms-of-use",
+        "rel": "external noopener"
+    },
     "github": {
         "title": "GitHub",
         "url": "https://github.com/CharmedLesh",

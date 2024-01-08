@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import sessionIdReducer from './slices/session-id-slice';
+import sessionReducer from './slices/session-slice';
 import userReducer from './slices/user-slice';
 import statusNotificationReducer from './slices/status-notification';
 
 export const store = configureStore({
     reducer: {
-        sessionId: sessionIdReducer,
+        session: sessionReducer,
         user: userReducer,
         statusNotification: statusNotificationReducer
     }
