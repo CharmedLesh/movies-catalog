@@ -2,33 +2,37 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { createSession } from '../async-thunks/session-async-thunks';
 import { LocalStorageExpirable } from '../../localstorage/localstorage-expirable';
+import { ISessionData } from '../../../configs/interfaces/auth.interfaces';
 
 // interface for the slice state
 export interface ISessionState {
     accessToken: string | null;
+    accountId: string | null;
     sessionId: string | null;
     status: null | 'pending' | 'resolved' | 'rejected';
     error: null | string;
 }
 
-const localstorageAccessToken = new LocalStorageExpirable<string>({
-    key: 'ACCESS_TOKEN',
+const localStorageSessionData = new LocalStorageExpirable<ISessionData>({
+    key: 'SESSION_DATA',
     expirationTimeInMinutes: 240
 });
 
-const localstorageSessionId = new LocalStorageExpirable<string>({ key: 'SESSION_ID', expirationTimeInMinutes: 240 });
-
-const checkLocalStorage = () => {
-    const isAccessToken = localstorageAccessToken.check();
-    const isSessionToken = localstorageSessionId.check();
-    const checkResult = !!isAccessToken && !!isSessionToken;
-    return checkResult;
+const getSessionDataFromLocalStorage = (): ISessionData | null => {
+    const data = localStorageSessionData.getAndUpdate();
+    if (data) {
+        return { accessToken: data.accessToken, accountId: data.accountId, sessionId: data.sessionId };
+    }
+    return null;
 };
+
+const initialSessionData = getSessionDataFromLocalStorage();
 
 // interface for initial state
 const initialState: ISessionState = {
-    accessToken: checkLocalStorage() ? localstorageAccessToken.getAndResetIfNotExpired() : null,
-    sessionId: checkLocalStorage() ? localstorageSessionId.getAndResetIfNotExpired() : null,
+    accessToken: initialSessionData?.accessToken ? initialSessionData.accessToken : null,
+    accountId: initialSessionData?.accountId ? initialSessionData.accountId : null,
+    sessionId: initialSessionData?.sessionId ? initialSessionData.sessionId : null,
     status: null,
     error: null
 };
@@ -39,24 +43,24 @@ export const sessionSlice = createSlice({
     reducers: {
         removeSession: (state) => {
             state.accessToken = null;
+            state.accountId = null;
             state.sessionId = null;
             state.status = null;
-            localstorageAccessToken.remove();
-            localstorageSessionId.remove();
+            localStorageSessionData.remove();
         },
         removeSessionStatus: (state) => {
             state.status = null;
         },
-        checkAndUpdateSession: (state) => {
-            const isValid = checkLocalStorage();
-            if (!isValid) {
-                state.accessToken = null;
-                state.sessionId = null;
-                localstorageAccessToken.remove();
-                localstorageSessionId.remove();
+        updateSession: (state) => {
+            const updatedSessionData = getSessionDataFromLocalStorage();
+            if (updatedSessionData) {
+                state.accessToken = updatedSessionData.accessToken;
+                state.accountId = updatedSessionData.accountId;
+                state.sessionId = updatedSessionData.sessionId;
             } else {
-                state.accessToken = localstorageAccessToken.getAndResetIfNotExpired();
-                state.sessionId = localstorageSessionId.getAndResetIfNotExpired();
+                state.accessToken = null;
+                state.accountId = null;
+                state.sessionId = null;
             }
             state.status = null;
             state.error = null;
@@ -72,6 +76,7 @@ export const sessionSlice = createSlice({
             state.status = 'resolved';
             if (action.payload) {
                 state.accessToken = action.payload.accessToken;
+                state.accountId = action.payload.accountId;
                 state.sessionId = action.payload.sessionId;
             }
         });
@@ -83,7 +88,7 @@ export const sessionSlice = createSlice({
     }
 });
 
-export const { removeSession, removeSessionStatus, checkAndUpdateSession } = sessionSlice.actions;
+export const { removeSession, removeSessionStatus, updateSession } = sessionSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectSessionId = (state: RootState) => state.session.accessToken;

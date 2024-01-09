@@ -1,17 +1,10 @@
 import { AxiosResponse } from 'axios';
 import { $apiV3, $apiV4 } from '../../interceptor';
-import { IGetAccessTokenResponse, IGetRequestTokenResponse } from '../../../../configs/interfaces/auth.interfaces';
-
-interface IGetSessionIdResponse {
-    success: boolean;
-    session_id: string;
-}
-
-interface IGetGuestSessionIdResponse {
-    success: boolean;
-    guest_session_id: string;
-    expires_at: string;
-}
+import {
+    IGetAccessTokenResponse,
+    IGetRequestTokenResponse,
+    IGetSessionIdResponse
+} from '../../../../configs/interfaces/auth.interfaces';
 
 export class AuthPromises {
     static async getRequestToken(): Promise<AxiosResponse<IGetRequestTokenResponse>> {
@@ -48,9 +41,5 @@ export class AuthPromises {
                 headers: { 'content-type': 'application/json' }
             }
         );
-    }
-
-    static async getGuestSessionId(): Promise<AxiosResponse<IGetGuestSessionIdResponse>> {
-        return $apiV3.get<IGetGuestSessionIdResponse>('/authentication/guest_session/new');
     }
 }

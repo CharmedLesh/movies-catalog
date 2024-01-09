@@ -6,10 +6,11 @@ export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const useSession = () => {
-    const { accessToken, sessionId, status, error } = useAppSelector((state) => state.session);
+    const { accessToken, accountId, sessionId, status, error } = useAppSelector((state) => state.session);
     return {
-        isSession: !!accessToken && !!sessionId,
+        isSession: !!accessToken && !!accountId && !!sessionId,
         accessToken,
+        accountId,
         sessionId,
         status,
         error

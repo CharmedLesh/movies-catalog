@@ -2,24 +2,25 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthPromises } from '../../api/promises';
 import { LocalStorageExpirable } from '../../localstorage/localstorage-expirable';
+import { ISessionData } from '../../../configs/interfaces/auth.interfaces';
 
 export const createSession = createAsyncThunk('session', async (requestToken: string, { rejectWithValue }) => {
     try {
         const accessTokenRequestResponse = await AuthPromises.getAccessToken(requestToken);
         const accessToken = accessTokenRequestResponse.data.access_token;
+        const accountId = accessTokenRequestResponse.data.account_id;
         const sessionIdRequestResponse = await AuthPromises.getSessionId(accessToken);
         const sessionId = sessionIdRequestResponse.data.session_id;
-        const localStorageAccessToken = new LocalStorageExpirable<string>({
-            key: 'ACCESS_TOKEN',
+        const localStorageSessionData = new LocalStorageExpirable<ISessionData>({
+            key: 'SESSION_DATA',
             expirationTimeInMinutes: 240
         });
-        const localStorageSessionId = new LocalStorageExpirable<string>({
-            key: 'SESSION_ID',
-            expirationTimeInMinutes: 240
-        });
-        localStorageAccessToken.set(accessToken);
-        localStorageSessionId.set(sessionId);
-        return { accessToken, sessionId };
+        const sessionData = { accessToken, accountId, sessionId };
+        if (sessionData) {
+            console.log(sessionData);
+            localStorageSessionData.set(sessionData);
+        }
+        return sessionData;
     } catch (error) {
         if (axios.isAxiosError(error)) {
             const message =

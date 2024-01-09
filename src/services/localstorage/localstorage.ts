@@ -15,6 +15,8 @@ export class LocalStorage<T> {
         } catch (error) {
             if (error instanceof Error) {
                 Logger.logError(error.message);
+            } else {
+                Logger.logError('Unexpected error occurred.');
             }
         }
     }
@@ -26,6 +28,8 @@ export class LocalStorage<T> {
         } catch (error) {
             if (error instanceof Error) {
                 Logger.logError(error.message);
+            } else {
+                Logger.logError('Unexpected error occurred.');
             }
             return null;
         }

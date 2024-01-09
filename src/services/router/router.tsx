@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react';
 import { Route, createBrowserRouter, createRoutesFromElements, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useSession } from '../hooks/store-hooks';
-import { checkAndUpdateSession, removeSession } from '../store/slices/session-slice';
+import { updateSession, removeSession } from '../store/slices/session-slice';
 import { AccountListsGrid, CreateListForm } from '../../modules';
 import {
     AccountFavoritePage,
@@ -28,7 +28,7 @@ const PrivateRoute: FC<IPrivateRouteProps> = (props) => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(checkAndUpdateSession());
+        dispatch(updateSession());
     });
 
     // check authentication status and redirect if necessary

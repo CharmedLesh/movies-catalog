@@ -25,6 +25,8 @@ export class LocalStorageExpirable<T> {
         } catch (error) {
             if (error instanceof Error) {
                 Logger.logError(error.message);
+            } else {
+                Logger.logError('Unexpected error occurred.');
             }
         }
     }
@@ -45,12 +47,14 @@ export class LocalStorageExpirable<T> {
         } catch (error) {
             if (error instanceof Error) {
                 Logger.logError(error.message);
+            } else {
+                Logger.logError('Unexpected error occurred.');
             }
             return null;
         }
     }
 
-    getAndResetIfNotExpired(): T | null {
+    getAndUpdate(): T | null {
         try {
             const data = localStorage.getItem(this.key);
             if (!data) {
@@ -68,6 +72,8 @@ export class LocalStorageExpirable<T> {
         } catch (error) {
             if (error instanceof Error) {
                 Logger.logError(error.message);
+            } else {
+                Logger.logError('Unexpected error occurred.');
             }
             return null;
         }
@@ -93,6 +99,8 @@ export class LocalStorageExpirable<T> {
         } catch (error) {
             if (error instanceof Error) {
                 Logger.logError(error.message);
+            } else {
+                Logger.logError('Unexpected error occurred.');
             }
             return false;
         }

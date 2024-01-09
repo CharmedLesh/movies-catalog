@@ -76,6 +76,3 @@ export const CreateListForm: FC = () => {
         </div>
     );
 };
-
-// todo
-// check sessionId not expired
