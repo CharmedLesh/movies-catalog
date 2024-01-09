@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Menus } from './components/menus/menus';
-import styles from './account-page.module.scss';
+import styles from './index.module.scss';
 
 type TabsType = undefined | 'favorite' | 'rated' | 'watchlist' | 'lists';
 type SubTabsType = 'movies' | 'tv';

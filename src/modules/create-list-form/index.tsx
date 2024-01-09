@@ -5,7 +5,7 @@ import { requestWithNotificationsAndPendingSetter } from '../../helpers/requests
 import { BorderedInput } from '../../ui/inputs';
 import { BorderedTextarea } from '../../ui/textareas';
 import { DarkGreyFilledButton } from '../../ui/buttons';
-import styles from './create-list-form.module.scss';
+import styles from './index.module.scss';
 
 export const CreateListForm: FC = () => {
     const { isSession, sessionId } = useSession();

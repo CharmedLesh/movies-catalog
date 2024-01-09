@@ -4,7 +4,7 @@ import { EssentialInfo } from './components/essential-info/essential-info';
 import { InfoItemsGrid } from './components/info-items-grid/info-items-grid';
 import { ErrorBanner } from '../../components';
 
-export const AccountOverviewPage: FC = () => {
+export const AccountOverview: FC = () => {
     const { status } = useUser();
 
     return status !== 'rejected' ? (

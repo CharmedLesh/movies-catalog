@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { ErrorBanner } from '../../components';
-import styles from './error-page.module.scss';
+import styles from './index.module.scss';
 
 interface IErrorPageProps {
     errorCode: number;

@@ -2,19 +2,20 @@ import { FC, useEffect } from 'react';
 import { Route, createBrowserRouter, createRoutesFromElements, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useSession } from '../hooks/store-hooks';
 import { updateSession, removeSession } from '../store/slices/session-slice';
-import { AccountListsGrid, CreateListForm } from '../../modules';
 import {
     AccountFavoritePage,
     AccountRatedPage,
     AccountWatchlistPage,
     ErrorPage,
-    HomePage,
+    RootIndexPage,
     SignInPage,
     AccountPage,
-    AccountOverviewPage,
     AccountListsPage,
     AccountListPage,
-    RootPage
+    RootPage,
+    AccountCreateListPage,
+    AccountIndexPage,
+    AccountListsIndexPage
 } from '../../pages';
 
 interface IPrivateRouteProps {
@@ -46,14 +47,14 @@ const PrivateRoute: FC<IPrivateRouteProps> = (props) => {
 export const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<RootPage />}>
-            <Route index element={<HomePage />} />
+            <Route index element={<RootIndexPage />} />
             <Route path="*" element={<ErrorPage errorCode={404} />} />
-            <Route path="/sign-in" element={<SignInPage />} />
-            <Route path="/account" element={<PrivateRoute element={<AccountPage />} />}>
-                <Route index element={<AccountOverviewPage />} />
+            <Route path="sign-in" element={<SignInPage />} />
+            <Route path="account" element={<PrivateRoute element={<AccountPage />} />}>
+                <Route index element={<AccountIndexPage />} />
                 <Route path="lists" element={<AccountListsPage />}>
-                    <Route index element={<AccountListsGrid />} />
-                    <Route path="create" element={<CreateListForm />} />
+                    <Route index element={<AccountListsIndexPage />} />
+                    <Route path="create" element={<AccountCreateListPage />} />
                     <Route path=":id" element={<AccountListPage />} />
                 </Route>
                 <Route path="watchlist" element={<AccountWatchlistPage />}>
