@@ -12,11 +12,8 @@ import {
 } from '../../../../configs/interfaces/lists.interfaces';
 
 export class ListsPromises {
-    static async getListsCollection(
-        sessionOrAccountId: string,
-        page: number
-    ): Promise<AxiosResponse<IListsCollection>> {
-        return $apiV4.get<IListsCollection>(`/account/${sessionOrAccountId}/lists`, {
+    static async getListsCollection(accountId: string, page: number): Promise<AxiosResponse<IListsCollection>> {
+        return $apiV4.get<IListsCollection>(`/account/${accountId}/lists`, {
             params: { page: page.toString() }
         });
     }

@@ -14,7 +14,7 @@ export const AccountListsGrid: FC = () => {
         ? document.getElementsByTagName('footer')[0].offsetHeight
         : 107;
 
-    const { isSession, sessionId } = useSession();
+    const { isSession, accountId } = useSession();
     const dispatch = useAppDispatch();
 
     const [lists, setLists] = useState<IListsCollection>();
@@ -41,10 +41,10 @@ export const AccountListsGrid: FC = () => {
     }, [isNextPageRequested]);
 
     const getInitialListsData = async () => {
-        if (isSession && sessionId) {
+        if (isSession && accountId) {
             const data = await requestWithNotificationsAndPendingSetter(
                 dispatch,
-                ListsPromises.getListsCollection(sessionId, 1),
+                ListsPromises.getListsCollection(accountId, 1),
                 setIsPending,
                 false,
                 undefined,
@@ -59,10 +59,10 @@ export const AccountListsGrid: FC = () => {
 
     const getNextPageOfLists = async () => {
         if (lists && lists?.total_pages > lists?.page) {
-            if (isSession && sessionId) {
+            if (isSession && accountId) {
                 const data = await requestWithNotificationsAndPendingSetter(
                     dispatch,
-                    ListsPromises.getListsCollection(sessionId, lists.page + 1),
+                    ListsPromises.getListsCollection(accountId, lists.page + 1),
                     setIsPending,
                     false
                 );

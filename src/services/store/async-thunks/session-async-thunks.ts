@@ -17,7 +17,6 @@ export const createSession = createAsyncThunk('session', async (requestToken: st
         });
         const sessionData = { accessToken, accountId, sessionId };
         if (sessionData) {
-            console.log(sessionData);
             localStorageSessionData.set(sessionData);
         }
         return sessionData;

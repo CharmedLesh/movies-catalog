@@ -15,15 +15,15 @@ export const ListCard: FC<IListCardProps> = (props) => {
         navigate(`/account/lists/${list.id}`);
     };
 
-    const posterImage = list.poster_path ? (
-        <img src={`https://www.themoviedb.org/t/p/w1000_and_h563_multi_faces${list.poster_path}`} />
+    const backdropImage = list.backdrop_path ? (
+        <img src={`https://www.themoviedb.org/t/p/w1000_and_h563_multi_faces${list.backdrop_path}`} />
     ) : null;
 
     const description = list.description.length ? list.description : 'No description';
 
     return (
         <InfoCard169
-            image={posterImage}
+            image={backdropImage}
             noImageText="POSTER NOT FOUND"
             title={list.name}
             description={description}
