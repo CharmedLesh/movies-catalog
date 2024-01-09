@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { $apiV3, $apiV4 } from '../../interceptor';
+import { $apiV3, $apiV4, $apiV4NoAccessToken } from '../../interceptor';
 import {
     IListsCollection,
     IListDetails,
@@ -25,23 +25,27 @@ export class ListsPromises {
     }
 
     static async createList(
-        sessionId: string,
+        accessToken: string,
         name: string,
         description: string,
-        language: string
+        iso_3166_1: string,
+        iso_639_1: string,
+        isPublic: boolean
     ): Promise<AxiosResponse<ICreateMediaListResponse>> {
-        return $apiV3.post<ICreateMediaListResponse>(
+        return $apiV4NoAccessToken.post<ICreateMediaListResponse>(
             '/list',
             {
                 name: name,
                 description: description,
-                language: language
+                iso_3166_1: iso_3166_1,
+                iso_639_1: iso_639_1,
+                public: isPublic
             },
             {
                 headers: {
-                    'content-type': 'application/json'
-                },
-                params: { session_id: sessionId }
+                    'content-type': 'application/json',
+                    Authorization: `Bearer ${accessToken}`
+                }
             }
         );
     }

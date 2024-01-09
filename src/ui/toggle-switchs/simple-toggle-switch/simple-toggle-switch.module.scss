@@ -1,0 +1,76 @@
+@import '../../../styles/colors';
+
+.toggleSwitchCheckbox {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+
+    &:checked + .toggleSwitchLabel .toggleSwitchButton {
+        left: calc(100% - 2px);
+        transform: translateX(-100%);
+    }
+}
+
+.toggleSwitchLabel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 50px;
+    height: 25px;
+    background-color: $grey;
+    border-radius: 50px;
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+.greenLabel {
+    background-color: $green;
+}
+
+.redLabel {
+    background-color: $red;
+}
+
+.miniLabel {
+    width: 30px;
+    height: 15px;
+}
+
+.smallLabel {
+    width: 40px;
+    height: 20px;
+}
+
+.bigLabel {
+    width: 60px;
+    height: 30px;
+}
+
+.toggleSwitchButton {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 21px;
+    height: 21px;
+    border-radius: 21px;
+    transition: 0.2s;
+    background-color: $light;
+    box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+}
+
+.miniButton {
+    width: 11px;
+    height: 11px;
+}
+
+.smallButton {
+    width: 16px;
+    height: 16px;
+}
+
+.bigButton {
+    width: 26px;
+    height: 26px;
+}

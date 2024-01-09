@@ -11,6 +11,10 @@ export const $apiV4 = axios.create({
     baseURL: API_V4_URL
 });
 
+export const $apiV4NoAccessToken = axios.create({
+    baseURL: API_V4_URL
+});
+
 $apiV3.interceptors.request.use((config: any) => {
     config.headers.Authorization = `Bearer ${process.env.REACT_APP_TMDB_ACCESS_TOKEN}`;
     config.headers.accept = 'application/json';
@@ -19,6 +23,11 @@ $apiV3.interceptors.request.use((config: any) => {
 
 $apiV4.interceptors.request.use((config: any) => {
     config.headers.Authorization = `Bearer ${process.env.REACT_APP_TMDB_ACCESS_TOKEN}`;
+    config.headers.accept = 'application/json';
+    return config;
+});
+
+$apiV4NoAccessToken.interceptors.request.use((config: any) => {
     config.headers.accept = 'application/json';
     return config;
 });

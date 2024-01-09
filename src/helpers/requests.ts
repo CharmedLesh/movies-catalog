@@ -24,6 +24,9 @@ export const requestWithNotifications = async <T>(
     messages?: { success?: string; error?: string },
     setError?: React.Dispatch<React.SetStateAction<string | undefined>>
 ): Promise<T | undefined> => {
+    if (setError) {
+        setError(undefined);
+    }
     try {
         const response = await promise;
         const data = response.data;
@@ -77,6 +80,9 @@ export const requestWithNotificationsAndPendingSetter = async <T>(
     setError?: React.Dispatch<React.SetStateAction<string | undefined>>
 ): Promise<T | undefined> => {
     setIsPending(true);
+    if (setError) {
+        setError(undefined);
+    }
     try {
         const response = await promise;
         const data = response.data;
