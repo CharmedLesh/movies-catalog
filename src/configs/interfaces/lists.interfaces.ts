@@ -72,7 +72,7 @@ export interface IListsCollection extends ICollectionSkeleton {
 
 ///////////////// LISTS ACTIONS RESPONSES /////////////////
 export interface ICreateMediaListResponse extends ICommonActionResponse {
-    list_id: number;
+    id: number;
 }
 export interface IAddMediaItemToListResponse extends ICommonActionResponse {}
 export interface IRemoveMediaItemFromListResponse extends ICommonActionResponse {}

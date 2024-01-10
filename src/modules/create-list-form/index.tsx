@@ -1,4 +1,5 @@
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useSession, useUser } from '../../services/hooks/store-hooks';
 import { ListsPromises } from '../../services/api/promises';
 import { requestWithNotificationsAndPendingSetter } from '../../helpers/requests';
@@ -12,6 +13,7 @@ export const CreateListForm: FC = () => {
     const { isSession, accessToken } = useSession();
     const { user } = useUser();
 
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     const [name, setName] = useState<string>('');
@@ -23,13 +25,17 @@ export const CreateListForm: FC = () => {
         event.preventDefault();
 
         if (isSession && accessToken && user) {
-            await requestWithNotificationsAndPendingSetter(
+            const createdListData = await requestWithNotificationsAndPendingSetter(
                 dispatch,
                 ListsPromises.createList(accessToken, name, description, user.iso_3166_1, user.iso_639_1, isPublic),
                 setIsPending,
                 true,
                 { success: 'List created' }
             );
+
+            if (createdListData && createdListData.success && createdListData.id) {
+                navigate(`/account/lists/${createdListData.id}`);
+            }
         }
     };
 

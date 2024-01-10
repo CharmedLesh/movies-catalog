@@ -17,7 +17,7 @@ export const AccountListsGrid: FC = () => {
     const { isSession, accountId } = useSession();
     const dispatch = useAppDispatch();
 
-    const [lists, setLists] = useState<IListsCollection>();
+    const [listsCollection, setListsCollection] = useState<IListsCollection>();
     const [isPending, setIsPending] = useState<boolean>(true);
     const [isNextPageRequested, setIsNextPageRequested] = useState<boolean>(false);
     const [showScrollToTopButton, setShowScrollToTopButton] = useState<boolean>(false);
@@ -32,7 +32,7 @@ export const AccountListsGrid: FC = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [lists]);
+    }, [listsCollection]);
 
     useEffect(() => {
         if (isNextPageRequested) {
@@ -51,27 +51,27 @@ export const AccountListsGrid: FC = () => {
                 setError
             );
             if (data) {
-                setLists(data);
+                setListsCollection(data);
             }
-            setIsNextPageRequested(false);
         }
     };
 
     const getNextPageOfLists = async () => {
-        if (lists && lists?.total_pages > lists?.page) {
+        if (listsCollection && listsCollection?.total_pages > listsCollection?.page) {
             if (isSession && accountId) {
                 const data = await requestWithNotificationsAndPendingSetter(
                     dispatch,
-                    ListsPromises.getListsCollection(accountId, lists.page + 1),
+                    ListsPromises.getListsCollection(accountId, listsCollection.page + 1),
                     setIsPending,
                     false
                 );
                 if (data) {
-                    data.results = [...lists.results, ...data.results];
-                    setLists(data);
+                    data.results = [...listsCollection.results, ...data.results];
+                    setListsCollection(data);
                 }
             }
         }
+        setIsNextPageRequested(false);
     };
 
     const handleScroll = () => {
@@ -88,20 +88,20 @@ export const AccountListsGrid: FC = () => {
 
     if (error) return <ErrorBanner errorDescription={error} errorInfo="Error" />;
 
-    if (isPending && !lists) return <ListsCardsGrid lists={[]} isPending={true} />;
+    if (isPending && !listsCollection) return <ListsCardsGrid lists={[]} isPending={true} />;
 
-    if (lists && isPending)
+    if (listsCollection && isPending)
         return (
             <>
-                <ListsCardsGrid lists={lists.results} isPending={false} />
+                <ListsCardsGrid lists={listsCollection.results} isPending={false} />
                 <ScrollLoader />
                 {showScrollToTopButton && <ScrollToTopButton footerHeight={footerHeight} />}
             </>
         );
 
-    return lists?.results ? (
+    return listsCollection?.results ? (
         <>
-            <ListsCardsGrid lists={lists.results} isPending={isPending} />
+            <ListsCardsGrid lists={listsCollection.results} isPending={isPending} />
             {showScrollToTopButton && <ScrollToTopButton footerHeight={footerHeight} />}
         </>
     ) : (
