@@ -8,8 +8,11 @@
 }
 
 .borderedInputLabel {
-    font-size: 18px;
     margin-bottom: 4px;
+
+    @media (min-width: 340px) {
+        font-size: 18px;
+    }
 }
 
 .borderedInput {
@@ -18,7 +21,11 @@
     background-color: inherit;
     border: 1px solid $grey-dark;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 14px;
+
+    @media (min-width: 340px) {
+        font-size: 16px;
+    }
 
     &:focus {
         outline: 1px solid $accent;

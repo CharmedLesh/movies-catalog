@@ -2,16 +2,31 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 20px 0px;
 
-    @media (min-width: 768px) {
-        padding: 20px 0px 0px;
+    button {
+        font-size: 14px;
+
+        @media (min-width: 320px) {
+            font-size: 16px;
+        }
+
+        @media (min-width: 1440px) {
+            font-size: 18px;
+        }
     }
 }
 
 .title {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
+
+    @media (min-width: 320px) {
+        font-size: 16px;
+    }
+
+    @media (min-width: 340px) {
+        font-size: 18px;
+    }
 
     @media (min-width: 1440px) {
         font-size: 20px;

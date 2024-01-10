@@ -1,4 +1,11 @@
 .wrapper {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+
+    p {
+        @media (min-width: 340px) {
+            font-size: 18px;
+        }
+    }
 }

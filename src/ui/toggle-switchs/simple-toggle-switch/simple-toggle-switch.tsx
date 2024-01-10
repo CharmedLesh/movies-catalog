@@ -6,11 +6,10 @@ interface ISimpleToggleSwitchProps {
     setIsChecked: React.Dispatch<React.SetStateAction<boolean>>;
     id: string;
     colors?: 'grey' | 'green-grey' | 'green-red';
-    size?: 'mini' | 'small' | 'normal' | 'big';
 }
 
 export const SimpleToggleSwitch: FC<ISimpleToggleSwitchProps> = (props) => {
-    const { isChecked, setIsChecked, id, colors, size } = props;
+    const { isChecked, setIsChecked, id, colors } = props;
 
     const onToggleSwitchChangeHandler = () => {
         setIsChecked((prevState) => !prevState);
@@ -30,54 +29,10 @@ export const SimpleToggleSwitch: FC<ISimpleToggleSwitchProps> = (props) => {
         return null;
     };
 
-    const getLabelConditionalSizeClassName = (): string | null => {
-        switch (size) {
-            case 'normal':
-                return null;
-            case 'mini':
-                return styles.miniLabel;
-            case 'small':
-                return styles.smallLabel;
-            case 'big':
-                return styles.bigLabel;
-            default:
-                break;
-        }
-        return null;
-    };
-
-    const getButtonConditionalSizeClassName = (): string | null => {
-        switch (size) {
-            case 'normal':
-                return null;
-            case 'mini':
-                return styles.miniButton;
-            case 'small':
-                return styles.smallButton;
-            case 'big':
-                return styles.bigButton;
-            default:
-                break;
-        }
-        return null;
-    };
-
     const labelConditionalColorClassName: string | null = getLabelConditionalColorClassName();
-    const labelConditionalSizeClassName: string | null = getLabelConditionalSizeClassName();
-    const buttonConditionalSizeClassName: string | null = getButtonConditionalSizeClassName();
-
-    const labelClassName =
-        labelConditionalColorClassName && labelConditionalSizeClassName
-            ? `${styles.toggleSwitchLabel} ${labelConditionalColorClassName} ${labelConditionalSizeClassName}`
-            : labelConditionalColorClassName
-            ? `${styles.toggleSwitchLabel} ${labelConditionalColorClassName}`
-            : labelConditionalSizeClassName
-            ? `${styles.toggleSwitchLabel} ${labelConditionalSizeClassName}`
-            : styles.toggleSwitchLabel;
-
-    const buttonClassName = buttonConditionalSizeClassName
-        ? `${styles.toggleSwitchButton} ${buttonConditionalSizeClassName}`
-        : styles.toggleSwitchButton;
+    const labelClassName = labelConditionalColorClassName
+        ? `${styles.toggleSwitchLabel} ${labelConditionalColorClassName}`
+        : styles.toggleSwitchLabel;
 
     return (
         <>
@@ -89,7 +44,7 @@ export const SimpleToggleSwitch: FC<ISimpleToggleSwitchProps> = (props) => {
                 type="checkbox"
             />
             <label className={labelClassName} htmlFor={id}>
-                <span className={buttonClassName} />
+                <span className={styles.toggleSwitchButton} />
             </label>
         </>
     );

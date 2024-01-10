@@ -20,7 +20,6 @@ export const PrivacyToggleSwitch: FC<IPrivacyToggleSwitchProps> = (props) => {
                 setIsChecked={setIsPublic}
                 id="privacy-toggle-switch"
                 colors="green-grey"
-                size="normal"
             />
         </div>
     );

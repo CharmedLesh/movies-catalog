@@ -16,12 +16,17 @@
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
-    width: 50px;
-    height: 25px;
+    width: 40px;
+    height: 20px;
     background-color: $grey;
     border-radius: 50px;
     position: relative;
     transition: background-color 0.2s;
+
+    @media (min-width: 340px) {
+        width: 50px;
+        height: 25px;
+    }
 }
 
 .greenLabel {
@@ -32,45 +37,20 @@
     background-color: $red;
 }
 
-.miniLabel {
-    width: 30px;
-    height: 15px;
-}
-
-.smallLabel {
-    width: 40px;
-    height: 20px;
-}
-
-.bigLabel {
-    width: 60px;
-    height: 30px;
-}
-
 .toggleSwitchButton {
     content: '';
     position: absolute;
     top: 2px;
     left: 2px;
-    width: 21px;
-    height: 21px;
-    border-radius: 21px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50px;
     transition: 0.2s;
     background-color: $light;
     box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
-}
 
-.miniButton {
-    width: 11px;
-    height: 11px;
-}
-
-.smallButton {
-    width: 16px;
-    height: 16px;
-}
-
-.bigButton {
-    width: 26px;
-    height: 26px;
+    @media (min-width: 340px) {
+        width: 21px;
+        height: 21px;
+    }
 }
