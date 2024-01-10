@@ -2,14 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import sessionReducer from './slices/session-slice';
 import userReducer from './slices/user-slice';
 import statusNotificationReducer from './slices/status-notification';
-import modalLightboxPopupReducer from './slices/modal-lightbox-popup-slice';
 
 export const store = configureStore({
     reducer: {
         session: sessionReducer,
         user: userReducer,
-        statusNotification: statusNotificationReducer,
-        modalLightboxPopup: modalLightboxPopupReducer
+        statusNotification: statusNotificationReducer
     }
 });
 

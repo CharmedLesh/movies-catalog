@@ -34,8 +34,3 @@ export const useStatusNotification = () => {
         message
     };
 };
-
-export const useModalLightboxPopup = () => {
-    const { content } = useAppSelector((state) => state.modalLightboxPopup);
-    return { content };
-};

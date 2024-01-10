@@ -3,7 +3,7 @@ import { RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { router } from './services/router/router';
 import { store } from './services/store/store';
-import { StatusNotificationBanner, ModalLightboxPopup } from './components';
+import { StatusNotificationBanner } from './components';
 import './index.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
@@ -12,7 +12,7 @@ root.render(
     <Provider store={store}>
         <div className="app">
             <StatusNotificationBanner />
-            <ModalLightboxPopup />
+            <div id="modal-lightbox-popup-root"></div>
             <RouterProvider router={router} />
         </div>
     </Provider>

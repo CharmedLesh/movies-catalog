@@ -1,10 +1,9 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { showModalLightboxPopup } from '../../../../helpers/modal-lightbox-popup';
 import { IMediaItem } from '../../../../configs/interfaces/media.interfaces';
 import { MediaCard23 } from '../../../../ui/cards';
 import { SvgCommentIcon } from '../../../../ui/icons';
-import { useAppDispatch } from '../../../../services/hooks/store-hooks';
-import { setModalLightboxPopupState } from '../../../../services/store/slices/modal-lightbox-popup-slice';
 
 interface IListItemCardProps {
     item: IMediaItem;
@@ -13,17 +12,14 @@ interface IListItemCardProps {
 
 export const ListItemCard: FC<IListItemCardProps> = (props) => {
     const { item, comment } = props;
-    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const cardClickHandler = () => {
         navigate(`/${item.media_type}/${item.id}`);
     };
 
-    const commentButtonClickHandler = () => {
-        if (comment) {
-            dispatch(setModalLightboxPopupState({ content: <div>{comment}</div> }));
-        }
+    const commentButtonClickHandler = (comment: string) => {
+        showModalLightboxPopup(<div>{comment}</div>);
     };
 
     const posterImage = item.poster_path ? (
@@ -33,7 +29,9 @@ export const ListItemCard: FC<IListItemCardProps> = (props) => {
     const description = item.overview ? item.overview : 'No description';
     const starsRating = item.vote_average ? item.vote_average : undefined;
     const icon = comment ? <SvgCommentIcon /> : undefined;
-    const iconButton = icon && { icon: icon, onClickHandler: commentButtonClickHandler };
+    const iconButton = comment
+        ? icon && { icon: icon, onClickHandler: () => commentButtonClickHandler(comment) }
+        : undefined;
 
     return (
         <MediaCard23
