@@ -47,7 +47,7 @@ export const ListDetails: FC = () => {
     return (
         <div className={styles.wrapper}>
             <EssentialInfo list={list} isPending={isPending} />
-            <ListItemsGrid isPending={isPending} items={list?.results} />
+            <ListItemsGrid isPending={isPending} items={list?.results} comments={list?.comments} />
         </div>
     );
 };

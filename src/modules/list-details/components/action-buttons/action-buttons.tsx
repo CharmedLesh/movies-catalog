@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { AccentOutlinedRoundedButton } from '../../../../ui/buttons/accent-outlined-rounded-button/accent-outlined-rounded-button';
+import { OutlinedRoundedButton } from '../../../../ui/buttons';
 import styles from './action-buttons.module.scss';
 
 interface IActionButtonsProps {
@@ -11,9 +11,9 @@ export const ActionButtons: FC<IActionButtonsProps> = (props) => {
 
     return (
         <div className={styles.actionButtons}>
-            <AccentOutlinedRoundedButton value="Edit" onClick={() => console.log('click')} disabled={isPending} />
-            <AccentOutlinedRoundedButton value="Sort By" onClick={() => console.log('click')} disabled={isPending} />
-            <AccentOutlinedRoundedButton value="Share" onClick={() => console.log('click')} disabled={isPending} />
+            <OutlinedRoundedButton value="Edit" onClick={() => console.log('click')} disabled={isPending} />
+            <OutlinedRoundedButton value="Sort By" onClick={() => console.log('click')} disabled={isPending} />
+            <OutlinedRoundedButton value="Share" onClick={() => console.log('click')} disabled={isPending} />
         </div>
     );
 };

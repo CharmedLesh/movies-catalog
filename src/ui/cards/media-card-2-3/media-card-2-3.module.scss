@@ -102,18 +102,24 @@
     }
 }
 
-.actionButton {
+.actionButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+}
+
+.commentButtonWrapper {
+    display: flex;
+}
+
+.viewDetailsButton {
     border-radius: 6px;
     padding: 6px 10px;
     background-color: $light;
     color: $accent;
-    margin-left: 20px;
     font-weight: 700;
     font-size: 14px;
-
-    @media (min-width: 300px) {
-        font-size: 16px;
-    }
 }
 
 .imageWrapper {

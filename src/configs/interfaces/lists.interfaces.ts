@@ -35,7 +35,7 @@ export interface IListGeneralInfo {
 }
 
 // for v4 api
-interface IComments {
+export interface IComments {
     [key: `${'movie' | 'tv'}:${number}`]: string | null;
 }
 

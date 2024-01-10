@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AccentFilledRoundedButton } from '../../../../ui/buttons';
+import { FilledRoundedButton } from '../../../../ui/buttons';
 import styles from './top-panel.module.scss';
 
 export const TopPanel: FC = () => {
@@ -23,7 +23,7 @@ export const TopPanel: FC = () => {
     return (
         <div className={styles.wrapper}>
             <p className={styles.title}>{titleText}</p>
-            <AccentFilledRoundedButton value={actionButtonText} onClick={onActionButtonClickHandler} />
+            <FilledRoundedButton value={actionButtonText} onClick={onActionButtonClickHandler} />
         </div>
     );
 };

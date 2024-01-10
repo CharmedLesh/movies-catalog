@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { AccentFilledRoundedButton } from '../../../../ui/buttons';
+import { FilledRoundedButton } from '../../../../ui/buttons';
 import styles from './no-items-banner.module.scss';
 
 export const NoItemsBanner: FC = () => {
@@ -10,7 +10,7 @@ export const NoItemsBanner: FC = () => {
     return (
         <div className={styles.wrapper}>
             <p>You haven`t added any items to this list</p>
-            <AccentFilledRoundedButton value="ADD ITEM" onClick={actionButtonClickHandler} />
+            <FilledRoundedButton value="ADD ITEM" onClick={actionButtonClickHandler} />
         </div>
     );
 };

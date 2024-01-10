@@ -1,5 +1,7 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import styles from './media-card-2-3.module.scss';
+import { RoundIconButton } from '../../buttons/round-icon-button/round-icon-button';
+import { FilledRoundedButton } from '../../buttons';
 
 interface IMediaCard23Props {
     image: JSX.Element | null;
@@ -8,11 +10,24 @@ interface IMediaCard23Props {
     description: string;
     actionButtonText: string;
     actionButtonClickHandler: () => void;
-    rating: number;
+    starsRating?: number;
+    iconButton?: {
+        icon: JSX.Element | string;
+        onClickHandler: () => void;
+    };
 }
 
 export const MediaCard23: FC<IMediaCard23Props> = (props) => {
-    const { image, noImageText, title, description, actionButtonText, actionButtonClickHandler, rating } = props;
+    const {
+        image,
+        noImageText,
+        title,
+        description,
+        actionButtonText,
+        actionButtonClickHandler,
+        starsRating,
+        iconButton
+    } = props;
     const cardRef = useRef<HTMLDivElement>(null);
 
     const [isInfoExpanded, setIsInfoExpanded] = useState(false);
@@ -45,21 +60,31 @@ export const MediaCard23: FC<IMediaCard23Props> = (props) => {
     const cardClassName = `${styles.card} ${isInfoExpanded && styles.cardTouched}`;
     const infoPanelClassName = `${styles.infoPanel} ${isInfoExpanded && styles.infoPanelTouched}`;
 
-    const starsStyle = {
-        '--rating-percentage': `${rating * 10}%`
+    const starsStyle = starsRating && {
+        '--rating-percentage': `${starsRating * 10}%`
     };
 
     return (
         <div className={cardClassName} onClick={handleCardClick} ref={cardRef}>
             <div className={styles.imageWrapper}>{imageContent}</div>
-            <div className={styles.stars} style={starsStyle as React.CSSProperties}></div>
+            {starsRating && <div className={styles.stars} style={starsStyle as React.CSSProperties}></div>}
             <div className={infoPanelClassName}>
                 <p className={styles.title}>{title}</p>
                 <p className={styles.description}>{description}</p>
-                <button className={styles.actionButton} onClick={actionButtonClickHandlerWithoutPropagation}>
-                    {actionButtonText}
-                </button>
+                <div className={styles.actionButtons}>
+                    <button className={styles.viewDetailsButton} onClick={actionButtonClickHandlerWithoutPropagation}>
+                        {actionButtonText}
+                    </button>
+                    {iconButton && (
+                        <div className={styles.commentButtonWrapper}>
+                            <RoundIconButton icon={iconButton.icon} onClick={iconButton.onClickHandler} />
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );
 };
+
+// todo
+// structure remake: modules used in private routes require renaming
