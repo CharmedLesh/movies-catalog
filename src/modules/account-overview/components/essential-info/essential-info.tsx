@@ -19,8 +19,8 @@ export const EssentialInfo: FC = () => {
                         <RoundAvatar name={user?.username} img={avatarImage} />
                     </div>
                     <div className={styles.essentialInfo}>
-                        <p>{user.name ? user.name : user.username}</p>
-                        <p>{user.name && user.username}</p>
+                        <p>{user.username}</p>
+                        {user.name && <p>{user.name}</p>}
                         <p>ID: {user.id}</p>
                     </div>
                 </>

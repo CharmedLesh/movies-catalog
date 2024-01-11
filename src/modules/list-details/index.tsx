@@ -55,5 +55,4 @@ export const ListDetails: FC<IListDetailsProps> = (props) => {
 // check small comments and huge comments
 // sorting dropdown menu
 // add items button in no items banner
-// created by fix + link on user
 // list card stars background like on essential info actions button background

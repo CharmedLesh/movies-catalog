@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { IListDetails } from '../../../../configs/interfaces/lists.interfaces';
 import { ActionButtons } from '../action-buttons/action-buttons';
 import { Dots } from '../../../../ui/loaders';
@@ -13,6 +14,8 @@ interface IEssentialInfoProps {
 
 export const EssentialInfo: FC<IEssentialInfoProps> = (props) => {
     const { list, isEditable, isPending, listId } = props;
+
+    const externalLinkOnAuthor = `https://www.themoviedb.org/u/${list?.created_by.username}`;
 
     // conditional background
     const gradient = 'linear-gradient(to right, rgba(18, 69, 89, 0.65) 0%, rgba(255, 250, 255, 0.85) 85%)';
@@ -30,7 +33,13 @@ export const EssentialInfo: FC<IEssentialInfoProps> = (props) => {
     };
 
     // conditional text
-    const author = list?.created_by ? list.created_by.name : 'Unknown Author';
+    const author = list?.created_by
+        ? list.created_by.username
+            ? list.created_by.username
+            : list.created_by.name
+            ? list.created_by.name
+            : 'Unknown Author'
+        : 'Unknown Author';
     const description = list?.description ? list.description : 'List without description';
 
     // conditional classNames
@@ -58,7 +67,13 @@ export const EssentialInfo: FC<IEssentialInfoProps> = (props) => {
                             <Dots />
                         </div>
                     ) : (
-                        <p className={styles.info}>{author}</p>
+                        <Link
+                            to={isEditable ? '/account' : externalLinkOnAuthor}
+                            target={isEditable ? '_self' : '_blank'}
+                            className={styles.info}
+                        >
+                            {author}
+                        </Link>
                     )}
                 </div>
                 <div>

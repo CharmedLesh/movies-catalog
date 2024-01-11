@@ -13,7 +13,7 @@ export type SortingTypeV4 =
 
 export interface IUserBaseInfo {
     id: number;
-    name: string;
+    name: string | null;
     username: string;
 }
 

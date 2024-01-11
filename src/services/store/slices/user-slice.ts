@@ -15,7 +15,7 @@ interface IUser {
     id: number;
     iso_639_1: string;
     iso_3166_1: string;
-    name: string;
+    name: string | null;
     include_adult: boolean;
     username: string;
 }
