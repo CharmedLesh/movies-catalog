@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from 'react';
-import { Logger } from '../../services/logger/logger';
 import { useAppDispatch, useUser } from '../../services/hooks/store-hooks';
 import { ListsPromises } from '../../services/api/promises';
 import { requestWithNotificationsAndPendingSetter } from '../../helpers/requests';
@@ -7,9 +6,14 @@ import { IListDetails } from '../../configs/interfaces/lists.interfaces';
 import { ErrorBanner } from '../../components';
 import { EssentialInfo } from './components/essential-info/essential-info';
 import { ListItemsGrid } from './components/list-items-grid/list-items-grid';
-import styles from './index.module.scss';
 
-export const AccountListDetails: FC = () => {
+interface IListDetailsProps {
+    listId: number;
+    isEditable: boolean;
+}
+
+export const ListDetails: FC<IListDetailsProps> = (props) => {
+    const { listId, isEditable } = props;
     const { user } = useUser();
     const dispatch = useAppDispatch();
 
@@ -22,39 +26,35 @@ export const AccountListDetails: FC = () => {
     }, []);
 
     const getInitialListData = async () => {
-        const listId = Number(window.location.pathname.split('/')[3]);
-
-        if (listId) {
-            const data = await requestWithNotificationsAndPendingSetter(
-                dispatch,
-                ListsPromises.getListDetails(listId, 1, user?.iso_639_1),
-                setIsPending,
-                false,
-                undefined,
-                setError
-            );
-            if (data) {
-                setList(data);
-            }
-        } else {
-            setIsPending(false);
-            Logger.logError('List id not found.');
+        const userLang = user ? user.iso_639_1 : 'en-US';
+        const data = await requestWithNotificationsAndPendingSetter(
+            dispatch,
+            ListsPromises.getListDetails(listId, 1, userLang),
+            setIsPending,
+            false,
+            undefined,
+            setError
+        );
+        if (data) {
+            setList(data);
         }
     };
 
     if (error) return <ErrorBanner errorDescription={error} errorInfo="Error" />;
 
     return (
-        <div className={styles.wrapper}>
-            <EssentialInfo list={list} isPending={isPending} />
+        <>
+            <EssentialInfo list={list} isPending={isPending} isEditable={isEditable} />
             <ListItemsGrid isPending={isPending} items={list?.results} comments={list?.comments} />
-        </div>
+        </>
     );
 };
 
 // todo
 // check if infinite scroll required
 // check small comments and huge comments
-// link on user in essential info
 // sorting dropdown menu
 // share button
+// add items button in no items banner
+// created by fix + link oin user
+// list card stars background like on essential info actions button background

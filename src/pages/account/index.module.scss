@@ -1,21 +1,8 @@
 .wrapper {
     width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-
-    @media (min-width: 768px) {
-        max-width: 80%;
-    }
 }
 
 .outlet {
     width: 100%;
-    padding: 20px 0px;
+    margin-top: 20px;
 }

@@ -7,9 +7,7 @@ export const AccountListsPage: FC = () => {
     return (
         <div className={styles.wrapper}>
             <TopPanel />
-            <div className={styles.outlet}>
-                <Outlet />
-            </div>
+            <Outlet />
         </div>
     );
 };

@@ -4,5 +4,5 @@ export { SignIn } from './sign-in';
 export { AccountOverview } from './account-overview';
 export { AccountListsGrid } from './account-lists-grid';
 export { AccountListCreateForm } from './account-list-create-form';
-export { AccountListDetails } from './account-list-details';
+export { ListDetails } from './list-details';
 export { AccountListEdit } from './account-list-edit';

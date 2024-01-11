@@ -17,7 +17,8 @@ import {
     RootPage,
     AccountListCreatePage,
     AccountIndexPage,
-    AccountListsIndexPage
+    AccountListsIndexPage,
+    ListPage
 } from '../../pages';
 
 interface IPrivateRouteProps {
@@ -75,6 +76,7 @@ export const router = createBrowserRouter(
                     <Route path="tv" element={<div>Account Favorite TV</div>} />
                 </Route>
             </Route>
+            <Route path="list/:id" element={<ListPage />} />
         </Route>
     )
 );

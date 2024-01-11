@@ -13,3 +13,4 @@ export { AccountListEditPage } from './account-list-edit';
 export { AccountWatchlistPage } from './account-watchlist';
 export { AccountRatedPage } from './account-rated';
 export { AccountFavoritePage } from './account-favorite';
+export { ListPage } from './list';

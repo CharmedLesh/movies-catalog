@@ -14,11 +14,9 @@ export const AccountPage: FC = () => {
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.content}>
-                <Menus selectedTab={page} selectedSubTab={subpage} />
-                <div className={styles.outlet}>
-                    <Outlet />
-                </div>
+            <Menus selectedTab={page} selectedSubTab={subpage} />
+            <div className={styles.outlet}>
+                <Outlet />
             </div>
         </div>
     );

@@ -1,6 +1,8 @@
 import { FC } from 'react';
-import { AccountListDetails } from '../../modules';
+import { ListDetails } from '../../modules';
 
 export const AccountListIndexPage: FC = () => {
-    return <AccountListDetails />;
+    const listId = Number(window.location.pathname.split('/')[3]);
+
+    return <ListDetails listId={listId} isEditable={true} />;
 };

@@ -6,11 +6,12 @@ import styles from './essential-info.module.scss';
 
 interface IEssentialInfoProps {
     isPending: boolean;
+    isEditable: boolean;
     list?: IListDetails;
 }
 
 export const EssentialInfo: FC<IEssentialInfoProps> = (props) => {
-    const { list, isPending } = props;
+    const { list, isEditable, isPending } = props;
 
     // conditional background
     const gradient = 'linear-gradient(to right, rgba(18, 69, 89, 0.65) 0%, rgba(255, 250, 255, 0.85) 85%)';
@@ -46,7 +47,7 @@ export const EssentialInfo: FC<IEssentialInfoProps> = (props) => {
                         <p>{list?.name}</p>
                     )}
                     <div className={styles.actionButtonsTopPanel}>
-                        <ActionButtons isPending={isPending} />
+                        <ActionButtons isEditable={isEditable} isPending={isPending} />
                     </div>
                 </div>
                 <div className={styles.createdBy}>
@@ -71,7 +72,7 @@ export const EssentialInfo: FC<IEssentialInfoProps> = (props) => {
                 </div>
             </div>
             <div className={styles.actionButtonsBottomPanel}>
-                <ActionButtons isPending={isPending} />
+                <ActionButtons isPending={isPending} isEditable={isEditable} />
             </div>
         </>
     );
