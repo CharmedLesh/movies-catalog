@@ -3,7 +3,7 @@ import { OnlyIconButton } from '../../buttons';
 import styles from './media-card-2-3.module.scss';
 
 interface IMediaCard23Props {
-    image: JSX.Element | null;
+    imageUrl: string | null;
     noImageText: string;
     title: string;
     description: string;
@@ -18,7 +18,7 @@ interface IMediaCard23Props {
 
 export const MediaCard23: FC<IMediaCard23Props> = (props) => {
     const {
-        image,
+        imageUrl,
         noImageText,
         title,
         description,
@@ -55,17 +55,26 @@ export const MediaCard23: FC<IMediaCard23Props> = (props) => {
         actionButtonClickHandler();
     };
 
-    const imageContent = image ? image : <p className={styles.imageNotFound}>{noImageText}</p>;
-    const cardClassName = `${styles.card} ${isInfoExpanded && styles.cardTouched}`;
-    const infoPanelClassName = `${styles.infoPanel} ${isInfoExpanded && styles.infoPanelTouched}`;
+    const gradient =
+        'linear-gradient(345deg, transparent 0%, transparent 85%, rgba(18, 69, 89, 0.7) 90%, rgba(18, 69, 89, 0.7) 100%)';
+
+    const imageContent = !imageUrl && <p className={styles.imageNotFound}>{noImageText}</p>;
+    const cardClassName = isInfoExpanded ? `${styles.card} ${styles.cardTouched}` : styles.card;
+    const infoPanelClassName = isInfoExpanded ? `${styles.infoPanel} ${styles.infoPanelTouched}` : styles.infoPanel;
 
     const starsStyle = starsRating && {
         '--rating-percentage': `${starsRating * 10}%`
     };
 
+    const imageStyle = {
+        backgroundImage: imageUrl ? (starsRating ? `${gradient}, url(${imageUrl})` : `url(${imageUrl})`) : ''
+    };
+
     return (
         <div className={cardClassName} onClick={handleCardClick} ref={cardRef}>
-            <div className={styles.imageWrapper}>{imageContent}</div>
+            <div style={imageStyle} className={styles.imageWrapper}>
+                {imageContent}
+            </div>
             {starsRating && <div className={styles.stars} style={starsStyle as React.CSSProperties}></div>}
             <div className={infoPanelClassName}>
                 <p className={styles.title}>{title}</p>

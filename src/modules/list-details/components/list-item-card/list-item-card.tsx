@@ -26,6 +26,9 @@ export const ListItemCard: FC<IListItemCardProps> = (props) => {
     const posterImage = item.poster_path ? (
         <img src={`https://www.themoviedb.org/t/p/w440_and_h660_multi_faces${item.poster_path}`} />
     ) : null;
+    const imageUrl = item.poster_path
+        ? `https://www.themoviedb.org/t/p/w440_and_h660_multi_faces${item.poster_path}`
+        : null;
     const title = item.name ? item.name : item.title ? item.title : 'No Title';
     const description = item.overview ? item.overview : 'No description';
     const starsRating = item.vote_average ? item.vote_average : undefined;
@@ -38,7 +41,8 @@ export const ListItemCard: FC<IListItemCardProps> = (props) => {
         <MediaCard23
             title={title}
             description={description}
-            image={posterImage}
+            // image={posterImage}
+            imageUrl={imageUrl}
             noImageText="POSTER NOT FOUND"
             actionButtonText="View Details"
             actionButtonClickHandler={cardClickHandler}
