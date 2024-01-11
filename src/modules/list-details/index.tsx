@@ -44,7 +44,7 @@ export const ListDetails: FC<IListDetailsProps> = (props) => {
 
     return (
         <>
-            <EssentialInfo list={list} isPending={isPending} isEditable={isEditable} />
+            <EssentialInfo list={list} isPending={isPending} isEditable={isEditable} listId={listId.toString()} />
             <ListItemsGrid isPending={isPending} items={list?.results} comments={list?.comments} />
         </>
     );
@@ -54,7 +54,6 @@ export const ListDetails: FC<IListDetailsProps> = (props) => {
 // check if infinite scroll required
 // check small comments and huge comments
 // sorting dropdown menu
-// share button
 // add items button in no items banner
-// created by fix + link oin user
+// created by fix + link on user
 // list card stars background like on essential info actions button background
