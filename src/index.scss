@@ -8,10 +8,28 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+        background: $light;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $grey;
+        border-radius: 4px;
+
+        &:hover {
+            background: $grey-dark;
+        }
+    }
 }
 
 body {
     margin: 0;
+
+    &.scroll-freeze {
+        overflow: hidden;
+    }
 }
 
 a {

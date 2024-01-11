@@ -4,6 +4,7 @@ import { showModalLightboxPopup } from '../../../../helpers/modal-lightbox-popup
 import { IMediaItem } from '../../../../configs/interfaces/media.interfaces';
 import { MediaCard23 } from '../../../../ui/cards';
 import { SvgCommentIcon } from '../../../../ui/icons';
+import { CommentModalContent } from '../comment-modal-content/comment-modal-content';
 
 interface IListItemCardProps {
     item: IMediaItem;
@@ -19,7 +20,7 @@ export const ListItemCard: FC<IListItemCardProps> = (props) => {
     };
 
     const commentButtonClickHandler = (comment: string) => {
-        showModalLightboxPopup(<div>{comment}</div>);
+        showModalLightboxPopup(<CommentModalContent comment={comment} />);
     };
 
     const posterImage = item.poster_path ? (

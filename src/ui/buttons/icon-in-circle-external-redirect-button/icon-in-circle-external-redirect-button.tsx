@@ -13,12 +13,11 @@ export const IconInCircleExternalRedirectButton: FC<IIconInCircleExternalRedirec
 
     const isIconValid = (): boolean => {
         if (typeof icon === 'string' && icon.length !== 1) {
+            Logger.logError('Wrong icon prowided. Icon should be SVG or string with 1 char.');
             return false;
         }
         return true;
     };
-
-    !isIconValid() && Logger.logError('Wrong icon prowided. Icon should be SVG or string with 1 char.');
 
     return (
         <Link to={href} target={target} className={styles.iconInCircleExternalRedirectButton} rel={rel} title={title}>

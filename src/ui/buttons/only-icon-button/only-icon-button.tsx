@@ -11,12 +11,11 @@ export const OnlyIconButton: FC<IOnlyIconButton> = (props) => {
 
     const isIconValid = (): boolean => {
         if (typeof icon === 'string' && icon.length !== 1) {
+            Logger.logError('Wrong icon prowided. Icon should be SVG or string with 1 char.');
             return false;
         }
         return true;
     };
-
-    !isIconValid() && Logger.logError('Wrong icon prowided. Icon should be SVG or string with 1 char.');
 
     return (
         <button className={styles.onlyIconButton} onClick={onClick} type={type}>

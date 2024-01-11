@@ -26,7 +26,66 @@
 }
 
 .contentWrapper {
+    max-width: 60%;
     padding: 40px;
     background-color: $light;
     border-radius: 4px;
+    position: relative;
+    max-height: 60vh;
+
+    @media (min-height: 370px) {
+        max-height: 70vh;
+    }
+
+    @media (min-height: 600px) {
+        max-height: 80vh;
+    }
+
+    svg {
+        fill: $grey-dark;
+    }
+
+    button {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        font-size: 20px;
+        border-radius: 50%;
+        padding: 6px;
+        outline: 2px solid $grey-dark;
+
+        &:hover,
+        &:focus {
+            outline: 2px solid $dark;
+
+            svg {
+                fill: $dark;
+            }
+        }
+
+        &:active {
+            scale: 0.9;
+        }
+    }
+}
+
+.content {
+    overflow-y: auto;
+    max-height: inherit;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+        background: $light;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $grey;
+        border-radius: 4px;
+
+        &:hover {
+            background: $grey-dark;
+        }
+    }
 }

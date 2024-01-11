@@ -111,6 +111,16 @@
 
 .commentButtonWrapper {
     display: flex;
+
+    button {
+        background-color: $light;
+        padding: 8px;
+        border-radius: 50%;
+    }
+
+    svg {
+        fill: $accent;
+    }
 }
 
 .viewDetailsButton {

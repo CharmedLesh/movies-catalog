@@ -13,3 +13,4 @@ export { default as SvgUserIcon } from './user-icon';
 export { default as SvgAdultIcon } from './adult-icon';
 export { default as SvgArrowUpIcon } from './arrow-up-icon';
 export { default as SvgCommentIcon } from './comment-icon';
+export { default as SvgCloseIcon } from './close-icon';

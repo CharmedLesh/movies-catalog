@@ -1,7 +1,6 @@
 import { FC, useEffect, useRef, useState } from 'react';
+import { OnlyIconButton } from '../../buttons';
 import styles from './media-card-2-3.module.scss';
-import { RoundIconButton } from '../../buttons/round-icon-button/round-icon-button';
-import { FilledRoundedButton } from '../../buttons';
 
 interface IMediaCard23Props {
     image: JSX.Element | null;
@@ -77,7 +76,7 @@ export const MediaCard23: FC<IMediaCard23Props> = (props) => {
                     </button>
                     {iconButton && (
                         <div className={styles.commentButtonWrapper}>
-                            <RoundIconButton icon={iconButton.icon} onClick={iconButton.onClickHandler} />
+                            <OnlyIconButton icon={iconButton.icon} onClick={iconButton.onClickHandler} />
                         </div>
                     )}
                 </div>
