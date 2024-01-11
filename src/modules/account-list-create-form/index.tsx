@@ -9,7 +9,7 @@ import { SubmitButton } from './components/submit-button/submit-button';
 import { PrivacyToggleSwitch } from './components/privacy-toggle-switch/privacy-toggle-switch';
 import styles from './index.module.scss';
 
-export const CreateListForm: FC = () => {
+export const AccountListCreateForm: FC = () => {
     const { isSession, accessToken } = useSession();
     const { user } = useUser();
 

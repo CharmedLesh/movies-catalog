@@ -9,7 +9,7 @@ import { EssentialInfo } from './components/essential-info/essential-info';
 import { ListItemsGrid } from './components/list-items-grid/list-items-grid';
 import styles from './index.module.scss';
 
-export const ListDetails: FC = () => {
+export const AccountListDetails: FC = () => {
     const { user } = useUser();
     const dispatch = useAppDispatch();
 
@@ -51,3 +51,10 @@ export const ListDetails: FC = () => {
         </div>
     );
 };
+
+// todo
+// check if infinite scroll required
+// check small comments and huge comments
+// link on user in essential info
+// sorting dropdown menu
+// share button

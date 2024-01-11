@@ -84,6 +84,3 @@ export const MediaCard23: FC<IMediaCard23Props> = (props) => {
         </div>
     );
 };
-
-// todo
-// structure remake: modules used in private routes require renaming

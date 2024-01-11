@@ -1,6 +1,10 @@
 import { FC } from 'react';
-import { ListDetails } from '../../modules/list-details';
+import { Outlet } from 'react-router-dom';
 
 export const AccountListPage: FC = () => {
-    return <ListDetails />;
+    return (
+        <>
+            <Outlet />
+        </>
+    );
 };

@@ -12,8 +12,10 @@ import {
     AccountPage,
     AccountListsPage,
     AccountListPage,
+    AccountListIndexPage,
+    AccountListEditPage,
     RootPage,
-    AccountCreateListPage,
+    AccountListCreatePage,
     AccountIndexPage,
     AccountListsIndexPage
 } from '../../pages';
@@ -54,8 +56,11 @@ export const router = createBrowserRouter(
                 <Route index element={<AccountIndexPage />} />
                 <Route path="lists" element={<AccountListsPage />}>
                     <Route index element={<AccountListsIndexPage />} />
-                    <Route path="create" element={<AccountCreateListPage />} />
-                    <Route path=":id" element={<AccountListPage />} />
+                    <Route path="create" element={<AccountListCreatePage />} />
+                    <Route path=":id" element={<AccountListPage />}>
+                        <Route index element={<AccountListIndexPage />} />
+                        <Route path="edit" element={<AccountListEditPage />} />
+                    </Route>
                 </Route>
                 <Route path="watchlist" element={<AccountWatchlistPage />}>
                     <Route path="movies" element={<div>Account Watchlist Movies</div>} />
