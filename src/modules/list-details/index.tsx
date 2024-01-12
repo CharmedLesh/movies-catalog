@@ -1,11 +1,12 @@
 import { FC, useEffect, useState } from 'react';
-import { useAppDispatch, useUser } from '../../services/hooks/store-hooks';
+import { useAppDispatch, useSession, useUser } from '../../services/hooks/store-hooks';
 import { ListsPromises } from '../../services/api/promises';
 import { requestWithNotificationsAndPendingSetter } from '../../helpers/requests';
 import { IListDetails } from '../../configs/interfaces/lists.interfaces';
 import { ErrorBanner } from '../../components';
 import { EssentialInfo } from './components/essential-info/essential-info';
 import { ListItemsGrid } from './components/list-items-grid/list-items-grid';
+import { AddItemsButton } from './components/add-items-button/add-items-button';
 
 interface IListDetailsProps {
     listId: number;
@@ -14,6 +15,7 @@ interface IListDetailsProps {
 
 export const ListDetails: FC<IListDetailsProps> = (props) => {
     const { listId, isEditable } = props;
+    const { sessionId } = useSession();
     const { user } = useUser();
     const dispatch = useAppDispatch();
 
@@ -46,13 +48,11 @@ export const ListDetails: FC<IListDetailsProps> = (props) => {
         <>
             <EssentialInfo list={list} isPending={isPending} isEditable={isEditable} listId={listId.toString()} />
             <ListItemsGrid isPending={isPending} items={list?.results} comments={list?.comments} />
+            <AddItemsButton />
         </>
     );
 };
 
 // todo
 // check if infinite scroll required
-// check small comments and huge comments
 // sorting dropdown menu
-// add items button in no items banner
-// try to get account details of other user

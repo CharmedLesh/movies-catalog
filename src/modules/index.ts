@@ -5,4 +5,6 @@ export { AccountOverview } from './account-overview';
 export { AccountListsGrid } from './account-lists-grid';
 export { AccountListCreateForm } from './account-list-create-form';
 export { ListDetails } from './list-details';
-export { AccountListEdit } from './account-list-edit';
+export { AccountListEditGeneralInfo } from './account-list-edit-general-info';
+export { AccountListEditItems } from './account-list-edit-items';
+export { AccountListEditDelete } from './account-list-edit-delete';

@@ -18,7 +18,10 @@ import {
     AccountListCreatePage,
     AccountIndexPage,
     AccountListsIndexPage,
-    ListPage
+    ListPage,
+    AccountListEditIndexPage,
+    AccountListEditItemsPage,
+    AccountListEditDeletePage
 } from '../../pages';
 
 interface IPrivateRouteProps {
@@ -60,7 +63,11 @@ export const router = createBrowserRouter(
                     <Route path="create" element={<AccountListCreatePage />} />
                     <Route path=":id" element={<AccountListPage />}>
                         <Route index element={<AccountListIndexPage />} />
-                        <Route path="edit" element={<AccountListEditPage />} />
+                        <Route path="edit" element={<AccountListEditPage />}>
+                            <Route index element={<AccountListEditIndexPage />} />
+                            <Route path="items" element={<AccountListEditItemsPage />} />
+                            <Route path="delete" element={<AccountListEditDeletePage />} />
+                        </Route>
                     </Route>
                 </Route>
                 <Route path="watchlist" element={<AccountWatchlistPage />}>

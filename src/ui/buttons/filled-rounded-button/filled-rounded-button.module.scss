@@ -5,10 +5,11 @@
     background-color: $accent;
     border-radius: 4px;
     color: $light;
+    font-size: 14px;
     padding: 6px 12px;
 
-    @media (min-width: 768px) {
-        padding: 8px 16px;
+    @media (min-width: 300px) {
+        font-size: 16px;
     }
 
     &:active {

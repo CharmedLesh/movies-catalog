@@ -22,10 +22,6 @@ export const ListItemCard: FC<IListItemCardProps> = (props) => {
     const commentButtonClickHandler = (comment: string) => {
         showModalLightboxPopup(<CommentModalContent comment={comment} />);
     };
-
-    const posterImage = item.poster_path ? (
-        <img src={`https://www.themoviedb.org/t/p/w440_and_h660_multi_faces${item.poster_path}`} />
-    ) : null;
     const imageUrl = item.poster_path
         ? `https://www.themoviedb.org/t/p/w440_and_h660_multi_faces${item.poster_path}`
         : null;

@@ -7,11 +7,13 @@
     color: $accent;
     font-weight: 500;
     border-radius: 4px;
-    padding: 6px 12px;
     white-space: nowrap;
+    font-size: 14px;
+    padding: 3px 9px;
 
-    @media (min-width: 768px) {
-        padding: 8px 16px;
+    @media (min-width: 300px) {
+        font-size: 16px;
+        padding: 3px 12px;
     }
 
     &:disabled {

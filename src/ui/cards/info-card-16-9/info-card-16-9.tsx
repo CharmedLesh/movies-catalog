@@ -1,5 +1,6 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import styles from './info-card-16-9.module.scss';
+import { FilledRoundedButton } from '../../buttons';
 
 interface IInfoCard169Props {
     image: JSX.Element | null;
@@ -42,7 +43,7 @@ export const InfoCard169: FC<IInfoCard169Props> = (props) => {
 
     const imageContent = image ? image : <p className={styles.imageNotFound}>{noImageText}</p>;
     const cardClassName = `${styles.card} ${isInfoExpanded && styles.cardTouched}`;
-    const infoPanelClassName = `${styles.infoPanel} ${isInfoExpanded && styles.infoPanelTouched}`;
+    const infoPanelClassName = `${styles.infoPanel} ${isInfoExpanded && styles.infoPanelTouched}`; //?
 
     return (
         <div className={cardClassName} onClick={handleCardClick} ref={cardRef}>
@@ -50,9 +51,7 @@ export const InfoCard169: FC<IInfoCard169Props> = (props) => {
             <div className={infoPanelClassName}>
                 <p className={styles.title}>{title}</p>
                 <p className={styles.description}>{description}</p>
-                <button className={styles.actionButton} onClick={actionButtonClickHandlerWithoutPropagation}>
-                    {actionButtonText}
-                </button>
+                <FilledRoundedButton value={actionButtonText} onClick={actionButtonClickHandlerWithoutPropagation} />
             </div>
         </div>
     );

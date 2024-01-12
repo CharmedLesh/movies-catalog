@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef, useState } from 'react';
-import { OnlyIconButton } from '../../buttons';
+import { FilledRoundedButton, OnlyIconButton } from '../../buttons';
 import styles from './media-card-2-3.module.scss';
 
 interface IMediaCard23Props {
@@ -80,9 +80,12 @@ export const MediaCard23: FC<IMediaCard23Props> = (props) => {
                 <p className={styles.title}>{title}</p>
                 <p className={styles.description}>{description}</p>
                 <div className={styles.actionButtons}>
-                    <button className={styles.viewDetailsButton} onClick={actionButtonClickHandlerWithoutPropagation}>
-                        {actionButtonText}
-                    </button>
+                    <div className={styles.actionButton}>
+                        <FilledRoundedButton
+                            value={actionButtonText}
+                            onClick={actionButtonClickHandlerWithoutPropagation}
+                        />
+                    </div>
                     {iconButton && (
                         <div className={styles.commentButtonWrapper}>
                             <OnlyIconButton icon={iconButton.icon} onClick={iconButton.onClickHandler} />

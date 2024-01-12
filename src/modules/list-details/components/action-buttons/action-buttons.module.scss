@@ -14,10 +14,10 @@
 
     &.editable {
         button {
-            @media (max-width: 340px) {
-                padding: 4px 8px;
-                font-size: 14px;
-            }
+            // @media (max-width: 340px) {
+            //     padding: 4px 8px;
+            //     font-size: 14px;
+            // }
 
             &:nth-child(2) {
                 margin-right: 10px;

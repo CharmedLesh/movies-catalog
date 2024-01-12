@@ -12,11 +12,11 @@
 
     @media (hover: none) and (pointer: coarse) {
         .infoPanelTouched {
-            height: 121px;
+            height: 122px;
             opacity: 95%;
 
             @media (min-width: 300px) {
-                height: 143px;
+                height: 142px;
             }
         }
     }
@@ -33,11 +33,11 @@
             }
 
             .infoPanel {
-                height: 121px;
+                height: 122px;
                 opacity: 95%;
 
                 @media (min-width: 300px) {
-                    height: 143px;
+                    height: 142px;
                 }
             }
         }
@@ -69,6 +69,19 @@
     height: 47px;
     overflow: hidden;
     opacity: 85%;
+
+    button {
+        padding: 4px 8px;
+        margin-left: 20px;
+        background-color: $light;
+        color: $accent;
+        font-weight: 600;
+        font-size: 14px;
+
+        @media (min-width: 300px) {
+            padding: 6px 10px;
+        }
+    }
 }
 
 .title,
@@ -95,24 +108,10 @@
     line-height: 20px;
     font-weight: 300;
     font-family: $roboto;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 
     @media (min-width: 300px) {
         margin-bottom: 20px;
-    }
-}
-
-.actionButton {
-    border-radius: 6px;
-    padding: 6px 10px;
-    background-color: $light;
-    color: $accent;
-    margin-left: 20px;
-    font-weight: 700;
-    font-size: 14px;
-
-    @media (min-width: 300px) {
-        font-size: 16px;
     }
 }
 

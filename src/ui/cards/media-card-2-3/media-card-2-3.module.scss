@@ -12,12 +12,8 @@
 
     @media (hover: none) and (pointer: coarse) {
         .infoPanelTouched {
-            height: 121px;
+            height: 144px;
             opacity: 95%;
-
-            @media (min-width: 300px) {
-                height: 143px;
-            }
         }
     }
 
@@ -33,12 +29,8 @@
             }
 
             .infoPanel {
-                height: 121px;
+                height: 144px;
                 opacity: 95%;
-
-                @media (min-width: 300px) {
-                    height: 143px;
-                }
             }
         }
     }
@@ -80,13 +72,9 @@
 }
 
 .title {
-    margin: 12px 0px;
+    margin: 12px 0 20px;
     font-weight: 500;
-
-    @media (min-width: 300px) {
-        margin-bottom: 20px;
-        font-size: 18px;
-    }
+    font-size: 18px;
 }
 
 .description {
@@ -95,11 +83,7 @@
     line-height: 20px;
     font-weight: 300;
     font-family: $roboto;
-    margin-bottom: 10px;
-
-    @media (min-width: 300px) {
-        margin-bottom: 20px;
-    }
+    margin-bottom: 20px;
 }
 
 .actionButtons {
@@ -123,13 +107,14 @@
     }
 }
 
-.viewDetailsButton {
-    border-radius: 6px;
-    padding: 6px 10px;
-    background-color: $light;
-    color: $accent;
-    font-weight: 700;
-    font-size: 14px;
+.actionButton {
+    button {
+        background-color: $light;
+        color: $accent;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 6px 10px;
+    }
 }
 
 .imageWrapper {
@@ -148,12 +133,8 @@
 
 .imageNotFound {
     color: $grey;
-    font-size: 18px;
+    font-size: 20px;
     transition: 200ms;
-
-    @media (min-width: 300px) {
-        font-size: 20px;
-    }
 }
 
 .stars {
