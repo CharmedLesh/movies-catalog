@@ -4,13 +4,15 @@ export const useDelayUnmount = (isMounted: boolean, delayTime: number) => {
     const [shouldRender, setShouldRender] = useState(false);
 
     useEffect(() => {
-        let timeoutId: number;
+        let timer: NodeJS.Timeout;
+
         if (isMounted && !shouldRender) {
             setShouldRender(true);
         } else if (!isMounted && shouldRender) {
-            timeoutId = window.setTimeout(() => setShouldRender(false), delayTime);
+            timer = setTimeout(() => setShouldRender(false), delayTime);
         }
-        return () => clearTimeout(timeoutId);
+
+        return () => clearTimeout(timer);
     }, [isMounted, delayTime, shouldRender]);
     return shouldRender;
 };

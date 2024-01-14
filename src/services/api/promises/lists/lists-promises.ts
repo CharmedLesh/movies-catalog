@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
 import { $apiV3, $apiV4, $apiV4NoAccessToken } from '../../interceptor';
 import {
-    IListsCollection,
-    IListDetails,
+    IListsGeneralInfoCollection,
+    IListDetailsCollection,
     ICreateMediaListResponse,
     IAddMediaItemToListResponse,
     IRemoveMediaItemFromListResponse,
@@ -12,14 +12,21 @@ import {
 } from '../../../../configs/interfaces/lists.interfaces';
 
 export class ListsPromises {
-    static async getListsCollection(accountId: string, page: number): Promise<AxiosResponse<IListsCollection>> {
-        return $apiV4.get<IListsCollection>(`/account/${accountId}/lists`, {
+    static async getListsCollection(
+        accountId: string,
+        page: number
+    ): Promise<AxiosResponse<IListsGeneralInfoCollection>> {
+        return $apiV4.get<IListsGeneralInfoCollection>(`/account/${accountId}/lists`, {
             params: { page: page.toString() }
         });
     }
 
-    static async getListDetails(listId: number, page: number, language?: string): Promise<AxiosResponse<IListDetails>> {
-        return $apiV4.get<IListDetails>(`/list/${listId.toString()}`, {
+    static async getListDetails(
+        listId: number,
+        page: number,
+        language?: string
+    ): Promise<AxiosResponse<IListDetailsCollection>> {
+        return $apiV4.get<IListDetailsCollection>(`/list/${listId.toString()}`, {
             params: { language: language ? language : 'en-US', page: page.toString() }
         });
     }

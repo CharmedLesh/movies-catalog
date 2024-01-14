@@ -20,19 +20,15 @@ export const StatusNotificationBanner: FC = () => {
     }, [isSuccess, message]);
 
     useEffect(() => {
+        let timer: NodeJS.Timeout;
         if (isMounted) {
-            let timer: NodeJS.Timeout;
-
             if (!isHovered) {
                 timer = setTimeout(() => {
                     setIsMounted(false);
                 }, 5000);
             }
-
-            return () => {
-                clearTimeout(timer);
-            };
         }
+        return () => clearTimeout(timer);
     }, [isMounted, isHovered]);
 
     useEffect(() => {

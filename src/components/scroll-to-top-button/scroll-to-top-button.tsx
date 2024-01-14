@@ -1,13 +1,11 @@
 import { FC, useEffect, useState } from 'react';
-import { SvgArrowUpIcon } from '../../../../ui/icons';
+import { SvgArrowUpIcon } from '../../ui/icons';
 import styles from './scroll-to-top-button.module.scss';
 
-interface IScrollToTopButtonProps {
-    footerHeight: number;
-}
-
-export const ScrollToTopButton: FC<IScrollToTopButtonProps> = (props) => {
-    const { footerHeight } = props;
+export const ScrollToTopButton: FC = () => {
+    const footerHeight = document.getElementsByTagName('footer')[0]
+        ? document.getElementsByTagName('footer')[0].offsetHeight
+        : 107;
 
     const [bottomGap, setBottomGap] = useState<number>(0);
 
@@ -19,6 +17,7 @@ export const ScrollToTopButton: FC<IScrollToTopButtonProps> = (props) => {
         };
     }, []);
 
+    // used to stay out of footer
     const handleScroll = () => {
         const { scrollHeight, clientHeight } = document.documentElement;
         const currentScrollPosition = window.scrollY + clientHeight;
@@ -31,7 +30,7 @@ export const ScrollToTopButton: FC<IScrollToTopButtonProps> = (props) => {
         }
     };
 
-    const scrollToTop = () => {
+    const scrollToTopClickHandler = () => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -39,7 +38,7 @@ export const ScrollToTopButton: FC<IScrollToTopButtonProps> = (props) => {
     };
 
     return (
-        <button className={styles.scroll} style={{ bottom: bottomGap + 10 }} onClick={scrollToTop}>
+        <button className={styles.wrapper} style={{ bottom: bottomGap + 10 }} onClick={scrollToTopClickHandler}>
             <SvgArrowUpIcon />
         </button>
     );

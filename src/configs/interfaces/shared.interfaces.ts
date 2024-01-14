@@ -1,3 +1,5 @@
+import { IComments } from './lists.interfaces';
+
 export type SortingTypeV3 = 'created_at.asc' | 'created_at.desc';
 export type SortingTypeV4 =
     | 'original_order.desc'
@@ -29,4 +31,9 @@ export interface ICollectionSkeleton {
     page: number;
     total_pages: number;
     total_results: number;
+}
+
+export interface IPageNumberDependingCollection<T> extends ICollectionSkeleton {
+    results: T[];
+    comments?: IComments | {};
 }

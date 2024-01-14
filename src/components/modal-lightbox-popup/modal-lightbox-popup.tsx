@@ -26,7 +26,7 @@ export const ModalLightboxPopup: FC<IModalLightboxPopupProps> = (props) => {
     };
 
     return (
-        <div id="modal-lightbox-popup" className={styles.wrapper}>
+        <div className={styles.wrapper}>
             <div className={styles.contentWrapper}>
                 <OnlyIconButton onClick={onCloseButtonClick} icon={<SvgCloseIcon />} />
                 <div className={styles.content}>{content}</div>

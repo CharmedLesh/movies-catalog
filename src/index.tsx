@@ -13,6 +13,7 @@ root.render(
         <div className="app">
             <StatusNotificationBanner />
             <div id="modal-lightbox-popup-root"></div>
+            <div id="scroll-to-top-button-root"></div>
             <RouterProvider router={router} />
         </div>
     </Provider>

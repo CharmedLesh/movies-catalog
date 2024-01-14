@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { IListDetails } from '../../../../configs/interfaces/lists.interfaces';
+import { IListDetailsCollection } from '../../../../configs/interfaces/lists.interfaces';
 import { ActionButtons } from '../action-buttons/action-buttons';
 import { Dots } from '../../../../ui/loaders';
 import styles from './essential-info.module.scss';
@@ -9,7 +9,7 @@ interface IEssentialInfoProps {
     isPending: boolean;
     isEditable: boolean;
     listId: string;
-    list?: IListDetails;
+    list?: IListDetailsCollection;
 }
 
 export const EssentialInfo: FC<IEssentialInfoProps> = (props) => {

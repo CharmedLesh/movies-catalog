@@ -32,29 +32,21 @@ export const SignIn: FC = () => {
     }, []);
 
     useEffect(() => {
-        if (status === 'resolved') {
-            let timer: NodeJS.Timeout;
+        let timer: NodeJS.Timeout;
 
+        if (status === 'resolved') {
             timer = setTimeout(() => {
                 navigate('/account');
             }, 3000);
-
-            return () => {
-                clearTimeout(timer);
-            };
         }
         if (status === 'rejected') {
-            let timer: NodeJS.Timeout;
-
             timer = setTimeout(() => {
                 setIsRequestTokenPending(false);
                 dispatch(removeSessionStatus());
             }, 5000);
-
-            return () => {
-                clearTimeout(timer);
-            };
         }
+
+        return () => clearTimeout(timer);
     }, [status]);
 
     const getRequestToken = async () => {

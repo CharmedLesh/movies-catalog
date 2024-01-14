@@ -1,18 +1,12 @@
 import { IMediaItem } from './media.interfaces';
-import { ICollectionSkeleton, ICommonActionResponse, IUserBaseInfo, SortingTypeV4 } from './shared.interfaces';
+import {
+    ICommonActionResponse,
+    IPageNumberDependingCollection,
+    IUserBaseInfo,
+    SortingTypeV4
+} from './shared.interfaces';
 
 ///////////////// LISTS ENTITIES /////////////////
-// export interface IListGeneralInfo {
-//     description: string;
-//     favorite_count: number;
-//     id: number;
-//     item_count: number;
-//     iso_639_1: string;
-//     list_type: 'movie' | 'tv';
-//     name: string;
-//     poster_path: null | string;
-// }
-
 export interface IListGeneralInfo {
     account_object_id: string;
     adult: 0 | 1;
@@ -34,16 +28,14 @@ export interface IListGeneralInfo {
     updated_at: string;
 }
 
-// for v4 api
 export interface IComments {
     [key: `${'movie' | 'tv'}:${number}`]: string | null;
 }
 
-export interface IListDetails {
+export interface IListDetailsWithoutPageDependingData {
     average_rating: number;
     backdrop_path: null | string;
-    comments: IComments | {};
-    object_ids: {}; // ?
+    object_ids: {};
     public: boolean;
     revenue: number;
     runtime: number;
@@ -58,17 +50,15 @@ export interface IListDetails {
     iso_3166_1: string;
     item_count: number;
     name: string;
-    page: number;
     poster_path: null | string;
-    total_pages: number;
-    total_results: number;
-    results: IMediaItem[];
 }
 
 ///////////////// COOLLECTIONS ENTITIES /////////////////
-export interface IListsCollection extends ICollectionSkeleton {
-    results: IListGeneralInfo[];
-}
+export interface IListsGeneralInfoCollection extends IPageNumberDependingCollection<IListGeneralInfo> {}
+
+export interface IListDetailsCollection
+    extends IListDetailsWithoutPageDependingData,
+        IPageNumberDependingCollection<IMediaItem> {}
 
 ///////////////// LISTS ACTIONS RESPONSES /////////////////
 export interface ICreateMediaListResponse extends ICommonActionResponse {
