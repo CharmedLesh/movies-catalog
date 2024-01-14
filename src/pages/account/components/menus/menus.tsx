@@ -1,28 +1,18 @@
 import { FC } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Menu } from '../menu/menu';
 import { Submenu } from '../submenu/submenu';
 import styles from './menus.module.scss';
 
-type TabsType = undefined | 'favorite' | 'rated' | 'watchlist' | 'lists';
-type SubTabsType = 'movies' | 'tv';
+export const Menus: FC = () => {
+    const { pathname } = useLocation();
 
-interface IMenuProps {
-    selectedTab: TabsType;
-    selectedSubTab: SubTabsType;
-}
-
-export const Menus: FC<IMenuProps> = (props) => {
-    const { selectedTab, selectedSubTab } = props;
+    const parts = pathname.split('/');
 
     return (
         <div className={styles.menus}>
-            <Menu selectedTab={selectedTab} />
-            {(selectedTab === 'watchlist' || selectedTab === 'rated' || selectedTab === 'favorite') && (
-                <Submenu selectedTab={selectedTab} selectedSubTab={selectedSubTab} />
-            )}
+            <Menu />
+            {(parts[2] === 'watchlist' || parts[2] === 'rated' || parts[2] === 'favorite') && <Submenu />}
         </div>
     );
 };
-
-// todo
-// remove submenu double render

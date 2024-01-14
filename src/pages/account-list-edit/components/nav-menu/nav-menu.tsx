@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import styles from './nav-menu.module.scss';
+import { useLocation } from 'react-router-dom';
+import { ColumnTabMenu } from '../../../../ui/menus';
 
 export const NavMenu: FC = () => {
     const { pathname } = useLocation();
@@ -9,34 +9,23 @@ export const NavMenu: FC = () => {
     const itemsUrl = `${baseUrl}/items`;
     const deleteUrl = `${baseUrl}/delete`;
 
-    return (
-        <ul className={styles.wrapper}>
-            <div>Edit</div>
-            <li>
-                <NavLink
-                    to={baseUrl}
-                    className={({ isActive }) => (isActive ? styles.activeNavLink : styles.navLink)}
-                    end
-                >
-                    List Info
-                </NavLink>
-            </li>
-            <li>
-                <NavLink to={itemsUrl} className={({ isActive }) => (isActive ? styles.activeNavLink : styles.navLink)}>
-                    List Items
-                </NavLink>
-            </li>
-            <li>
-                <NavLink
-                    to={deleteUrl}
-                    className={({ isActive }) => (isActive ? styles.activeNavLink : styles.navLink)}
-                >
-                    Delete List
-                </NavLink>
-            </li>
-        </ul>
-    );
-};
+    const options = [
+        {
+            text: 'List Info',
+            url: baseUrl,
+            isEnd: true
+        },
+        {
+            text: 'List Items',
+            url: itemsUrl,
+            isEnd: true
+        },
+        {
+            text: 'Delete List',
+            url: deleteUrl,
+            isEnd: true
+        }
+    ];
 
-// todo
-// remake navigation menus using NavLink for other index pages
+    return <ColumnTabMenu menuHeaderText="Edit" tabDataArray={options} />;
+};

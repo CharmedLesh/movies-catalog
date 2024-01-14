@@ -1,37 +1,27 @@
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { TabMenu } from '../../../../ui/menus';
 
-type TabsType = 'overview' | 'favorite' | 'rated' | 'watchlist' | 'lists';
-type SubTabsType = 'movies' | 'tv';
+export const Submenu: FC = () => {
+    const { pathname } = useLocation();
 
-interface ISubmenuProps {
-    selectedTab: TabsType;
-    selectedSubTab: SubTabsType;
-}
+    const parts = pathname.split('/');
+    const baseUrl = `/account/${parts[2]}`;
+    const moviesUrl = `${baseUrl}/movies`;
+    const tvUrl = `${baseUrl}/tv`;
 
-export const Submenu: FC<ISubmenuProps> = (props) => {
-    const { selectedTab, selectedSubTab } = props;
-    const navigate = useNavigate();
-
-    const onChangeHandler = (subtab: SubTabsType) => {
-        navigate(`/account/${selectedTab}/${subtab}`);
-    };
-
-    const subMenuTabsDataArray = [
+    const options = [
         {
-            labelText: 'Movies',
-            inputValue: 'movies',
-            isChecked: selectedSubTab === 'movies',
-            onChange: () => onChangeHandler('movies')
+            text: 'Movies',
+            url: moviesUrl,
+            isEnd: false
         },
         {
-            labelText: 'TV',
-            inputValue: 'tv',
-            isChecked: selectedSubTab === 'tv',
-            onChange: () => onChangeHandler('tv')
+            text: 'TV',
+            url: tvUrl,
+            isEnd: false
         }
     ];
 
-    return <TabMenu tabDataArray={subMenuTabsDataArray} />;
+    return <TabMenu tabDataArray={options} />;
 };

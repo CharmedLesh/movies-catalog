@@ -1,4 +1,4 @@
-@import '../../../../styles/colors';
+@import '../../../styles/colors';
 
 .wrapper {
     width: 200px;
@@ -37,4 +37,5 @@
 .activeNavLink {
     color: $accent;
     font-weight: 500;
+    pointer-events: none;
 }

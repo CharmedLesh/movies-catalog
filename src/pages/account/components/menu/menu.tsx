@@ -1,53 +1,40 @@
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { TabMenu } from '../../../../ui/menus';
 
-type TabsType = undefined | 'favorite' | 'rated' | 'watchlist' | 'lists';
+export const Menu: FC = () => {
+    const baseUrl = '/account';
+    const listsUrl = `${baseUrl}/lists`;
+    const watchlistUrl = `${baseUrl}/watchlist`;
+    const ratedUrl = `${baseUrl}/rated`;
+    const favoriteUrl = `${baseUrl}/favorite`;
 
-interface IMenuProps {
-    selectedTab: TabsType;
-}
-
-export const Menu: FC<IMenuProps> = (props) => {
-    const { selectedTab } = props;
-    const navigate = useNavigate();
-
-    const onChangeHandler = (tab: TabsType) => {
-        navigate(`/account/${tab}`);
-    };
-
-    const menuTabsDataArray = [
+    const options = [
         {
-            labelText: 'Overview',
-            inputValue: 'overview',
-            isChecked: selectedTab === undefined,
-            onChange: () => navigate('/account')
+            text: 'Overview',
+            url: baseUrl,
+            isEnd: true
         },
         {
-            labelText: 'Lists',
-            inputValue: 'lists',
-            isChecked: selectedTab === 'lists',
-            onChange: () => onChangeHandler('lists')
+            text: 'Lists',
+            url: listsUrl,
+            isEnd: false
         },
         {
-            labelText: 'Watchlist',
-            inputValue: 'watchlist',
-            isChecked: selectedTab === 'watchlist',
-            onChange: () => onChangeHandler('watchlist')
+            text: 'Watchlist',
+            url: watchlistUrl,
+            isEnd: false
         },
         {
-            labelText: 'Rated',
-            inputValue: 'rated',
-            isChecked: selectedTab === 'rated',
-            onChange: () => onChangeHandler('rated')
+            text: 'Rated',
+            url: ratedUrl,
+            isEnd: false
         },
         {
-            labelText: 'Favorite',
-            inputValue: 'favorite',
-            isChecked: selectedTab === 'favorite',
-            onChange: () => onChangeHandler('favorite')
+            text: 'Favorite',
+            url: favoriteUrl,
+            isEnd: false
         }
     ];
 
-    return <TabMenu tabDataArray={menuTabsDataArray} />;
+    return <TabMenu tabDataArray={options} />;
 };

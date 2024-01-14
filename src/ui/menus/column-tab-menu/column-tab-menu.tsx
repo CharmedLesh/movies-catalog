@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from './tab-menu.module.scss';
+import styles from './column-tab-menu.module.scss';
 
-interface ITabMenuProps {
+interface IColumnTabMenuProps {
+    menuHeaderText: string;
     tabDataArray: {
         text: string;
         url: string;
@@ -10,8 +11,8 @@ interface ITabMenuProps {
     }[];
 }
 
-export const TabMenu: FC<ITabMenuProps> = (props) => {
-    const { tabDataArray } = props;
+export const ColumnTabMenu: FC<IColumnTabMenuProps> = (props) => {
+    const { menuHeaderText, tabDataArray } = props;
 
     const generateTabs = () => {
         let tabs: JSX.Element[] = [];
@@ -34,5 +35,10 @@ export const TabMenu: FC<ITabMenuProps> = (props) => {
         return tabs;
     };
 
-    return <ul className={styles.wrapper}>{generateTabs()}</ul>;
+    return (
+        <ul className={styles.wrapper}>
+            <div>{menuHeaderText}</div>
+            {generateTabs()}
+        </ul>
+    );
 };
