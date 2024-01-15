@@ -4,7 +4,6 @@ import { useInfiniteScroll } from '../../services/hooks/infinite-scroll';
 import { ListsPromises } from '../../services/api/promises';
 import { IListGeneralInfo } from '../../configs/interfaces/lists.interfaces';
 import { ErrorBanner } from '../../components';
-import { NoListsBanner } from './components/no-lists-banner/no-lists-banner';
 import { ListsCardsGrid } from './components/lists-cards-grid/lists-cards-grid';
 import { ScrollLoader } from './components/scroll-loader/scroll-loader';
 
@@ -22,8 +21,6 @@ export const AccountListsGrid: FC = () => {
 
     if (error) return <ErrorBanner errorDescription={error} errorInfo="Error" />;
 
-    if (isPending && !data) return <ListsCardsGrid lists={[]} isPending={true} />;
-
     if (data && isPending)
         return (
             <>
@@ -32,11 +29,5 @@ export const AccountListsGrid: FC = () => {
             </>
         );
 
-    return data?.results ? (
-        <>
-            <ListsCardsGrid lists={data.results} isPending={isPending} />
-        </>
-    ) : (
-        <NoListsBanner />
-    );
+    return <ListsCardsGrid lists={data?.results} isPending={isPending} />;
 };

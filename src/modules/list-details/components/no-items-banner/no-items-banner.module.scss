@@ -1,6 +1,10 @@
 .wrapper {
     display: flex;
-    justify-content: center;
     font-size: 18px;
     margin-top: 20px;
+
+    p {
+        width: 100%;
+        text-align: center;
+    }
 }

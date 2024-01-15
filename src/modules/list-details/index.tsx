@@ -8,6 +8,7 @@ import { ErrorBanner } from '../../components';
 import { EssentialInfo } from './components/essential-info/essential-info';
 import { ListItemsGrid } from './components/list-items-grid/list-items-grid';
 import { AddItemsButton } from './components/add-items-button/add-items-button';
+import { ScrollLoader } from './components/scroll-loader/scroll-loader';
 
 interface IListDetailsProps {
     listId: number;
@@ -34,7 +35,7 @@ export const ListDetails: FC<IListDetailsProps> = (props) => {
             <>
                 <EssentialInfo list={data} isPending={false} isEditable={isEditable} listId={listId.toString()} />
                 <ListItemsGrid isPending={false} items={data?.results} comments={data?.comments} />
-                <>loader</>
+                <ScrollLoader />
             </>
         );
 
@@ -49,5 +50,3 @@ export const ListDetails: FC<IListDetailsProps> = (props) => {
 
 // todo
 // sorting dropdown menu
-// grid template to even for better infinite scroll experiance
-// <>loader</>
