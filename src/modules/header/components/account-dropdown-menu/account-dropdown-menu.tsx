@@ -25,7 +25,11 @@ export const AccountDropdownMenu: FC<IAccountDropdownMenuProps> = (props) => {
                 </button>
             }
             menuItems={[
-                <Link to={`/account`}>{user?.username}</Link>,
+                <Link to={`/account`}>{user?.username ? user.username : 'Account'}</Link>,
+                <Link to={`/account/lists`}>Lists</Link>,
+                <Link to={`/account/watchlist`}>Watchlist</Link>,
+                <Link to={`/account/rated`}>Rated</Link>,
+                <Link to={`/account/favorites`}>Favorites</Link>,
                 <button onClick={signOutHandler}>Sign Out</button>
             ]}
         />

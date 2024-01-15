@@ -48,11 +48,16 @@ export const CenteredPointedDropdownMenu: FC<ICenteredPointedDropdownMenuProps> 
     };
 
     return (
-        <div className={styles.centeredPointedDropdownMenuWrapper} ref={centeredPointedDropdownMenuRef}>
+        <div className={styles.wrapper} ref={centeredPointedDropdownMenuRef}>
             <div onClick={toggleMenu} className={styles.triggerElementWrapper}>
                 {triggerElement}
             </div>
-            {isMenuOpen && <ul className={styles.centeredPointedDropdownMenuContent}>{generateLiElements()}</ul>}
+            {isMenuOpen && <ul className={styles.menu}>{generateLiElements()}</ul>}
         </div>
     );
 };
+
+// todo
+// try triangle as background color, not as border
+// try $light border on wrapper (highlight with more shadows if required)
+// fix on hover first & last items border-radius

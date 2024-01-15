@@ -10,4 +10,8 @@ li {
     &:first-child {
         border-bottom: 1px solid $light;
     }
+
+    &:last-child {
+        border-top: 1px solid $light;
+    }
 }

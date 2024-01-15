@@ -19,9 +19,9 @@ export const HoverCenteredPointedDropdownMenu: FC<IHoverCenteredPointedDropdownM
     };
 
     return (
-        <div className={styles.hoverCenteredPointedDropdownMenuWrapper}>
+        <div className={styles.wrapper}>
             {triggerElement}
-            <ul className={styles.hoverCenteredPointedDropdownMenuContent}>{generateLiElements()}</ul>
+            <ul className={styles.menu}>{generateLiElements()}</ul>
         </div>
     );
 };

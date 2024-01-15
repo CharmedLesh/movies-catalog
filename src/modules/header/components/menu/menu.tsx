@@ -34,15 +34,13 @@ export const Menu: FC<IMenuProps> = (props) => {
                     <button>More</button>
                 </li>
             </ul>
-            <ul className={styles.authMenu}>
-                {isUser ? (
-                    <AccountDropdownMenu signOutHandler={signOutHandler} />
-                ) : (
-                    <li>
-                        <HoverAnimatedUnderlineButton value="Sign In" onClick={navigateToAccountPage} />
-                    </li>
-                )}
-            </ul>
+            {isUser ? (
+                <AccountDropdownMenu signOutHandler={signOutHandler} />
+            ) : (
+                <div>
+                    <HoverAnimatedUnderlineButton value="Sign In" onClick={navigateToAccountPage} />
+                </div>
+            )}
         </ul>
     );
 };
