@@ -6,7 +6,7 @@ export const Menu: FC = () => {
     const listsUrl = `${baseUrl}/lists`;
     const watchlistUrl = `${baseUrl}/watchlist`;
     const ratedUrl = `${baseUrl}/rated`;
-    const favoriteUrl = `${baseUrl}/favorite`;
+    const favoritesUrl = `${baseUrl}/favorites`;
 
     const options = [
         {
@@ -30,8 +30,8 @@ export const Menu: FC = () => {
             isEnd: false
         },
         {
-            text: 'Favorite',
-            url: favoriteUrl,
+            text: 'Favorites',
+            url: favoritesUrl,
             isEnd: false
         }
     ];

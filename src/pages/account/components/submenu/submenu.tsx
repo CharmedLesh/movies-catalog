@@ -7,14 +7,16 @@ export const Submenu: FC = () => {
 
     const parts = pathname.split('/');
     const baseUrl = `/account/${parts[2]}`;
-    const moviesUrl = `${baseUrl}/movies`;
+    const moviesUrl = `${baseUrl}`;
     const tvUrl = `${baseUrl}/tv`;
+
+    const isMoviesEnd: boolean = parts[3] === 'tv' ? true : false;
 
     const options = [
         {
             text: 'Movies',
             url: moviesUrl,
-            isEnd: false
+            isEnd: isMoviesEnd
         },
         {
             text: 'TV',

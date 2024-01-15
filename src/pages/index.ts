@@ -15,5 +15,5 @@ export { AccountListEditItemsPage } from './account-list-edit-items';
 export { AccountListEditDeletePage } from './account-list-edit-delete';
 export { AccountWatchlistPage } from './account-watchlist';
 export { AccountRatedPage } from './account-rated';
-export { AccountFavoritePage } from './account-favorite';
+export { AccountFavoritesPage } from './account-favorites';
 export { ListPage } from './list';

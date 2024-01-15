@@ -3,7 +3,7 @@ import { Route, createBrowserRouter, createRoutesFromElements, useNavigate } fro
 import { useAppDispatch, useSession } from '../hooks/store-hooks';
 import { updateSession, removeSession } from '../store/slices/session-slice';
 import {
-    AccountFavoritePage,
+    AccountFavoritesPage,
     AccountRatedPage,
     AccountWatchlistPage,
     ErrorPage,
@@ -71,15 +71,15 @@ export const router = createBrowserRouter(
                     </Route>
                 </Route>
                 <Route path="watchlist" element={<AccountWatchlistPage />}>
-                    <Route path="movies" element={<div>Account Watchlist Movies</div>} />
+                    <Route index element={<div>Account Watchlist Movies</div>} />
                     <Route path="tv" element={<div>Account Watchlist TV</div>} />
                 </Route>
                 <Route path="rated" element={<AccountRatedPage />}>
-                    <Route path="movies" element={<div>Account Rated Movies</div>} />
+                    <Route index element={<div>Account Rated Movies</div>} />
                     <Route path="tv" element={<div>Account Rated TV</div>} />
                 </Route>
-                <Route path="favorite" element={<AccountFavoritePage />}>
-                    <Route path="movies" element={<div>Account Favorite Movies</div>} />
+                <Route path="favorites" element={<AccountFavoritesPage />}>
+                    <Route index element={<div>Account Favorite Movies</div>} />
                     <Route path="tv" element={<div>Account Favorite TV</div>} />
                 </Route>
             </Route>
@@ -87,3 +87,7 @@ export const router = createBrowserRouter(
         </Route>
     )
 );
+
+// todo
+// add "Return to List" button under navMenu at lists/:id/edit
+// mobile design for navMenu at lists/:id/edit

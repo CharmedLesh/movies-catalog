@@ -1,5 +1,4 @@
 import { FC, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { useSession } from '../../../../services/hooks/store-hooks';
 import styles from './hamburger-menu.module.scss';
 
@@ -46,38 +45,26 @@ export const HamburgerMenu: FC<IHamburgerMenuProps> = (props) => {
         <ul className={hamburgerMenuClassName} ref={hamburgerMenu}>
             <ul>
                 <li>
-                    <Link to={`/movies`} onClick={toggleHamburgerMenu}>
-                        Movies
-                    </Link>
+                    <button onClick={toggleHamburgerMenu}>Movies</button>
                 </li>
                 <li>
-                    <Link to={`/tv`} onClick={toggleHamburgerMenu}>
-                        TV Shows
-                    </Link>
+                    <button onClick={toggleHamburgerMenu}>TV Shows</button>
                 </li>
                 <li>
-                    <Link to={`/people`} onClick={toggleHamburgerMenu}>
-                        People
-                    </Link>
+                    <button onClick={toggleHamburgerMenu}>People</button>
                 </li>
                 <li>
-                    <Link to={`/more`} onClick={toggleHamburgerMenu}>
-                        More
-                    </Link>
+                    <button onClick={toggleHamburgerMenu}>More</button>
                 </li>
             </ul>
             <ul>
                 {isSession ? (
                     <li>
-                        <Link to={`/account`} onClick={toggleHamburgerMenu}>
-                            Account
-                        </Link>
+                        <button onClick={toggleHamburgerMenu}>Account</button>
                     </li>
                 ) : (
                     <li>
-                        <Link to={`/sign-in`} onClick={toggleHamburgerMenu}>
-                            Sign In
-                        </Link>
+                        <button onClick={toggleHamburgerMenu}>Sign In</button>
                     </li>
                 )}
                 {isSession && (
@@ -89,3 +76,6 @@ export const HamburgerMenu: FC<IHamburgerMenuProps> = (props) => {
         </ul>
     );
 };
+
+// todo
+// menu & hamburger menu remake

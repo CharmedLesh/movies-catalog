@@ -12,7 +12,7 @@ export const Menus: FC = () => {
     return (
         <div className={styles.menus}>
             <Menu />
-            {(parts[2] === 'watchlist' || parts[2] === 'rated' || parts[2] === 'favorite') && <Submenu />}
+            {(parts[2] === 'watchlist' || parts[2] === 'rated' || parts[2] === 'favorites') && <Submenu />}
         </div>
     );
 };

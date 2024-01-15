@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useUser } from '../../../../services/hooks/store-hooks';
 import { RoundAvatar } from '../../../../ui/avatars';
 import { CenteredPointedDropdownMenu } from '../../../../ui/dropdown-menus';
@@ -18,20 +18,22 @@ export const AccountDropdownMenu: FC<IAccountDropdownMenuProps> = (props) => {
     ) : null;
 
     return (
-        <CenteredPointedDropdownMenu
-            triggerElement={
-                <button className={styles.accountDropdownAvatarButton}>
-                    {user && <RoundAvatar name={user?.username} img={avatarImage} />}
-                </button>
-            }
-            menuItems={[
-                <Link to={`/account`}>{user?.username ? user.username : 'Account'}</Link>,
-                <Link to={`/account/lists`}>Lists</Link>,
-                <Link to={`/account/watchlist`}>Watchlist</Link>,
-                <Link to={`/account/rated`}>Rated</Link>,
-                <Link to={`/account/favorites`}>Favorites</Link>,
-                <button onClick={signOutHandler}>Sign Out</button>
-            ]}
-        />
+        <div className={styles.wrapper}>
+            <CenteredPointedDropdownMenu
+                triggerElement={
+                    <button className={styles.accountDropdownAvatarButton}>
+                        {user && <RoundAvatar name={user?.username} img={avatarImage} />}
+                    </button>
+                }
+                menuItems={[
+                    <NavLink to={`/account`}>{user?.username ? user.username : 'Account'}</NavLink>,
+                    <NavLink to={`/account/lists`}>Lists</NavLink>,
+                    <NavLink to={`/account/watchlist`}>Watchlist</NavLink>,
+                    <NavLink to={`/account/rated`}>Rated</NavLink>,
+                    <NavLink to={`/account/favorites`}>Favorites</NavLink>,
+                    <button onClick={signOutHandler}>Sign Out</button>
+                ]}
+            />
+        </div>
     );
 };
