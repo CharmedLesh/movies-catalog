@@ -51,4 +51,3 @@ export const ListDetails: FC<IListDetailsProps> = (props) => {
 // sorting dropdown menu
 // grid template to even for better infinite scroll experiance
 // <>loader</>
-// return testing

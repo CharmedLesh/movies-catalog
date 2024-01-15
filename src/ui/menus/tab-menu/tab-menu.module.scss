@@ -2,7 +2,6 @@
 
 .wrapper {
     display: flex;
-    justify-content: space-between;
     border-bottom: 1px solid $grey-light;
     width: 100%;
 
@@ -11,18 +10,17 @@
 
         a {
             display: flex;
-            width: 100%;
             text-decoration: none;
             justify-content: center;
-            padding: 8px 6px;
             font-size: 12px;
-
-            @media (min-width: 320px) {
-                font-size: 14px;
-            }
+            padding: 8px 6px;
 
             @media (min-width: 380px) {
                 padding: 8px 12px;
+            }
+
+            @media (min-width: 320px) {
+                font-size: 14px;
             }
 
             @media (min-width: 768px) {
