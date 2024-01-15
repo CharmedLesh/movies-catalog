@@ -56,8 +56,3 @@ export const CenteredPointedDropdownMenu: FC<ICenteredPointedDropdownMenuProps> 
         </div>
     );
 };
-
-// todo
-// try triangle as background color, not as border
-// try $light border on wrapper (highlight with more shadows if required)
-// fix on hover first & last items border-radius
