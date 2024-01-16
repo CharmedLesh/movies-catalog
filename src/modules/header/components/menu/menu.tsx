@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../../../../services/hooks/store-hooks';
+import { useSession } from '../../../../services/hooks/store-hooks';
 import { AccountDropdownMenu } from '../account-dropdown-menu/account-dropdown-menu';
 import { HoverAnimatedUnderlineButton } from '../../../../ui/buttons';
 import styles from './menu.module.scss';
@@ -11,7 +11,7 @@ interface IMenuProps {
 
 export const Menu: FC<IMenuProps> = (props) => {
     const { signOutHandler } = props;
-    const { isUser } = useUser();
+    const { isSession } = useSession();
     const navigate = useNavigate();
 
     const navigateToAccountPage = () => {
@@ -34,7 +34,7 @@ export const Menu: FC<IMenuProps> = (props) => {
                     <button>More</button>
                 </li>
             </ul>
-            {isUser ? (
+            {isSession ? (
                 <AccountDropdownMenu signOutHandler={signOutHandler} />
             ) : (
                 <div>

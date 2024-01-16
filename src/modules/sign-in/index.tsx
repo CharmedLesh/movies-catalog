@@ -90,3 +90,6 @@ export const SignIn: FC = () => {
         </div>
     );
 };
+
+// todo
+// use sessionstorage instead of localstorage for request token

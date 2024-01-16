@@ -17,12 +17,14 @@ export const AccountDropdownMenu: FC<IAccountDropdownMenuProps> = (props) => {
         <img src={`https://www.themoviedb.org/t/p/w50_and_h50_face${user.avatar.tmdb.avatar_path}`} />
     ) : null;
 
+    const avatarName = user?.username ? user.username : null;
+
     return (
         <div className={styles.wrapper}>
             <CenteredPointedDropdownMenu
                 triggerElement={
                     <button className={styles.accountDropdownAvatarButton}>
-                        {user && <RoundAvatar name={user?.username} img={avatarImage} />}
+                        <RoundAvatar name={avatarName} img={avatarImage} />
                     </button>
                 }
                 menuItems={[
