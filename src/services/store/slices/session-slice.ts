@@ -21,7 +21,10 @@ const localStorageSessionData = new LocalStorageExpirable<ISessionData>({
 const getSessionDataFromLocalStorage = (): ISessionData | null => {
     const data = localStorageSessionData.getAndUpdate();
     if (data) {
-        return { accessToken: data.accessToken, accountId: data.accountId, sessionId: data.sessionId };
+        if (data.accessToken && data.accountId && data.sessionId) {
+            return { accessToken: data.accessToken, accountId: data.accountId, sessionId: data.sessionId };
+        }
+        localStorageSessionData.remove();
     }
     return null;
 };
