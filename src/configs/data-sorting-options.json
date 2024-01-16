@@ -1,0 +1,42 @@
+{
+    "1": {
+        "code": "original_order.asc",
+        "title": "Original Ascending"
+    },
+    "2": {
+        "code": "original_order.desc",
+        "title": "Original Descending"
+    },
+    "3": {
+        "code": "vote_average.asc",
+        "title": "Rating Ascending"
+    },
+    "4": {
+        "code": "vote_average.desc",
+        "title": "Rating Descending"
+    },
+    "5": {
+        "code": "release_date.asc",
+        "title": "Release Date Ascending"
+    },
+    "6": {
+        "code": "release_date.desc",
+        "title": "Release Date Descending"
+    },
+    "7": {
+        "code": "primary_release_date.asc",
+        "title": "Primary Release Date Ascending"
+    },
+    "8": {
+        "code": "primary_release_date.desc",
+        "title": "Primary Release Date Descending"
+    },
+    "9": {
+        "code": "title.asc",
+        "title": "Title (A-Z)"
+    },
+    "10": {
+        "code": "title.desc",
+        "title": "Title (Z-A)"
+    }
+}

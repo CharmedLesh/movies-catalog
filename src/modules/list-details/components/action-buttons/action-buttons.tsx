@@ -2,7 +2,10 @@ import { FC } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../../services/hooks/store-hooks';
 import { setStatusNotificationState } from '../../../../services/store/slices/status-notification';
+import dataSortingOptions from '../../../../configs/data-sorting-options.json';
+import { IDataSortingOptions } from '../../../../configs/interfaces/shared.interfaces';
 import { OutlinedRoundedButton } from '../../../../ui/buttons';
+import { CenteredPointedDropdownMenu } from '../../../../ui/dropdown-menus';
 import styles from './action-buttons.module.scss';
 
 interface IActionButtonsProps {
@@ -16,8 +19,6 @@ export const ActionButtons: FC<IActionButtonsProps> = (props) => {
     const { pathname } = useLocation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-
-    const actionButtonsConditionalClassName = isEditable ? styles.editable : styles.nonEditable;
 
     const onEditButtonClick = () => {
         navigate(`${pathname}/edit`);
@@ -35,11 +36,41 @@ export const ActionButtons: FC<IActionButtonsProps> = (props) => {
         }
     };
 
+    const generateSortingMenuItems = (jsonData: IDataSortingOptions): JSX.Element[] => {
+        const sortingMenuItemsArray: JSX.Element[] = Object.keys(jsonData).map((key, index) => {
+            const itemData = jsonData[key];
+
+            return (
+                <button key={index} onClick={() => console.log(itemData.code)}>
+                    {itemData.title}
+                </button>
+            );
+        });
+
+        return sortingMenuItemsArray;
+    };
+
+    const actionButtonsConditionalClassName = isEditable ? styles.editable : styles.nonEditable;
+
     return (
-        <div className={`${styles.actionButtons} ${actionButtonsConditionalClassName}`}>
-            {isEditable && <OutlinedRoundedButton value="Edit" onClick={onEditButtonClick} disabled={isPending} />}
-            <OutlinedRoundedButton value="Sort By" onClick={() => console.log('click')} disabled={isPending} />
-            <OutlinedRoundedButton value="Share" onClick={onShareButtonClick} disabled={isPending} />
+        <div className={actionButtonsConditionalClassName}>
+            {isEditable && (
+                <div className={styles.editButton}>
+                    <OutlinedRoundedButton value="Edit" onClick={onEditButtonClick} disabled={isPending} />
+                </div>
+            )}
+            <div className={styles.sortingMenu}>
+                <CenteredPointedDropdownMenu
+                    triggerElement={<OutlinedRoundedButton value="Sort By" disabled={isPending} />}
+                    menuItems={generateSortingMenuItems(dataSortingOptions)}
+                />
+            </div>
+            <div className={styles.shareButton}>
+                <OutlinedRoundedButton value="Share" onClick={onShareButtonClick} disabled={isPending} />
+            </div>
         </div>
     );
 };
+
+// todo
+// image resize on hover for 2-3 cards

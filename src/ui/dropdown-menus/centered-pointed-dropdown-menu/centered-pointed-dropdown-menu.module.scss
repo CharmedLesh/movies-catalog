@@ -59,6 +59,10 @@
             }
         }
 
+        &:active {
+            opacity: 85%;
+        }
+
         a,
         button {
             padding: 8px 24px;

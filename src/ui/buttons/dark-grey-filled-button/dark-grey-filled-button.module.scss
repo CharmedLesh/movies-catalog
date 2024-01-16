@@ -12,11 +12,8 @@
         padding: 8px 16px;
     }
 
+    &:disabled,
     &:active {
-        background-color: $grey;
-    }
-
-    &:disabled {
         background-color: $grey;
     }
 }

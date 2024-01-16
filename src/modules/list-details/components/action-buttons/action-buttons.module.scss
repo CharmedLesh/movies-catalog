@@ -1,27 +1,50 @@
-.actionButtons {
-    display: flex;
+.nonEditable,
+.editable {
     width: 100%;
+    column-gap: 10px;
 
-    @media (max-width: 340px) {
-        justify-content: center;
-    }
-
-    button {
-        &:nth-child(2) {
-            margin-left: 10px;
-        }
-    }
-
-    &.editable {
-        button {
-            // @media (max-width: 340px) {
-            //     padding: 4px 8px;
-            //     font-size: 14px;
-            // }
-
-            &:nth-child(2) {
-                margin-right: 10px;
+    @media (max-width: 768px) {
+        .sortingMenu {
+            li {
+                button {
+                    padding: 8px;
+                }
             }
         }
+    }
+}
+
+.nonEditable {
+    display: flex;
+
+    @media (max-width: 768px) {
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+}
+
+.editable {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    .editButton {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .editButton,
+    .shareButton {
+        button {
+            @media (max-width: 460px) {
+                width: 100%;
+                max-width: 85px;
+                display: flex;
+            }
+        }
+    }
+
+    @media (min-width: 460px) {
+        display: flex;
     }
 }
