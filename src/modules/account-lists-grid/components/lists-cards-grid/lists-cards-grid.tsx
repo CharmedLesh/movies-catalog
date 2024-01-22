@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { IListGeneralInfo } from '../../../../configs/interfaces/lists.interfaces';
+import { IListGeneralInfo } from '../../../../interfaces/lists.interfaces';
 import { ListCard } from '../list-card/list-card';
 import { InfoCard169Loader } from '../../../../ui/loaders';
 import { NoListsBanner } from '../no-lists-banner/no-lists-banner';

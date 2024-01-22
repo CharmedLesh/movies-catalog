@@ -4,7 +4,7 @@ import {
     IGetAccessTokenResponse,
     IGetRequestTokenResponse,
     IGetSessionIdResponse
-} from '../../../../configs/interfaces/auth.interfaces';
+} from '../../../../interfaces/auth.interfaces';
 
 export class AuthPromises {
     static async getRequestToken(): Promise<AxiosResponse<IGetRequestTokenResponse>> {

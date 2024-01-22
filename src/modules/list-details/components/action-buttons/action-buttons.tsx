@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../../services/hooks/store-hooks';
 import { setStatusNotificationState } from '../../../../services/store/slices/status-notification';
 import dataSortingOptions from '../../../../configs/data-sorting-options.json';
-import { IDataSortingOptions } from '../../../../configs/interfaces/shared.interfaces';
+import { IDataSortingOptions } from '../../../../interfaces/shared.interfaces';
 import { OutlinedRoundedButton } from '../../../../ui/buttons';
 import { CenteredPointedDropdownMenu } from '../../../../ui/dropdown-menus';
 import styles from './action-buttons.module.scss';

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IListGeneralInfo } from '../../../../configs/interfaces/lists.interfaces';
+import { IListGeneralInfo } from '../../../../interfaces/lists.interfaces';
 import { InfoCard169 } from '../../../../ui/cards';
 
 interface IListCardProps {

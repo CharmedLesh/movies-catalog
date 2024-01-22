@@ -9,7 +9,7 @@ import {
     ICheckIfMediaItemInListResponse,
     IClearAllItemsInListResponse,
     IDeleteListResponse
-} from '../../../../configs/interfaces/lists.interfaces';
+} from '../../../../interfaces/lists.interfaces';
 
 export class ListsPromises {
     static async getListsCollection(

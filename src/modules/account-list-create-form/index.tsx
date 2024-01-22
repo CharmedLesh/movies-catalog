@@ -1,4 +1,4 @@
-import { FC, SyntheticEvent, useEffect, useState } from 'react';
+import { FC, SyntheticEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useSession, useUser } from '../../services/hooks/store-hooks';
 import { ListsPromises } from '../../services/api/promises';

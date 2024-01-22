@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch } from './store-hooks';
 import { requestWithNotificationsAndPendingSetter } from '../../helpers/requests';
 import { hideScrollToTopButton, showScrollToTopButton } from '../../helpers/scroll-to-top-button';
-import { IPageNumberDependingCollection } from '../../configs/interfaces/shared.interfaces';
+import { IPageNumberDependingCollection } from '../../interfaces/shared.interfaces';
 import { Logger } from '../logger/logger';
 
 export const useInfiniteScroll = <T, U>(

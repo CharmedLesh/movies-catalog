@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useSession } from '../../services/hooks/store-hooks';
 import { useInfiniteScroll } from '../../services/hooks/infinite-scroll';
 import { ListsPromises } from '../../services/api/promises';
-import { IListGeneralInfo } from '../../configs/interfaces/lists.interfaces';
+import { IListGeneralInfo } from '../../interfaces/lists.interfaces';
 import { ErrorBanner } from '../../components';
 import { ListsCardsGrid } from './components/lists-cards-grid/lists-cards-grid';
 import { ScrollLoader } from './components/scroll-loader/scroll-loader';

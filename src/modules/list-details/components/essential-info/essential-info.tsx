@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { IListDetailsCollection } from '../../../../configs/interfaces/lists.interfaces';
+import { IListDetailsCollection } from '../../../../interfaces/lists.interfaces';
 import { ActionButtons } from '../action-buttons/action-buttons';
 import { Dots } from '../../../../ui/loaders';
 import styles from './essential-info.module.scss';

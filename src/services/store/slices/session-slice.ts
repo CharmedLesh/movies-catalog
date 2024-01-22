@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { createSession } from '../async-thunks/session-async-thunks';
 import { LocalStorageExpirable } from '../../localstorage/localstorage-expirable';
-import { ISessionData } from '../../../configs/interfaces/auth.interfaces';
+import { ISessionData } from '../../../interfaces/auth.interfaces';
 
 // interface for the slice state
 export interface ISessionState {

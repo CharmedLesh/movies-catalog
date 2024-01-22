@@ -4,13 +4,13 @@ import {
     IMoviesRatedCollection,
     ITVCollection,
     ITVRatedCollection
-} from '../../../../configs/interfaces/media.interfaces';
+} from '../../../../interfaces/media.interfaces';
 import {
     IAccountDetails,
     IAddOrRemoveFavoriteItem,
     IAddOrRemoveWatchlistItem
-} from '../../../../configs/interfaces/account.interfaces';
-import { SortingTypeV3 } from '../../../../configs/interfaces/shared.interfaces';
+} from '../../../../interfaces/account.interfaces';
+import { SortingTypeV3 } from '../../../../interfaces/shared.interfaces';
 
 export class AccountPromises {
     static async getAccountDetails(sessionOrAccountId: string) {

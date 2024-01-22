@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthPromises } from '../../api/promises';
 import { LocalStorageExpirable } from '../../localstorage/localstorage-expirable';
-import { ISessionData } from '../../../configs/interfaces/auth.interfaces';
+import { ISessionData } from '../../../interfaces/auth.interfaces';
 
 export const createSession = createAsyncThunk('session', async (requestToken: string, { rejectWithValue }) => {
     try {

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { showModalLightboxPopup } from '../../../../helpers/modal-lightbox-popup';
-import { IMediaItem } from '../../../../configs/interfaces/media.interfaces';
+import { IMediaItem } from '../../../../interfaces/media.interfaces';
 import { MediaCard23 } from '../../../../ui/cards';
 import { SvgCommentIcon } from '../../../../ui/icons';
 import { CommentModalContent } from '../comment-modal-content/comment-modal-content';

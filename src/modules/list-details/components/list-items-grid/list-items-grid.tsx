@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { IMediaItem } from '../../../../configs/interfaces/media.interfaces';
-import { IComments } from '../../../../configs/interfaces/lists.interfaces';
+import { IMediaItem } from '../../../../interfaces/media.interfaces';
+import { IComments } from '../../../../interfaces/lists.interfaces';
 import { NoItemsBanner } from '../no-items-banner/no-items-banner';
 import { ListItemCard } from '../list-item-card/list-item-card';
 import { MediaCard23Loader } from '../../../../ui/loaders';
