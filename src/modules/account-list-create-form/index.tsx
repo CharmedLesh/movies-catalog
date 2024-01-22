@@ -1,6 +1,6 @@
 import { FC, SyntheticEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useSession, useUser } from '../../services/hooks/store-hooks';
+import { useSession, useUser } from '../../services/hooks/store-hooks';
 import { ListsPromises } from '../../services/api/promises';
 import { requestWithNotificationsAndPendingSetter } from '../../helpers/requests';
 import { NameInput } from './components/name-input/name-input';
@@ -14,7 +14,6 @@ export const AccountListCreateForm: FC = () => {
     const { user } = useUser();
 
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
 
     const [name, setName] = useState<string>('');
     const [description, setDescription] = useState<string>('');
@@ -26,7 +25,6 @@ export const AccountListCreateForm: FC = () => {
 
         if (isSession && accessToken && user) {
             const createdListData = await requestWithNotificationsAndPendingSetter(
-                dispatch,
                 ListsPromises.createList(accessToken, name, description, user.iso_3166_1, user.iso_639_1, isPublic),
                 setIsPending,
                 true,

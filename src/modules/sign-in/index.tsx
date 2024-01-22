@@ -51,7 +51,6 @@ export const SignIn: FC = () => {
 
     const getRequestToken = async () => {
         const data = await requestWithNotificationsAndPendingSetter(
-            dispatch,
             AuthPromises.getRequestToken(),
             setIsRequestTokenPending,
             false

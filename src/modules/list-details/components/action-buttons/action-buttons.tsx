@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../../../services/hooks/store-hooks';
-import { setStatusNotificationState } from '../../../../services/store/slices/status-notification';
+import { showStatusNotificationBanner } from '../../../../helpers/status-notification-banner';
 import dataSortingOptions from '../../../../configs/data-sorting-options.json';
 import { IDataSortingOptions } from '../../../../interfaces/shared.interfaces';
 import { OutlinedRoundedButton } from '../../../../ui/buttons';
@@ -18,7 +17,6 @@ export const ActionButtons: FC<IActionButtonsProps> = (props) => {
     const { isEditable, isPending, listId } = props;
     const { pathname } = useLocation();
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
 
     const onEditButtonClick = () => {
         navigate(`${pathname}/edit`);
@@ -28,10 +26,10 @@ export const ActionButtons: FC<IActionButtonsProps> = (props) => {
         const url = `${process.env.REACT_APP_URL_HOST}/list/${listId}`;
         try {
             await navigator.clipboard.writeText(url);
-            dispatch(setStatusNotificationState({ isSuccess: true, message: 'Link copied to Clipboard' }));
+            showStatusNotificationBanner(true, 'Link copied to Clipboard');
         } catch (error) {
             if (error instanceof Error) {
-                dispatch(setStatusNotificationState({ isSuccess: true, message: error.message }));
+                showStatusNotificationBanner(false, error.message);
             }
         }
     };

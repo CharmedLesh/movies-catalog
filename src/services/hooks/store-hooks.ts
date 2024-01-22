@@ -26,11 +26,3 @@ export const useUser = () => {
         error
     };
 };
-
-export const useStatusNotification = () => {
-    const { isSuccess, message } = useAppSelector((state) => state.statusNotification);
-    return {
-        isSuccess,
-        message
-    };
-};

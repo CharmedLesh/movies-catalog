@@ -1,23 +1,18 @@
 import { useEffect, FC, useState } from 'react';
-import { useDelayUnmount } from '../../services/hooks/delay-unmount';
-import { useAppDispatch, useStatusNotification } from '../../services/hooks/store-hooks';
-import { dropStatusNotificationState } from '../../services/store/slices/status-notification';
+import { hideStatusNotificationBanner } from '../../helpers/status-notification-banner';
 import styles from './status-notification-banner.module.scss';
 
-export const StatusNotificationBanner: FC = () => {
-    const { isSuccess, message } = useStatusNotification();
-    const dispatch = useAppDispatch();
+interface IStatusNotificationBannerProps {
+    isSuccess: boolean;
+    message: string;
+}
+
+export const StatusNotificationBanner: FC<IStatusNotificationBannerProps> = (props) => {
+    const { isSuccess, message } = props;
 
     const [isMounted, setIsMounted] = useState(true);
+    const [shouldRender, setShouldRender] = useState(true);
     const [isHovered, setIsHovered] = useState(false);
-
-    const shouldRender = useDelayUnmount(isMounted, 200);
-
-    useEffect(() => {
-        if (isSuccess !== null && message) {
-            setIsMounted(true);
-        }
-    }, [isSuccess, message]);
 
     useEffect(() => {
         let timer: NodeJS.Timeout;
@@ -32,15 +27,31 @@ export const StatusNotificationBanner: FC = () => {
     }, [isMounted, isHovered]);
 
     useEffect(() => {
+        let timer: NodeJS.Timeout;
+
         if (!shouldRender) {
-            dispatch(dropStatusNotificationState());
+            timer = setTimeout(() => {
+                hideStatusNotificationBanner();
+            });
         }
+
+        return () => clearTimeout(timer);
     }, [shouldRender]);
+
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+
+        if (!isMounted && shouldRender) {
+            timer = setTimeout(() => setShouldRender(false), 200);
+        }
+
+        return () => clearTimeout(timer);
+    }, [isMounted, shouldRender]);
 
     const bannerStatusClassName = isSuccess ? styles.bannerGreen : styles.bannerRed;
     const bannerRenderClassName = isMounted ? styles.bannerMounted : styles.bannerUnmounted;
 
-    return isSuccess !== null && message && shouldRender ? (
+    return (
         <div
             className={`${bannerStatusClassName} ${bannerRenderClassName}`}
             onMouseEnter={() => {
@@ -52,5 +63,5 @@ export const StatusNotificationBanner: FC = () => {
         >
             {message}
         </div>
-    ) : null;
+    );
 };

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { getAccountDetails } from '../async-thunks/user-async-thunks';
-import { setStatusNotificationState } from './status-notification';
+import { showStatusNotificationBanner } from '../../../helpers/status-notification-banner';
 
 interface IUser {
     avatar: {
@@ -59,8 +59,8 @@ export const userSlice = createSlice({
         });
         builder.addCase(getAccountDetails.rejected, (state, action) => {
             state.status = 'rejected';
-            setStatusNotificationState({ isSuccess: false, message: 'Error occured while getting user data' });
             state.error = action.payload as string;
+            showStatusNotificationBanner(false, 'Error occured while getting user data');
         });
     }
 });

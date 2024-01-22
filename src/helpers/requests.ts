@@ -1,7 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
-import { AppDispatch } from '../services/store/store';
-import { setStatusNotificationState } from '../services/store/slices/status-notification';
 import { Logger } from '../services/logger/logger';
+import { showStatusNotificationBanner } from './status-notification-banner';
 
 export const simpleRequest = async <T>(promise: Promise<AxiosResponse<T>>): Promise<T | undefined> => {
     try {
@@ -18,7 +17,6 @@ export const simpleRequest = async <T>(promise: Promise<AxiosResponse<T>>): Prom
 };
 
 export const requestWithNotifications = async <T>(
-    dispatch: AppDispatch,
     promise: Promise<AxiosResponse<T>>,
     showSuccessMessage: boolean,
     messages?: { success?: string; error?: string },
@@ -32,12 +30,8 @@ export const requestWithNotifications = async <T>(
         const data = response.data;
         if (data) {
             if (showSuccessMessage) {
-                dispatch(
-                    setStatusNotificationState({
-                        isSuccess: true,
-                        message: messages?.success ? messages.success : 'Request resolved'
-                    })
-                );
+                const message = messages?.success ? messages.success : 'Request resolved';
+                showStatusNotificationBanner(true, message);
             }
             return data;
         }
@@ -52,27 +46,16 @@ export const requestWithNotifications = async <T>(
             if (setError) {
                 setError(message);
             }
-            dispatch(
-                setStatusNotificationState({
-                    isSuccess: false,
-                    message: message
-                })
-            );
+            showStatusNotificationBanner(false, message);
         } else {
             const unexpectedErrorMessage = 'Unexpected error occurred.';
             Logger.logError(unexpectedErrorMessage);
-            dispatch(
-                setStatusNotificationState({
-                    isSuccess: false,
-                    message: unexpectedErrorMessage
-                })
-            );
+            showStatusNotificationBanner(false, unexpectedErrorMessage);
         }
     }
 };
 
 export const requestWithNotificationsAndPendingSetter = async <T>(
-    dispatch: AppDispatch,
     promise: Promise<AxiosResponse<T>>,
     setIsPending: React.Dispatch<React.SetStateAction<boolean>>,
     showSuccessMessage: boolean,
@@ -88,12 +71,8 @@ export const requestWithNotificationsAndPendingSetter = async <T>(
         const data = response.data;
         if (data) {
             if (showSuccessMessage) {
-                dispatch(
-                    setStatusNotificationState({
-                        isSuccess: true,
-                        message: messages?.success ? messages.success : 'Request resolved'
-                    })
-                );
+                const message = messages?.success ? messages.success : 'Request resolved';
+                showStatusNotificationBanner(true, message);
             }
             return data;
         }
@@ -108,21 +87,11 @@ export const requestWithNotificationsAndPendingSetter = async <T>(
             if (setError) {
                 setError(message);
             }
-            dispatch(
-                setStatusNotificationState({
-                    isSuccess: false,
-                    message: message
-                })
-            );
+            showStatusNotificationBanner(false, message);
         } else {
             const unexpectedErrorMessage = 'Unexpected error occurred.';
             Logger.logError(unexpectedErrorMessage);
-            dispatch(
-                setStatusNotificationState({
-                    isSuccess: false,
-                    message: unexpectedErrorMessage
-                })
-            );
+            showStatusNotificationBanner(false, unexpectedErrorMessage);
         }
     } finally {
         setIsPending(false);

@@ -53,7 +53,6 @@ export const useInfiniteScroll = <T, U>(
         const promise = getPromiseForInfiniteScroll(1);
         if (promise) {
             const initialPageData = await requestWithNotificationsAndPendingSetter(
-                dispatch,
                 promise,
                 setIsPending,
                 false,
@@ -74,12 +73,7 @@ export const useInfiniteScroll = <T, U>(
             const promise = getPromiseForInfiniteScroll(data.page + 1);
 
             if (promise) {
-                const nextPageData = await requestWithNotificationsAndPendingSetter(
-                    dispatch,
-                    promise,
-                    setIsPending,
-                    false
-                );
+                const nextPageData = await requestWithNotificationsAndPendingSetter(promise, setIsPending, false);
 
                 if (nextPageData) {
                     nextPageData.results = [...data.results, ...nextPageData.results];
