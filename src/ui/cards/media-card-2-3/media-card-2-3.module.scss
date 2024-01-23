@@ -22,10 +22,7 @@
             opacity: 100%;
 
             .imageWrapper {
-                img,
-                .imageNotFound {
-                    transform: scale(1.1);
-                }
+                transform: scale(1.05);
             }
 
             .infoPanel {
@@ -41,10 +38,7 @@
         opacity: 100%;
 
         .imageWrapper {
-            img,
-            .imageNotFound {
-                transform: scale(1.1);
-            }
+            transform: scale(1.05);
         }
     }
 }
@@ -129,12 +123,12 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
+    transition: 200ms;
 }
 
 .imageNotFound {
     color: $grey;
     font-size: 20px;
-    transition: 200ms;
 }
 
 .stars {

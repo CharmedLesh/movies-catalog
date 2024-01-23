@@ -37,7 +37,6 @@ export const ListItemCard: FC<IListItemCardProps> = (props) => {
         <MediaCard23
             title={title}
             description={description}
-            // image={posterImage}
             imageUrl={imageUrl}
             noImageText="POSTER NOT FOUND"
             actionButtonText="View Details"
