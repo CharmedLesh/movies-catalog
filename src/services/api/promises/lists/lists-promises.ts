@@ -10,6 +10,7 @@ import {
     IClearAllItemsInListResponse,
     IDeleteListResponse
 } from '../../../../interfaces/lists.interfaces';
+import { SortingTypeV4 } from '../../../../interfaces/shared.interfaces';
 
 export class ListsPromises {
     static async getListsCollection(
@@ -24,10 +25,11 @@ export class ListsPromises {
     static async getListDetails(
         listId: number,
         page: number,
+        sorting: SortingTypeV4,
         language?: string
     ): Promise<AxiosResponse<IListDetailsCollection>> {
         return $apiV4.get<IListDetailsCollection>(`/list/${listId.toString()}`, {
-            params: { language: language ? language : 'en-US', page: page.toString() }
+            params: { language: language ? language : 'en-US', page: page.toString(), sort_by: sorting }
         });
     }
 

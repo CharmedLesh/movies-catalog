@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { showStatusNotificationBanner } from '../../../../helpers/status-notification-banner';
 import dataSortingOptions from '../../../../configs/data-sorting-options.json';
-import { IDataSortingOptions } from '../../../../interfaces/shared.interfaces';
+import { Iv4DataSortingOption, SortingTypeV4 } from '../../../../interfaces/shared.interfaces';
 import { OutlinedRoundedButton } from '../../../../ui/buttons';
 import { CenteredPointedDropdownMenu } from '../../../../ui/dropdown-menus';
 import styles from './action-buttons.module.scss';
@@ -11,10 +11,11 @@ interface IActionButtonsProps {
     isEditable: boolean;
     listId: string;
     isPending: boolean;
+    setSorting: React.Dispatch<React.SetStateAction<SortingTypeV4>>;
 }
 
 export const ActionButtons: FC<IActionButtonsProps> = (props) => {
-    const { isEditable, isPending, listId } = props;
+    const { isEditable, isPending, listId, setSorting } = props;
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
@@ -34,13 +35,11 @@ export const ActionButtons: FC<IActionButtonsProps> = (props) => {
         }
     };
 
-    const generateSortingMenuItems = (jsonData: IDataSortingOptions): JSX.Element[] => {
-        const sortingMenuItemsArray: JSX.Element[] = Object.keys(jsonData).map((key, index) => {
-            const itemData = jsonData[key];
-
+    const generateSortingMenuItems = (jsonData: Iv4DataSortingOption[]): JSX.Element[] => {
+        const sortingMenuItemsArray: JSX.Element[] = jsonData.map((item, index) => {
             return (
-                <button key={index} onClick={() => console.log(itemData.code)}>
-                    {itemData.title}
+                <button key={index} onClick={() => setSorting(item.code)}>
+                    {item.title}
                 </button>
             );
         });
@@ -60,7 +59,7 @@ export const ActionButtons: FC<IActionButtonsProps> = (props) => {
             <div className={styles.sortingMenu}>
                 <CenteredPointedDropdownMenu
                     triggerElement={<OutlinedRoundedButton value="Sort By" disabled={isPending} />}
-                    menuItems={generateSortingMenuItems(dataSortingOptions)}
+                    menuItems={generateSortingMenuItems(dataSortingOptions as Iv4DataSortingOption[])}
                 />
             </div>
             <div className={styles.shareButton}>
@@ -69,6 +68,3 @@ export const ActionButtons: FC<IActionButtonsProps> = (props) => {
         </div>
     );
 };
-
-// todo
-// image resize on hover for 2-3 cards

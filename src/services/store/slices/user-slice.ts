@@ -27,7 +27,6 @@ export interface IUserState {
     error: null | string;
 }
 
-// interface for initial state
 const initialState: IUserState = {
     user: null,
     status: null,

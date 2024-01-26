@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { IListDetailsCollection } from '../../../../interfaces/lists.interfaces';
+import { SortingTypeV4 } from '../../../../interfaces/shared.interfaces';
 import { ActionButtons } from '../action-buttons/action-buttons';
 import { Dots } from '../../../../ui/loaders';
 import styles from './essential-info.module.scss';
@@ -9,11 +10,12 @@ interface IEssentialInfoProps {
     isPending: boolean;
     isEditable: boolean;
     listId: string;
+    setSorting: React.Dispatch<React.SetStateAction<SortingTypeV4>>;
     list?: IListDetailsCollection;
 }
 
 export const EssentialInfo: FC<IEssentialInfoProps> = (props) => {
-    const { list, isEditable, isPending, listId } = props;
+    const { list, isEditable, isPending, listId, setSorting } = props;
 
     const externalLinkOnAuthor = `https://www.themoviedb.org/u/${list?.created_by.username}`;
 
@@ -57,7 +59,12 @@ export const EssentialInfo: FC<IEssentialInfoProps> = (props) => {
                         <p>{list?.name}</p>
                     )}
                     <div className={styles.actionButtonsTopPanel}>
-                        <ActionButtons isEditable={isEditable} isPending={isPending} listId={listId} />
+                        <ActionButtons
+                            isEditable={isEditable}
+                            isPending={isPending}
+                            listId={listId}
+                            setSorting={setSorting}
+                        />
                     </div>
                 </div>
                 <div className={styles.createdBy}>
@@ -88,8 +95,10 @@ export const EssentialInfo: FC<IEssentialInfoProps> = (props) => {
                 </div>
             </div>
             <div className={styles.actionButtonsBottomPanel}>
-                <ActionButtons isPending={isPending} isEditable={isEditable} listId={listId} />
+                <ActionButtons isPending={isPending} isEditable={isEditable} listId={listId} setSorting={setSorting} />
             </div>
         </>
     );
 };
+
+// if list author at /list/:id - authorized user - redirect to /account/lists/:id

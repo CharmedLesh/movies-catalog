@@ -31,7 +31,6 @@ const getSessionDataFromLocalStorage = (): ISessionData | null => {
 
 const initialSessionData = getSessionDataFromLocalStorage();
 
-// interface for initial state
 const initialState: ISessionState = {
     accessToken: initialSessionData?.accessToken ? initialSessionData.accessToken : null,
     accountId: initialSessionData?.accountId ? initialSessionData.accountId : null,

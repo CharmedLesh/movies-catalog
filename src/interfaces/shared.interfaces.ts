@@ -13,11 +13,9 @@ export type SortingTypeV4 =
     | 'title.asc'
     | 'title.desc';
 
-export interface IDataSortingOptions {
-    [key: string]: {
-        code: string;
-        title: string;
-    };
+export interface Iv4DataSortingOption {
+    code: SortingTypeV4;
+    title: string;
 }
 
 export interface IUserBaseInfo {

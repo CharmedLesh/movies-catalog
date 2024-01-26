@@ -1,16 +1,16 @@
 import { AxiosResponse } from 'axios';
-import { useEffect, useState } from 'react';
-import { useAppDispatch } from './store-hooks';
+import { useEffect, useState, useRef } from 'react';
 import { requestWithNotificationsAndPendingSetter } from '../../helpers/requests';
 import { hideScrollToTopButton, showScrollToTopButton } from '../../helpers/scroll-to-top-button';
-import { IPageNumberDependingCollection } from '../../interfaces/shared.interfaces';
+import { IPageNumberDependingCollection, SortingTypeV4 } from '../../interfaces/shared.interfaces';
 import { Logger } from '../logger/logger';
 
 export const useInfiniteScroll = <T, U>(
-    getPromiseForInfiniteScroll: (page: number) => Promise<AxiosResponse<T & IPageNumberDependingCollection<U>>> | null
+    getPromiseForInfiniteScroll: (page: number) => Promise<AxiosResponse<T & IPageNumberDependingCollection<U>>> | null,
+    sorting?: SortingTypeV4
 ) => {
-    const dispatch = useAppDispatch();
     const footerHeight: number = 107;
+    const isInitialRender = useRef(true);
 
     const [data, setData] = useState<T & IPageNumberDependingCollection<U>>();
     const [isPending, setIsPending] = useState<boolean>(true);
@@ -19,8 +19,13 @@ export const useInfiniteScroll = <T, U>(
     const [error, setError] = useState<string>();
 
     useEffect(() => {
-        getInitialPageData();
-    }, []);
+        if (isInitialRender.current) {
+            getInitialPageData();
+            isInitialRender.current = false;
+        } else if (sorting) {
+            getInitialPageData();
+        }
+    }, [sorting]);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
